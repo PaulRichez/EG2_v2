@@ -8,6 +8,6 @@ import { ThemesService } from './core/services/themes.service';
 })
 export class AppComponent {
   constructor(private themesService: ThemesService) {
-    this.themesService.current = 'dark';
+    this.themesService.current = 'light';
   }
 }
