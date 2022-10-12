@@ -54,14 +54,13 @@
               "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "src/themes/main-theme.scss",
               {
-                "input": "src/themes/light.css",
+                "input": "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
                 "bundleName": "light",
                 "inject": true
               },
               {
-                "input": "src/themes/dark.css",
+                "input": "node_modules/primeng/resources/themes/lara-dark-blue/theme.css",
                 "bundleName": "dark",
                 "inject": false
               }

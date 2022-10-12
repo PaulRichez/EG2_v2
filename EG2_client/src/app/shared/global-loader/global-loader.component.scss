@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: white;  
+    //background: white;  
     }
 
 .boxes {
@@ -82,7 +82,7 @@
 .boxes .box > div:nth-child(1) {
     top: 0;
     left: 0;
-    background: var(--primary-color);
+    background: #145af2;
 }
 .boxes .box > div:nth-child(2) {
     background: #145af2;
@@ -93,13 +93,6 @@
     background: #447cf5;
     --rotateX: -90deg;
 }
-.boxes .box > div:nth-child(4) {
-    background: #DBE3F4;
-    top: 0;
-    left: 0;
-    --translateZ: -90px;
-}
-
 
 
 
