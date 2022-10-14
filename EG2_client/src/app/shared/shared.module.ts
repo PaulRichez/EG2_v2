@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GlobalLoaderComponent } from './global-loader/global-loader.component';
+import { GlobalLoaderComponent } from './components/global-loader/global-loader.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CardModule } from 'primeng/card';
@@ -9,6 +9,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -17,12 +19,14 @@ const MODULES = [
   CheckboxModule,
   InputTextModule,
   ButtonModule,
-  PasswordModule
+  PasswordModule,
+  HttpClientModule
 ]
 
 @NgModule({
   declarations: [
-    GlobalLoaderComponent
+    GlobalLoaderComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,7 @@ const MODULES = [
   ],
   exports: [
     GlobalLoaderComponent,
+    NotFoundComponent,
     MODULES
   ]
 })
