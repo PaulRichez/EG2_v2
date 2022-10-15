@@ -6,4 +6,4 @@
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::default-config.default-config');
+module.exports = createCoreService('plugin::first-install.default-config');

@@ -1,3 +1,5 @@
 'use strict';
 
-module.exports = {};
+module.exports = {
+    'default-config': require('./default-config'),
+};
