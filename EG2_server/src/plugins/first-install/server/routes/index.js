@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  'content-api': require("./server"),
+  'first-install': require("./first-install"),
 };
