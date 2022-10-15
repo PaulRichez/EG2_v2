@@ -1,2 +1,2 @@
-<router-outlet></router-outlet>
-<app-global-loader></app-global-loader>
+<router-outlet *ngIf="!loading"></router-outlet>
+<app-global-loader *ngIf="loading"></app-global-loader>

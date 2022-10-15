@@ -16,22 +16,7 @@ export class IsLoggedGuard implements CanActivate {
       this.router.navigate(['/auth/login']);
       return false;
     }
-    const permissions = route.data['permission'] as Array<string>;
-    if (permissions) {
-      let havePerm = 0;
-      permissions.forEach(permission => {
-        if (this.authService.checkpermission(permission)) {
-          havePerm++;
-        }
-      });
-      if (havePerm === permissions.length) {
-        return true
-      }
-      this.router.navigate(['auth/access-denied']);
-      return false;
-    } else {
-      return true;
-    }
+    return true;
   }
 
 }

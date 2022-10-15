@@ -22,4 +22,8 @@ module.exports = ({ env }) => ({
             }
         }
     },
+    'first-install': {
+        enabled: true,
+        resolve: './src/plugins/first-install'
+    },
 });
