@@ -6,7 +6,7 @@ module.exports = {
     const countUsers = await strapi.db.query('plugin::users-permissions.user').count();
     ctx.body = countUsers == 0;
   },
-  async registerFirstUser(ctx, next) {
+  async setup(ctx, next) {
     ctx.body = 'register';
   }
 };

@@ -11,5 +11,14 @@ module.exports = {
                 auth: false,
             }
         },
+        {
+            method: 'POST',
+            path: '/setup',
+            handler: 'first-install.setup',
+            config: {
+                auth: false,
+                policies: ['plugin::first-install.isFirstInstall']
+            },
+        }
     ]
 }

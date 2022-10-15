@@ -1,3 +1,7 @@
 'use strict';
 
-module.exports = {};
+const isFirstInstall = require('./isFirstInstall')
+
+module.exports = {
+    isFirstInstall
+};
