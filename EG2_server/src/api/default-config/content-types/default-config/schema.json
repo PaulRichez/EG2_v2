@@ -1,6 +1,6 @@
 {
   "kind": "singleType",
-  "collectionName": "default_configs",
+  "collectionName": "default-config",
   "info": {
     "singularName": "default-config",
     "pluralName": "default-configs",
