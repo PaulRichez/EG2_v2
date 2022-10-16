@@ -6,11 +6,13 @@
                     Installation
                 </ng-template>
                 <ng-template pTemplate="subtitle">
-                    Quelques réglage avant de commencer.
+                    Quelques réglages avant de commencer.
                 </ng-template>
-                <div class="flex justify-content-center">
-                    <p-button label="Commencer" [routerLink]="['/setup/steps']"></p-button>
-                </div>
+                <ng-template pTemplate="footer">
+                    <div class="grid grid-nogutter justify-content-end">
+                        <p-button label="Commencer" [routerLink]="['/setup/steps']"></p-button>
+                    </div>
+                </ng-template>
             </p-card>
         </div>
     </div>
