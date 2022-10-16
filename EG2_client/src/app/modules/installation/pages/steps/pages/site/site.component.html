@@ -1,1 +1,32 @@
-<p>site works!</p>
+<form [formGroup]="installationService.formWebsite" (ngSubmit)="onSubmit()" class="w-full">
+    <p-card>
+        <ng-template pTemplate="body">
+            <div class="p-fluid grid">
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="society" formControlName="society" type="text" pInputText class="w-full">
+                        <label for="society">Nom de la société</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="themesService.themeList" formControlName="theme" optionLabel="name"
+                            (onChange)="themesService.current = $event.value.value">
+                        </p-dropdown>
+                        <label for="theme">Theme</label>
+                    </span>
+                </div>
+
+                <div class="col-12">
+                    
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Suivant" type="submit"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</form>
