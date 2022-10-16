@@ -7,6 +7,7 @@ module.exports = {
     ctx.body = countUsers == 0;
   },
   async setup(ctx, next) {
+    console.log(ctx)
     ctx.body = 'register';
   }
 };
