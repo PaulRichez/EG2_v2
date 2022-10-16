@@ -29,7 +29,7 @@ const MODULES = [
 @NgModule({
   declarations: [
     GlobalLoaderComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InstallationService } from 'src/app/core/services/installation.service';
 import { ThemesService } from 'src/app/core/services/themes.service';
@@ -21,10 +22,13 @@ export class SiteComponent implements OnInit {
 
   onSubmit() {
     if (this.installationService.formWebsite.invalid) {
+      if ((this.installationService.formWebsite.get('logo')?.errors as ValidationErrors)['filesLimit']) {
+        console.log('ee')
+      }
       return;
     }
     else {
-      this.router.navigate(['/setup/email'])
+      this.router.navigate(['/setup/steps/email'])
     }
   }
 

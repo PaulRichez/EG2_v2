@@ -5,7 +5,7 @@ import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { requiredFileType } from '../validators/requiredFileType';
 import { requiredNumberType } from '../validators/requireNumberType';
-
+import { FileUploadValidators } from '@iplab/ngx-file-upload';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,9 +34,9 @@ export class InstallationService {
 
   private setForm() {
     this.formWebsite = this.formBuilder.group({
-      theme: ['', [Validators.required]],
+      theme: ['light', [Validators.required]],
       society: ['', []],
-      logo: ['', [requiredFileType('png')]],
+      logo: [null, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]],
     });
     this.formEmail = this.formBuilder.group({
       host: ['', [Validators.required]],

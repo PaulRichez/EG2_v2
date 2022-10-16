@@ -4,7 +4,8 @@
             <div class="p-fluid grid">
                 <div class="field col-12 md:col-6">
                     <span class="p-float-label">
-                        <input id="society" formControlName="society" type="text" pInputText class="w-full">
+                        <input id="society" formControlName="society" type="text" pInputText class="w-full"
+                            dFormValidation>
                         <label for="society">Nom de la société</label>
                     </span>
                 </div>
@@ -19,7 +20,11 @@
                 </div>
 
                 <div class="col-12">
-                    
+                    <span class="p-float-label mb-3">
+                        <label>Logo</label>
+                    </span>
+                    <file-upload formControlName="logo" [multiple]="false" accept="image/*" dFormValidation></file-upload>
+                    <small id="logo" class="p-error block ml-2" *ngIf="installationService.formWebsite.get('logo')?.errors">Ce champ est invalide.</small>
                 </div>
             </div>
         </ng-template>
