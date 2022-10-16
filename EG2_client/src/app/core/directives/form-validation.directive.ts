@@ -26,10 +26,10 @@ export class FormValidationDirective {
     if (parentNode) {
       parentNode.querySelector('#form-error')?.remove();
       if (myControl?.invalid) {
-        el.classList.add('is-invalid')
+        el.classList.add('ng-invalid')
         const divError = document.createElement('div');
         divError.setAttribute("id", "form-error");
-        divError.classList.add('text-danger', 'text-xs', 'mt-1')
+        divError.classList.add('p-error', 'text-xs', 'mt-1')
         const textnode = document.createTextNode(this.getmessage(myControl.errors));
         divError.appendChild(textnode);
         parentNode.appendChild(divError);

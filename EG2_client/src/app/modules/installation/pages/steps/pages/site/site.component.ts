@@ -22,9 +22,6 @@ export class SiteComponent implements OnInit {
 
   onSubmit() {
     if (this.installationService.formWebsite.invalid) {
-      if ((this.installationService.formWebsite.get('logo')?.errors as ValidationErrors)['filesLimit']) {
-        console.log('ee')
-      }
       return;
     }
     else {

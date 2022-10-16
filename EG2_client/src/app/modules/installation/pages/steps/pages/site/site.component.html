@@ -23,7 +23,7 @@
                     <span class="p-float-label mb-3">
                         <label>Logo</label>
                     </span>
-                    <file-upload formControlName="logo" [multiple]="false" accept="image/*" dFormValidation></file-upload>
+                    <file-upload formControlName="logo" [multiple]="false" accept="image/*"></file-upload>
                     <small id="logo" class="p-error block ml-2" *ngIf="installationService.formWebsite.get('logo')?.errors">Ce champ est invalide.</small>
                 </div>
             </div>

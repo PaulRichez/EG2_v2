@@ -38,6 +38,7 @@ export class InstallationService {
       society: ['', []],
       logo: [null, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]],
     });
+    console.log(this.formWebsite.controls);
     this.formEmail = this.formBuilder.group({
       host: ['', [Validators.required]],
       port: ['', [Validators.required, requiredNumberType()]],
