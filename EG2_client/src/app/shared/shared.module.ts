@@ -9,6 +9,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import {DropdownModule} from 'primeng/dropdown';
+
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 const MODULES = [
@@ -20,7 +22,8 @@ const MODULES = [
   InputTextModule,
   ButtonModule,
   PasswordModule,
-  HttpClientModule
+  DropdownModule,
+  HttpClientModule,
 ]
 
 @NgModule({

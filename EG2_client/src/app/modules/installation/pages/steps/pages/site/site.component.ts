@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { InstallationService } from 'src/app/core/services/installation.service';
+import { ThemesService } from 'src/app/core/services/themes.service';
 
 @Component({
   selector: 'app-site',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public installationService: InstallationService,
+    public themesService: ThemesService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    if (this.installationService.formWebsite.invalid) {
+      return;
+    }
+    else {
+      this.router.navigate(['/setup/email'])
+    }
   }
 
 }

@@ -16,7 +16,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     FormValidationDirective,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

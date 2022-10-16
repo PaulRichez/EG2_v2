@@ -5,6 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class ThemesService {
 
+  public themeList = [
+    {
+      name: 'Clair',
+      value: 'light'
+    },
+    {
+      name: 'Sombre',
+      value: 'dark',
+    }
+  ]
+
   public set current(value: string) {
     this.style.href = `/${value}.css`;
   }
