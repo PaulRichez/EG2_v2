@@ -9,13 +9,16 @@ import { MenuItem } from 'primeng/api';
 export class StepsComponent implements OnInit {
   items: MenuItem[] = [
     {
-      label: 'Site'
+      label: 'Site',
+      routerLink: 'site'
     },
     {
-      label: 'Email'
+      label: 'Email',
+      routerLink: 'email'
     },
     {
-      label: 'Premier utilisateur'
+      label: 'Premier utilisateur',
+      routerLink: 'first-user'
     },
   ]
   constructor() { }
