@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { requiredFileType } from '../validators/requiredFileType';
 import { requiredNumberType } from '../validators/requireNumberType';
 import { FileUploadValidators } from '@iplab/ngx-file-upload';
 @Injectable({
@@ -14,6 +13,7 @@ export class InstallationService {
   public formWebsite!: FormGroup;
   public formEmail!: FormGroup;
   public formFirstUser!: FormGroup;
+  public configEmailFromServerValue: boolean = true;
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -32,24 +32,39 @@ export class InstallationService {
     }
   }
 
+  configEmailFromServer(value: boolean) {
+    this.configEmailFromServerValue = value;
+    if (value = true) {
+      this.formEmail = this.formBuilder.group({
+        host: ['', []],
+        port: ['', []],
+        user: ['', []],
+        pass: ['', []]
+      })
+    } else {
+      this.formEmail = this.formBuilder.group({
+        host: ['', [Validators.required]],
+        port: ['', [Validators.required, requiredNumberType()]],
+        user: ['', [Validators.required]],
+        pass: ['', [Validators.required]]
+      })
+    }
+  }
+
   private setForm() {
     this.formWebsite = this.formBuilder.group({
       theme: ['light', [Validators.required]],
       society: ['', []],
       logo: [null, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]],
     });
-    console.log(this.formWebsite.controls);
-    this.formEmail = this.formBuilder.group({
-      host: ['', [Validators.required]],
-      port: ['', [Validators.required, requiredNumberType()]],
-    })
+    this.configEmailFromServer(true);
     this.formFirstUser = this.formBuilder.group({
       username: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
-    })
+    });
   }
 
 }
