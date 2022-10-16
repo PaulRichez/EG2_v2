@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IsFirstInstallGuard } from './core/guard/is-first-install.guard';
-import { IsLoggedGuard } from './core/guard/is-logged.guard';
-import { IsNotFirstInstallGuard } from './core/guard/is-not-first-install.guard';
+import { IsFirstInstallGuard } from './core/guard/installation/is-first-install.guard';
+import { IsNotFirstInstallGuard } from './core/guard/installation/is-not-first-install.guard';
+import { IsLoggedGuard } from './core/guard/login/is-logged.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [

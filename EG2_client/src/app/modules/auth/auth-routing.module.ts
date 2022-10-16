@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IsNotLoggedGuard } from 'src/app/core/guard/is-not-logged.guard';
+import { IsNotLoggedGuard } from 'src/app/core/guard/login/is-not-logged.guard';
+
 import { AuthComponent } from './auth.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { LoginComponent } from './pages/login/login.component';
