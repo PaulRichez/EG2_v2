@@ -13,10 +13,6 @@ export class StepsComponent implements OnInit {
       routerLink: 'site'
     },
     {
-      label: 'Email',
-      routerLink: 'email'
-    },
-    {
       label: 'Premier utilisateur',
       routerLink: 'first-user'
     },

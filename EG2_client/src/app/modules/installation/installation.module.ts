@@ -9,7 +9,6 @@ import { StartComponent } from './pages/start/start.component';
 import { StepsComponent } from './pages/steps/steps.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { SiteComponent } from './pages/steps/pages/site/site.component';
-import { EmailComponent } from './pages/steps/pages/email/email.component';
 import { FirstUserComponent } from './pages/steps/pages/first-user/first-user.component';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { FirstUserComponent } from './pages/steps/pages/first-user/first-user.co
     StartComponent,
     StepsComponent,
     SiteComponent,
-    EmailComponent,
     FirstUserComponent,
   ],
   imports: [

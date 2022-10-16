@@ -25,7 +25,7 @@ export class SiteComponent implements OnInit {
       return;
     }
     else {
-      this.router.navigate(['/setup/steps/email'])
+      this.router.navigate(['/setup/steps/first-user'])
     }
   }
 
