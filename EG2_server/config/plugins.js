@@ -26,4 +26,22 @@ module.exports = ({ env }) => ({
         enabled: true,
         resolve: './src/plugins/first-install'
     },
+    email: {
+        config: {
+            provider: 'nodemailer',
+            providerOptions: {
+                host: env('SMTP_HOST', 'smtp.example.com'),
+                port: env('SMTP_PORT', 587),
+                auth: {
+                    user: env('SMTP_USERNAME'),
+                    pass: env('SMTP_PASSWORD'),
+                },
+                // ... any custom nodemailer options
+            },
+            settings: {
+                defaultFrom: env('SMTP_DEFAULTFROM', 'hello@example.com'),
+                defaultReplyTo: env('SMTP_DEFAULTREPLYTO', 'hello@example.com'),
+            },
+        },
+    },
 });
