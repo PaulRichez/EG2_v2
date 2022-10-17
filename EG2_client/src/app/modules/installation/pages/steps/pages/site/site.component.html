@@ -22,8 +22,8 @@
                     </span>
                 </div>
 
-                <div class="col-12">
-                    <app-file-upload [control]="installationService.fileUploadControl" [title]="'Logo'"></app-file-upload>
+                <div class="col-12 md:col-6">
+                    <app-file-upload [control]="installationService.fileUploadControl" [accept]="'image/*'" [multiple]="false" [title]="'Logo'"></app-file-upload>
                 </div>
             </div>
         </ng-template>

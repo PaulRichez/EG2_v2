@@ -26,8 +26,6 @@ const MODULES = [
   ButtonModule,
   PasswordModule,
   DropdownModule,
-  HttpClientModule,
-  FileUploadModule
 ]
 
 @NgModule({
@@ -38,6 +36,8 @@ const MODULES = [
   ],
   imports: [
     CommonModule,
+    FileUploadModule,
+    HttpClientModule,
     MODULES
   ],
   exports: [

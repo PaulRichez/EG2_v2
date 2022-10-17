@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { requiredNumberType } from '../validators/requireNumberType';
-import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
+import { FileUploadValidators } from '@iplab/ngx-file-upload';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +11,7 @@ export class InstallationService {
   public isFirstInstall = true;
   public formWebsite!: FormGroup;
   public formFirstUser!: FormGroup;
-  public fileUploadControl = new FileUploadControl({ listVisible: true, accept: ['image/*'], multiple: false }, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]);
+  public fileUploadControl = new FormControl(null, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]);
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
