@@ -21,7 +21,7 @@ export class IsNotFirstInstallGuard implements CanActivate {
           if (e) {
             this.router.navigate(['/setup']);
           }
-          return e
+          return !e
         })
       )
   }
