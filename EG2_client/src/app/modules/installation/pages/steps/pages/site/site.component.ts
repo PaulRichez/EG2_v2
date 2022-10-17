@@ -26,6 +26,7 @@ export class SiteComponent implements OnInit {
       return;
     }
     else {
+      this.installationService.currentStep = 2;
       this.router.navigate(['/setup/steps/first-user'])
     }
   }

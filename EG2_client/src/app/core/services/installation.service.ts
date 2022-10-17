@@ -8,6 +8,7 @@ import { FileUploadValidators } from '@iplab/ngx-file-upload';
   providedIn: 'root'
 })
 export class InstallationService {
+  public currentStep = 0;
   public isFirstInstall = true;
   public formWebsite!: FormGroup;
   public formFirstUser!: FormGroup;

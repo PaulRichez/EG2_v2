@@ -10,7 +10,7 @@
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <div class="grid grid-nogutter justify-content-end">
-                        <button pButton pRipple label="Commencer" [routerLink]="['/setup/steps']"></button>
+                        <button pButton pRipple label="Commencer" (click)="start()"></button>
                     </div>
                 </ng-template>
             </p-card>
