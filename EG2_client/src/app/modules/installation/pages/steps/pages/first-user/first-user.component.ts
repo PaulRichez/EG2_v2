@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InstallationService } from 'src/app/core/services/installation.service';
 
 @Component({
   selector: 'app-first-user',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirstUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public installationService: InstallationService,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  onSubmit() {
+    if (this.installationService.formFirstUser.invalid) {
+      return;
+    }
+    else {
+
+    }
+  }
+
 
 }

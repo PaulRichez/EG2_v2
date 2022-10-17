@@ -1,1 +1,51 @@
-<p>first-user works!</p>
+<form [formGroup]="installationService.formFirstUser" (ngSubmit)="onSubmit()" class="w-full">
+    <p-card>
+        <ng-template pTemplate="subtitle">
+            Configuration du premier utilisateur, il obtiendra les privilèges administrateur.
+        </ng-template>
+        <ng-template pTemplate="body">
+            <div class="p-fluid grid">
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="firstName" formControlName="firstName" type="text" pInputText class="w-full"
+                            dFormValidation>
+                        <label for="firstName">Prénom</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="lastName" formControlName="lastName" type="text" pInputText class="w-full"
+                            dFormValidation>
+                        <label for="lastName">Nom</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="username" formControlName="username" type="text" pInputText class="w-full"
+                            dFormValidation>
+                        <label for="username">Nom d'utilisateur</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input id="email" formControlName="email" type="email" pInputText class="w-full"
+                            dFormValidation>
+                        <label for="email">Email</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-password inputId="password" formControlName="password"></p-password>
+                        <label for="password">Password</label>
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-between">
+                <button pButton pRipple label="Précedent" type="button" [routerLink]="['/setup/steps/site']"></button>
+                <button pButton pRipple label="Envoyer"  class="p-button-success" type="submit"></button>
+            </div>
+        </ng-template>
+    </p-card>
+</form>
