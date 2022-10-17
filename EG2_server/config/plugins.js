@@ -22,10 +22,6 @@ module.exports = ({ env }) => ({
             }
         }
     },
-    'first-install': {
-        enabled: true,
-        resolve: './src/plugins/first-install'
-    },
     email: {
         config: {
             provider: 'nodemailer',
@@ -43,5 +39,13 @@ module.exports = ({ env }) => ({
                 defaultReplyTo: env('SMTP_DEFAULTREPLYTO', 'hello@example.com'),
             },
         },
+    },
+    'first-install': {
+        enabled: true,
+        resolve: './src/plugins/first-install'
+    },
+    'user-extended': {
+        enabled: true,
+        resolve: './src/plugins/user-extended'
     },
 });
