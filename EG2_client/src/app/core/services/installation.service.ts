@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { requiredNumberType } from '../validators/requireNumberType';
-import { FileUploadValidators } from '@iplab/ngx-file-upload';
+import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class InstallationService {
   public isFirstInstall = true;
   public formWebsite!: FormGroup;
   public formFirstUser!: FormGroup;
-  public configEmailFromServerValue: boolean = true;
+  public fileUploadControl = new FileUploadControl({ listVisible: true, accept: ['image/*'], multiple: false }, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]);
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -35,7 +35,7 @@ export class InstallationService {
     this.formWebsite = this.formBuilder.group({
       theme: ['light', [Validators.required]],
       society: ['', []],
-      logo: [null, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]],
+      logo: this.fileUploadControl,
     });
     this.formFirstUser = this.formBuilder.group({
       username: ['', [Validators.required]],

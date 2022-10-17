@@ -13,6 +13,9 @@ import {DropdownModule} from 'primeng/dropdown';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+
+import { FileUploadModule } from '@iplab/ngx-file-upload';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -24,12 +27,14 @@ const MODULES = [
   PasswordModule,
   DropdownModule,
   HttpClientModule,
+  FileUploadModule
 ]
 
 @NgModule({
   declarations: [
     GlobalLoaderComponent,
     NotFoundComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +43,8 @@ const MODULES = [
   exports: [
     GlobalLoaderComponent,
     NotFoundComponent,
-    MODULES
+    MODULES,
+    FileUploadComponent
   ]
 })
 export class SharedModule { }

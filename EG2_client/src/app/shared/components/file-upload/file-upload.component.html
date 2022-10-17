@@ -1,0 +1,7 @@
+<div class="field">
+<span class="p-float-label pb-4">
+    <label>{{title}}</label>
+</span>
+<file-upload [control]="control"></file-upload>
+<small [id]="title" class="p-error block ml-2" *ngIf="control.getError().length > 0">Ce champ est invalide.</small>
+</div>

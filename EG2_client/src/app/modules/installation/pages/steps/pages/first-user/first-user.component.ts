@@ -16,11 +16,11 @@ export class FirstUserComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.installationService.formFirstUser, this.installationService.formWebsite)
     if (this.installationService.formFirstUser.invalid) {
       return;
     }
     else {
-
     }
   }
 
