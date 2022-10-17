@@ -43,8 +43,10 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="grid grid-nogutter justify-content-between">
-                <button pButton pRipple label="Précedent" type="button" [routerLink]="['/setup/steps/site']"></button>
-                <button pButton pRipple label="Envoyer"  class="p-button-success" type="submit"></button>
+                <button pButton pRipple label="Précedent" type="button" [disabled]="loading"
+                    [routerLink]="['/setup/steps/site']"></button>
+                <button pButton pRipple label="Envoyer" [disabled]="loading" class="p-button-success"
+                    type="submit"></button>
             </div>
         </ng-template>
     </p-card>

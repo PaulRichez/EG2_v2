@@ -21,7 +21,6 @@ export class SiteComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.installationService.formWebsite)
     if (this.installationService.formWebsite.invalid) {
       return;
     }

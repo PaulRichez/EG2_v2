@@ -31,6 +31,10 @@ export class InstallationService {
     }
   }
 
+  public setupFirstInstall(formData: FormData) {
+    return this.http.post<any>(`${environment.apiUrl}/api/first-install/setup`, formData);
+  }
+
   private setForm() {
     this.formWebsite = this.formBuilder.group({
       theme: ['light', [Validators.required]],
