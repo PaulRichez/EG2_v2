@@ -15,8 +15,8 @@
 
                 <div class="field col-12 md:col-6">
                     <span class="p-float-label">
-                        <p-dropdown [options]="themesService.themeList" formControlName="theme" optionLabel="name"
-                            (onChange)="themesService.current = $event.value.value">
+                        <p-dropdown [options]="themesService.themeList" formControlName="theme" optionLabel="name" optionValue="value"
+                            (onChange)="themesService.current = $event.value">
                         </p-dropdown>
                         <label for="theme">Theme par défaut</label>
                     </span>

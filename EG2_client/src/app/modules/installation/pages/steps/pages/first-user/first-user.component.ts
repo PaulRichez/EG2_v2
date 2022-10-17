@@ -32,15 +32,23 @@ export class FirstUserComponent implements OnInit {
       if (logo) {
         formData.append('files.logo', logo, logo.name);
       }
-      formData.append('data', JSON.stringify({ site: this.installationService.formWebsite.value, firstUser: this.installationService.formFirstUser.value }));
+      const siteValue = this.installationService.formWebsite.value;
+      delete siteValue.logo;
+      formData.append('data', JSON.stringify({ site: siteValue, firstUser: this.installationService.formFirstUser.value }));
 
       this.installationService.setupFirstInstall(formData).subscribe(
-        res => {
-          this.loading = false;
-        },
-        err => {
-          this.loading = false;
-        },
+        {
+          next: data => {
+            this.loading = false;
+            console.log('data', data)
+          },
+          error: err => {
+            console.log('err')
+            this.loading = false;
+            this.installationService.formWebsite.enable();
+            this.installationService.formFirstUser.enable();
+          }
+        }
       );
     }
   }
