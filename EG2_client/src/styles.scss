@@ -14,19 +14,3 @@ body {
 * {
   box-sizing: border-box;
 }
-
-host {
-
-  ::ng-deep .ui-button:focus,
-  ::ng-deep .ui-button:enabled:focus {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-  }
-}
-
-.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus {
-  box-shadow: none !important;
-  -webkit-box-shadow: none!important;
-  -moz-box-shadow: none!important;
-}
