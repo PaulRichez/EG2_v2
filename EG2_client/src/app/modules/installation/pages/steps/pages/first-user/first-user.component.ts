@@ -40,10 +40,9 @@ export class FirstUserComponent implements OnInit {
         {
           next: data => {
             this.loading = false;
-            console.log('data', data)
+            window.location.reload();
           },
           error: err => {
-            console.log('err')
             this.loading = false;
             this.installationService.formWebsite.enable();
             this.installationService.formFirstUser.enable();

@@ -17,10 +17,10 @@ export class IsFirstInstallGuard implements CanActivate {
       .checkFirstInstall()
       .pipe(
         map((e) =>{
-          if (!e) {
+          if (!e.status) {
             this.router.navigate(['/auth/login']);
           }
-          return e
+          return e.status
         } )
       )
   }

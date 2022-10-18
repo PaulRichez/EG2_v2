@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FileUploadValidators } from '@iplab/ngx-file-upload';
+import { ThemesService } from './themes.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +13,15 @@ export class InstallationService {
   public isFirstInstall = true;
   public formWebsite!: FormGroup;
   public formFirstUser!: FormGroup;
+  public userExtenedGroup: FormGroup = this.formBuilder.group({
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
+  });
   public fileUploadControl = new FormControl(null, [FileUploadValidators.filesLimit(1), FileUploadValidators.accept(['image/*'])]);
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
+    private themesService: ThemesService,
   ) {
     this.setForm();
   }
@@ -25,7 +31,10 @@ export class InstallationService {
       return of(false);
     } else {
       return this.http.get<any>(`${environment.apiUrl}/api/first-install/check`).pipe(map(result => {
-        this.isFirstInstall = result;
+        this.isFirstInstall = result.status;
+        if (!this.isFirstInstall) {
+          this.themesService.current = result.defaultConfig.theme;
+        }
         return result;
       }));
     }
@@ -43,10 +52,9 @@ export class InstallationService {
     });
     this.formFirstUser = this.formBuilder.group({
       username: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      userExtended: this.userExtenedGroup
     });
   }
 
