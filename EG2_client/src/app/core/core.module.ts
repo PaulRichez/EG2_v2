@@ -4,11 +4,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './interceptor/http-interceptor.interceptor';
 import { FormValidationDirective } from './directives/form-validation.directive';
 import { SharedModule } from '../shared/shared.module';
+import { HeaderComponent } from './components/header/header.component';
+import { NamedOutletDirective } from './directives/named-outlet.directive';
 
 
 @NgModule({
   declarations: [
-    FormValidationDirective
+    FormValidationDirective,
+    HeaderComponent,
+    NamedOutletDirective
   ],
   imports: [
     CommonModule,
@@ -17,6 +21,8 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     FormValidationDirective,
     SharedModule,
+    HeaderComponent,
+    NamedOutletDirective
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

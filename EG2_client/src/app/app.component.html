@@ -1,2 +1,12 @@
-<router-outlet *ngIf="!loading"></router-outlet>
 <app-global-loader *ngIf="loading"></app-global-loader>
+<ng-container *ngIf="!authService.connectedUser">
+    <router-outlet *ngIf="!loading"></router-outlet>
+</ng-container>
+
+<ng-container *ngIf="authService.connectedUser && !loading">
+    <app-header></app-header>
+    <div *ngFor="let app of applicationsService.applicationsTab"
+        [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">
+        <named-outlet [name]="app.outlet"></named-outlet>
+    </div>
+</ng-container>

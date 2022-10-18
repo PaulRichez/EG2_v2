@@ -1,0 +1,13 @@
+<div class="sticky top-0">
+    <p-toolbar>
+        <div class="p-toolbar-group-left">
+          <div>logo</div>
+          <div>societe</div>
+          <p-tabMenu [model]="applicationsService.applicationsTab" [activeItem]="applicationsService.currentApp"></p-tabMenu>
+        </div>
+
+        <div class="p-toolbar-group-right">
+            username + avatar
+        </div>
+    </p-toolbar>
+</div>

@@ -14,8 +14,4 @@ import { AdminComponent } from './admin.component';
     AdminRoutingModule
   ]
 })
-export class AdminModule {
-  constructor() {
-    console.log('admin')
-  }
- }
+export class AdminModule { }

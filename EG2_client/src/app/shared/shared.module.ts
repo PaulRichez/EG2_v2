@@ -10,10 +10,11 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {ToolbarModule} from 'primeng/toolbar';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import {TabMenuModule} from 'primeng/tabmenu';
 
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 const MODULES = [
@@ -26,6 +27,8 @@ const MODULES = [
   ButtonModule,
   PasswordModule,
   DropdownModule,
+  ToolbarModule,
+  TabMenuModule
 ]
 
 @NgModule({
