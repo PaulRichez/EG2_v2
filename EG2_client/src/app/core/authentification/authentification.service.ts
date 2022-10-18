@@ -30,12 +30,12 @@ export class AuthentificationService {
     }
   
     loginWithToken() {
-      return this.http.get<any>(`${environment.apiUrl}/api/users/me`)
+      return this.http.get<any>(`${environment.apiUrl}/api/user-extended/me?populate=deep`)
         .pipe(
           map(data => {
             this.connectedUser = data;
             this.observableconnectedUser.next(this.connectedUser);
-            this.themesService.current = this.connectedUser.theme;
+            this.themesService.current = this.connectedUser.userExtended.theme;
             this.connectionStatus.next(false);
             return data;
           }),
@@ -59,7 +59,7 @@ export class AuthentificationService {
       return !!this.connectedUser;
     }
   
-    checkpermission(perm: string) {
+    /*checkpermission(perm: string) {
       const permissionsFromGroups = this.connectedUser.user_groups.map(group => group.permissions.map(p => p.name));
       if (permissionsFromGroups.some(p => p.includes(perm))) {
         return true;
@@ -73,5 +73,5 @@ export class AuthentificationService {
         return true;
       }
       return this.connectedUser.permissions.some(p => p.name.startsWith('admin-'));
-    }
+    }*/
 }

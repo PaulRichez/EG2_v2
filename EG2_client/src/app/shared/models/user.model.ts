@@ -10,15 +10,14 @@ export interface IUser {
     blocked: boolean;
     createdAt: Date;
     updatedAt: Date;
+    userExtended: IUserExtended;
+}
+
+interface IUserExtended {
     firstName: string;
     lastName: string;
     avatar: any;
     theme: string;
-    role: IRole;
-    permissions: IcPermission[];
-    user_groups: IGroupUser[];
-    city: any;
-    main_mail: any;
 }
 
 export interface IRole {
