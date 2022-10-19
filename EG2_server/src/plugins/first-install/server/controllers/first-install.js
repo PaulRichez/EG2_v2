@@ -44,10 +44,23 @@ module.exports = {
     const defaultConfig = await strapi.plugin('first-install')
       .service('default-config').createOrUpdate({ data: data.site })
 
+    // group-user
+    let group = await strapi.db.query('plugin::user-extended.user-group').findOne({
+      where: { name: 'Administrateur' },
+    });
+    if (!group) {
+      group = await strapi.query('plugin::user-extended.user-group').create({
+        data: {
+          name: 'Administrateur',
+          description: 'Groupe administrateur',
+        },
+      });
+    }
 
     // first User
     const firstUserCtx = ctx;
     firstUserCtx.request.file = null;
+    data.firstUser.user_groups = [group];
     data.firstUser.confirmed = true;
     data.firstUser.blocked = false;
     data.firstUser.userExtended.theme = data.site.theme;

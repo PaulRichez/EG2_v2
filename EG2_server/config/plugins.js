@@ -42,7 +42,10 @@ module.exports = ({ env }) => ({
     },
     'first-install': {
         enabled: true,
-        resolve: './src/plugins/first-install'
+        resolve: './src/plugins/first-install',
+        config: {
+            defaultPermissions: []
+        }
     },
     'user-extended': {
         enabled: true,
