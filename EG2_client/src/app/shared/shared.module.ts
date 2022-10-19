@@ -13,7 +13,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
-import {ListboxModule} from 'primeng/listbox';
+import { ListboxModule } from 'primeng/listbox';
+import { ChartModule } from 'primeng/chart';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +39,8 @@ const MODULES = [
   AvatarModule,
   MenuModule,
   InlineSVGModule,
-  ListboxModule
+  ListboxModule,
+  ChartModule
 ]
 
 @NgModule({
