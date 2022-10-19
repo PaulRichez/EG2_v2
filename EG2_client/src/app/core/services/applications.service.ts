@@ -8,12 +8,12 @@ export class ApplicationsService {
   private applications = [
     {
       label: 'Dashboard',
-      icon: 'pi pi-align-center',
+      icon: 'fa fa-chart-line',
       outlet: 'app-dashboard'
     },
     {
       label: 'Panel admin',
-      icon: 'pi pi-align-center',
+      icon: 'fa fa-hammer',
       outlet: 'app-admin'
     }
   ]

@@ -53,6 +53,8 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/theme.scss",
+              "src/assets/scss/font-awesome.scss",
+              "src/assets/scss/scrollbar.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.scss",
               "node_modules/primeng/resources/primeng.min.css",
