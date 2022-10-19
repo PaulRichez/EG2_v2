@@ -21,8 +21,8 @@
 
         <div class="p-toolbar-group-right">
             <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text">
+                <span class="mr-1">{{ authentificationService.connectedUser.username}}</span>
                 <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
-                <span class="ml-1">{{ authentificationService.connectedUser.username}}</span>
                 <i class="ml-1 pi pi-chevron-down"></i>
             </button>
         </div>
