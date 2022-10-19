@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "default-config",
+  "info": {
+    "singularName": "default-config",
+    "pluralName": "default-configs",
+    "displayName": "default-config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark",
+        "blue"
+      ],
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "society": {
+      "type": "string"
+    }
+  }
+}

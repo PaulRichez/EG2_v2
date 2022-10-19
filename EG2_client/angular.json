@@ -65,6 +65,11 @@
               },
               {
                 "input": "node_modules/primeng/resources/themes/lara-dark-blue/theme.css",
+                "bundleName": "blue",
+                "inject": false
+              },
+              {
+                "input": "node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css",
                 "bundleName": "dark",
                 "inject": false
               }

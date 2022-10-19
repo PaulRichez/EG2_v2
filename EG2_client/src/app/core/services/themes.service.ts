@@ -13,6 +13,10 @@ export class ThemesService {
     {
       name: 'Sombre',
       value: 'dark',
+    },
+    {
+      name: 'Blue dark',
+      value: 'blue'
     }
   ]
 

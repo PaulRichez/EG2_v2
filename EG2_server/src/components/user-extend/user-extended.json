@@ -11,7 +11,8 @@
       "type": "enumeration",
       "enum": [
         "light",
-        "dark"
+        "dark",
+        "blue"
       ],
       "required": false,
       "default": "light"
