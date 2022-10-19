@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,20 @@ export class ApplicationsService {
       outlet: 'app-admin'
     }
   ]
-  public currentApp: MenuItemExtended = this.applications[0];
+  public currentApp: MenuItemExtended | null = this.applications[0];
   public applicationsTab: MenuItemExtended[] = [];
-  constructor() {
-    this.createApplicationsTab();
+  constructor(
+    public authentificationService: AuthentificationService
+  ) {
+    this.authentificationService.observableconnectedUser.subscribe((user) => {
+      if (!user) {
+        this.applicationsTab = [];
+        this.currentApp = null;
+      }
+      else {
+        this.createApplicationsTab()
+      }
+    })
   }
 
   createApplicationsTab() {

@@ -5,8 +5,13 @@
 
 <ng-container *ngIf="authService.connectedUser && !loading">
     <app-header></app-header>
-    <div *ngFor="let app of applicationsService.applicationsTab"
-        [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">
-        <named-outlet [name]="app.outlet"></named-outlet>
-    </div>
+    <ng-container *ngIf="applicationsService.currentApp; else defaultRouter">
+        <div *ngFor="let app of applicationsService.applicationsTab"
+            [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">
+            <named-outlet [name]="app.outlet"></named-outlet>
+        </div>
+    </ng-container>
+    <ng-template #defaultRouter>
+        <router-outlet></router-outlet>
+    </ng-template>
 </ng-container>

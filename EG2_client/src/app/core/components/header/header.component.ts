@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthentificationService } from '../../authentification/authentification.service';
@@ -16,18 +17,19 @@ export class HeaderComponent implements OnInit {
     {
       label: 'Mon profil',
       icon: 'pi pi-user',
-      routerLink: ['/profile']
+      command: () => { this.router.navigate(['/profile']), this.applicationsService.currentApp = null; }
     },
     {
       label: 'Se déconnecter',
       icon: 'pi pi-sign-out',
-      routerLink: ['auth/logout']
+      command: () => { this.authentificationService.logout() }
     }
   ];
   constructor(
     public applicationsService: ApplicationsService,
     public authentificationService: AuthentificationService,
-    public defaultConfigService: DefaultConfigService
+    public defaultConfigService: DefaultConfigService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

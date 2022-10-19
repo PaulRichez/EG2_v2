@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formLogin.get('username')?.value, this.formLogin.get('password')?.value).subscribe({
       next: data => {
         this.tokenStorageService.setToken(data.jwt, this.formLogin.get('remenberMe')?.value);
-        this.authService.loginWithToken().subscribe(() => this.router.navigate(['/home']));
+        this.authService.loginWithToken().subscribe();
       },
       error: err => {
         this.error = err;
