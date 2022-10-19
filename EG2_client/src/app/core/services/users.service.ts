@@ -12,15 +12,15 @@ export class UsersService {
     private http: HttpClient,
   ) { }
   public find() {
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/find/?populate=deep`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/?populate=deep`);
   }
   public findOne(id: string | number) {
     id = id.toString();
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/findOne/${id}?populate=deep`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`);
   }
   public update(id: string | number, formData: FormData) {
     id = id.toString();
-    return this.http.post<any>(`${environment.apiUrl}/api/user-extended/update/${id}?populate=deep`, formData).pipe(map(result => {
+    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`, formData).pipe(map(result => {
       console.log(result);
       // TODO update connected user
       return result;

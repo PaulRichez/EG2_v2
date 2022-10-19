@@ -2,5 +2,6 @@
 
 module.exports = {
   'me': require("./me"),
-  'users': require("./users")
+  'users': require("./users"),
+  'user-group': require("./user-group"),
 };

@@ -67,6 +67,12 @@
       "type": "component",
       "repeatable": false,
       "component": "user-extend.user-extended"
+    },
+    "user_groups": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::user-extended.user-group",
+      "mappedBy": "users"
     }
   }
 }
