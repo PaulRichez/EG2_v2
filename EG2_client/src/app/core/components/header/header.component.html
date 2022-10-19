@@ -1,9 +1,14 @@
 <div class="sticky top-0">
     <p-toolbar>
         <div class="p-toolbar-group-left">
-            <div>logo</div>
-            <div>societe</div>
-            <p-tabMenu [scrollable]="true" [model]="applicationsService.applicationsTab" [activeItem]="applicationsService.currentApp">
+            <ng-container *ngIf="defaultConfigService.defaultConfig; else defaultLogoTitle">
+                <span>Societe</span>
+            </ng-container>
+            <ng-template #defaultLogoTitle>
+                <span>EasyGroupware</span>
+            </ng-template>
+            <p-tabMenu [scrollable]="true" [model]="applicationsService.applicationsTab"
+                [activeItem]="applicationsService.currentApp">
                 <ng-template pTemplate="item" let-item let-i="index">
                     <span><i class="{{ item.icon }}"></i></span>
                     <span class="ml-2 hidden md:inline ">{{ item.label }}</span>
@@ -12,7 +17,12 @@
         </div>
 
         <div class="p-toolbar-group-right">
-            username + avatar
+            <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text ">
+                <span class="mr-1">{{ authentificationService.connectedUser.username}}</span>
+                <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
+                <i class="pi pi-chevron-down"></i>
+            </button>
         </div>
     </p-toolbar>
 </div>
+<p-menu #menu [popup]="true" [model]="items"></p-menu>

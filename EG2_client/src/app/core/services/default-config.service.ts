@@ -1,0 +1,23 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DefaultConfigService {
+  defaultConfig = null;
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  public get() {
+    return this.http.get<any>(`${environment.apiUrl}/api/first-install/default-config?populate=deep`).pipe(map(result => {
+      this.defaultConfig = result.data;
+    }));
+  }
+  public update(config: any) {
+    return this.http.post<any>(`${environment.apiUrl}/api/first-install/default-config?populate=deep`, { data: config });
+  }
+}

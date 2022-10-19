@@ -1,19 +1,31 @@
 host {
-    ::ng-deep .ui-button:focus,
-    ::ng-deep .ui-button:enabled:focus {
-      box-shadow: none;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-    }
-  }
-  
-  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus {
-    box-shadow: none !important;
-    -webkit-box-shadow: none!important;
-    -moz-box-shadow: none!important;
-  }
 
-  .p-toolbar {
-    padding-top:0 !important;
-    padding-bottom:0 !important;
+  ::ng-deep .ui-button:focus,
+  ::ng-deep .ui-button:enabled:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
   }
+}
+
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+.p-toolbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.p-avatar.p-avatar-lg {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  font-size: 1.2rem !important;
+}
+
+.p-avatar-text {
+  color: #fff;
+  user-select: none;
+}

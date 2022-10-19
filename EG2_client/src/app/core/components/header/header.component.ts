@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { AuthentificationService } from '../../authentification/authentification.service';
 import { ApplicationsService } from '../../services/applications.service';
+import { DefaultConfigService } from '../../services/default-config.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,22 @@ import { ApplicationsService } from '../../services/applications.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  public items: MenuItem[] = [
+    {
+      label: 'Mon profil',
+      icon: 'pi pi-user',
+      routerLink: ['/profile']
+    },
+    {
+      label: 'Se déconnecter',
+      icon: 'pi pi-sign-out',
+      routerLink: ['auth/logout']
+    }
+  ];
   constructor(
-    public applicationsService: ApplicationsService
+    public applicationsService: ApplicationsService,
+    public authentificationService: AuthentificationService,
+    public defaultConfigService: DefaultConfigService
   ) { }
 
   ngOnInit(): void {

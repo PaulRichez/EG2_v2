@@ -11,12 +11,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToolbarModule} from 'primeng/toolbar';
+import { MenuModule } from 'primeng/menu';
+import {AvatarModule} from 'primeng/avatar';
+
+
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import {TabMenuModule} from 'primeng/tabmenu';
-
 import { FileUploadModule } from '@iplab/ngx-file-upload';
+import { AvatarComponent } from './components/avatar/avatar.component';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -28,7 +32,9 @@ const MODULES = [
   PasswordModule,
   DropdownModule,
   ToolbarModule,
-  TabMenuModule
+  TabMenuModule,
+  AvatarModule,
+  MenuModule
 ]
 
 @NgModule({
@@ -36,6 +42,7 @@ const MODULES = [
     GlobalLoaderComponent,
     NotFoundComponent,
     FileUploadComponent,
+    AvatarComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +54,8 @@ const MODULES = [
     GlobalLoaderComponent,
     NotFoundComponent,
     MODULES,
-    FileUploadComponent
+    FileUploadComponent,
+    AvatarComponent
   ]
 })
 export class SharedModule { }
