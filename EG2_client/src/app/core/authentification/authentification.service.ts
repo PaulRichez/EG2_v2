@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../services/token-storage.service';
 import { ThemesService } from '../services/themes.service';
 import { environment } from 'src/environments/environment';
+import { InstallationService } from '../services/installation.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,14 +19,15 @@ export class AuthentificationService {
     private router: Router,
     private tokenStorageService: TokenStorageService,
     private themesService: ThemesService,
-    private activatedRoute: ActivatedRoute) { }
+    private installationService: InstallationService
+  ) { }
   login(username: string, password: string): Observable<any> {
     this.connectionStatus.next(true);
     return this.http.post<any>(`${environment.apiUrl}/api/auth/local`, {
       identifier: username,
       password
     }).pipe(map(data => {
-      this.router.navigate(['']);
+      // this.router.navigate(['']);
       this.themesService.current = data.user.theme;
       return data;
     }));;
@@ -39,7 +41,6 @@ export class AuthentificationService {
           this.observableconnectedUser.next(this.connectedUser);
           this.themesService.current = this.connectedUser.userExtended.theme;
           this.connectionStatus.next(false);
-          console.log(this.activatedRoute)
           return data;
         }),
         catchError(err => {
@@ -51,11 +52,10 @@ export class AuthentificationService {
 
   logout() {
     this.connectedUser = null as unknown as IUser;
-    console.log(this.connectedUser)
-    this.themesService.current = 'light';
+    this.themesService.current = this.installationService.defaultConfig.theme;
     this.tokenStorageService.clearStorage();
     this.observableconnectedUser.next(this.connectedUser);
-    this.router.navigate(['/auth/login']);
+    // this.router.navigate(['/auth/login']);
   }
 
   isAuthenticated(): boolean {

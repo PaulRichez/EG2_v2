@@ -27,11 +27,6 @@ export class AppComponent {
         next: data => {
           this.defaultConfigService.get().subscribe();
           this.loading = false;
-          setTimeout(() => {
-            this.router.navigate([{ outlets: { "app-admin": ['admin'] } }]).then(() => {
-              this.router.navigate([{ outlets: { "app-dashboard": ['dashboard'] } }]);
-            });
-          }, 100)
         },
         error: err => {
           this.loading = false;

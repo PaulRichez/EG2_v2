@@ -11,6 +11,9 @@ import { ThemesService } from './themes.service';
 export class InstallationService {
   public currentStep = 0;
   public isFirstInstall = true;
+  public defaultConfig: any = {
+    theme: 'light'
+  }
   public formWebsite!: FormGroup;
   public formFirstUser!: FormGroup;
   public userExtenedGroup: FormGroup = this.formBuilder.group({
@@ -33,6 +36,7 @@ export class InstallationService {
       return this.http.get<any>(`${environment.apiUrl}/api/first-install/check`).pipe(map(result => {
         this.isFirstInstall = result.status;
         if (!this.isFirstInstall) {
+          this.defaultConfig = result.defaultConfig;
           this.themesService.current = result.defaultConfig.theme;
         }
         return result;

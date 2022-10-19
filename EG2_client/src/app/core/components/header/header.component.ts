@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     {
       label: 'Mon profil',
       icon: 'pi pi-user',
-      command: () => { this.router.navigate(['/profile']), this.applicationsService.currentApp = null; }
+      command: () => { this.applicationsService.selectApp('profile'); }
     },
     {
       label: 'Se déconnecter',
