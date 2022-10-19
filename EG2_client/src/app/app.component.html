@@ -5,7 +5,7 @@
 
 <ng-container *ngIf="authService.connectedUser && !loading">
     <app-header></app-header>
-    <div style="min-height: calc(100vh-70px)" class="p-4">
+    <div style="min-height: calc(100vh-70px)" class="px-4">
         <ng-container *ngIf="applicationsService.currentApp; else defaultRouter">
             <div *ngFor="let app of applicationsService.applicationsTab"
                 [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">

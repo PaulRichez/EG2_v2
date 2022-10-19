@@ -1,6 +1,6 @@
 import { IcPermission } from "./cPermission.model";
 import { IGroupUser } from "./groupUser.model";
-
+import { ICountry, ICity } from 'country-state-city'
 export interface IUser {
     id: number;
     username: string;
@@ -18,6 +18,8 @@ interface IUserExtended {
     lastName: string;
     avatar: any;
     theme: string;
+    country: ICountry;
+    city: ICity;
 }
 
 export interface IRole {

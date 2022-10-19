@@ -1,10 +1,9 @@
 <form [formGroup]="formUser" (ngSubmit)="onSubmit()" class="p-fluid grid">
     <div class="col-12 flex justify-content-between mb-3">
         <div>
-            <b class="text-4xl">{{ user.userExtended.firstName + ' ' +
-                user.userExtended.lastName }}</b>
+            <b class="text-4xl">{{ user.username }}</b>
             <br />
-            <i class="text-sm">Username : {{ user.username }}</i>
+            <i class="text-sm">{{ user.email }}</i>
         </div>
         <div>
             <p-button label="Enregister" [loading]="loading" styleClass="p-button-sm"></p-button>
@@ -29,14 +28,25 @@
                                 <label for="lastName">Nom</label>
                             </span>
                         </div>
+                        <div class="field col-12 md:col-6">
+                            <span class="p-float-label">
+                                <p-dropdown [options]="countries" formControlName="country" optionLabel="name"
+                                    (onChange)="changeCountry($event.value)" placeholder="Pays" [showClear]="true"
+                                    [virtualScroll]="true" [virtualScrollItemSize]="40" [filter]="true">
+                                </p-dropdown>
+                                <label for="country">Pays</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <span class="p-float-label">
+                                <p-dropdown [options]="cities" formControlName="city" optionLabel="name"
+                                    placeholder="Ville" [showClear]="true" [virtualScroll]="true"
+                                    [virtualScrollItemSize]="40" [filter]="true">
+                                </p-dropdown>
+                                <label for="city">Ville</label>
+                            </span>
+                        </div>
                     </ng-container>
-                    <div class="field col-12 md:col-6">
-                        <span class="p-float-label">
-                            <input id="email" formControlName="email" type="email" pInputText class="w-full"
-                                dFormValidation>
-                            <label for="email">Email</label>
-                        </span>
-                    </div>
                 </div>
             </ng-template>
         </p-card>
