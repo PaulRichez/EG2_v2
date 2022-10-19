@@ -1,5 +1,5 @@
 import { IcPermission } from "./cPermission.model";
-import { IGroupUser } from "./groupUser.model";
+import { IUserGroup } from "./user-group.model";
 import { ICountry, ICity } from 'country-state-city'
 export interface IUser {
     id: number;
@@ -11,6 +11,7 @@ export interface IUser {
     createdAt: Date;
     updatedAt: Date;
     userExtended: IUserExtended;
+    user_groups: IUserGroup[];
 }
 
 interface IUserExtended {

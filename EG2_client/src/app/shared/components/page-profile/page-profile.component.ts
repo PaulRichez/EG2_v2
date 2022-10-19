@@ -37,6 +37,7 @@ export class PageProfileComponent implements OnInit {
     });
     this.formUser = this.formBuilder.group({
       userExtended: this.userExtendedGroup,
+      userGroup: this.user.user_groups
     })
     if (this.user.userExtended.country) {
       this.setCitiesAvailable(this.user.userExtended.country);

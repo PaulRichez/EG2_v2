@@ -1,6 +1,6 @@
 import { IcPermission } from "./cPermission.model";
 
-export interface IGroupUser {
+export interface IUserGroup {
     id: string;
     name: string;
     description: string;

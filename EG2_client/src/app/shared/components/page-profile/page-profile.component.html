@@ -60,6 +60,14 @@
         </p-card>
     </div>
     <div class="col-12 lg:col-3">
-        <p-card header="Groupes"></p-card>
+        <p-card header="Groupes">
+            <p-listbox [options]="user.user_groups" formControlName="userGroup" [metaKeySelection]="false"
+                [checkbox]="false" [filter]="false" [multiple]="false" optionLabel="name"
+                [listStyle]="{'height': '100%', 'max-height': '225px'}" [readonly]="true">
+                <ng-template let-group pTemplate="item">
+                    <div>{{group.name}}</div>
+                </ng-template>
+            </p-listbox>
+        </p-card>
     </div>
 </form>
