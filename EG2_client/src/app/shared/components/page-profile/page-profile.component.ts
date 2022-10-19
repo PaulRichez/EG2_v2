@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../models/user.model';
 import { Country, City } from 'country-state-city';
 import { ICountry, ICity } from 'country-state-city'
+import { UsersService } from 'src/app/core/services/users.service';
+import { ThemesService } from 'src/app/core/services/themes.service';
 @Component({
   selector: 'app-page-profile',
   templateUrl: './page-profile.component.html',
@@ -17,6 +19,8 @@ export class PageProfileComponent implements OnInit {
   public cities: ICity[] = [];
   constructor(
     private formBuilder: FormBuilder,
+    private usersService: UsersService,
+    public themesService: ThemesService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +32,8 @@ export class PageProfileComponent implements OnInit {
       firstName: [{ value: this.user.userExtended.firstName, disabled: false }, [Validators.required]],
       lastName: [{ value: this.user.userExtended.lastName, disabled: false }, [Validators.required]],
       country: [{ value: this.user.userExtended.country, disabled: false }],
-      city: [{ value: this.user.userExtended.city, disabled: !this.user.userExtended.country }],
+      city: [{ value: this.user.userExtended.city, disabled: false }],
+      theme: [{ value: this.user.userExtended.theme, disabled: false }],
     });
     this.formUser = this.formBuilder.group({
       userExtended: this.userExtendedGroup,
@@ -44,11 +49,8 @@ export class PageProfileComponent implements OnInit {
     } else {
       this.cities = [];
     }
-    if (this.cities.length) {
-      this.userExtendedGroup.get('city')?.enable();
-    } else {
+    if (!this.cities.length) {
       this.userExtendedGroup.get('city')?.setValue(null);
-      this.userExtendedGroup.get('city')?.disable();
     }
   }
 
@@ -56,6 +58,25 @@ export class PageProfileComponent implements OnInit {
     this.setCitiesAvailable(country);
   }
 
-  onSubmit() { }
+  onSubmit() {
+    if (this.formUser.invalid) {
+      return;
+    }
+    this.formUser.disable();
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(this.formUser.value));
+    this.usersService.update(this.user.id, formData).subscribe(
+      {
+        next: data => {
+          this.loading = false;
+          this.formUser.enable();
+        },
+        error: err => {
+          this.loading = false;
+          this.formUser.enable();
+        }
+      }
+    );
+  }
 
 }

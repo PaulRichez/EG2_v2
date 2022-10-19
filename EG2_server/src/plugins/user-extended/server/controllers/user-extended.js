@@ -1,4 +1,5 @@
 'use strict';
+const _ = require('lodash');
 const utils = require('@strapi/utils');
 const { sanitize } = utils;
 
@@ -21,5 +22,22 @@ module.exports = ({ strapi }) => ({
     }
 
     ctx.body = data;
+  },
+  async update(ctx) {
+    const data = JSON.parse(ctx.request.body.data)
+    const newData = _.pick(data, ['userExtended']);
+    // Update the user and return the sanitized data
+    let newuser = await strapi.entityService.update(
+      'plugin::users-permissions.user',
+      ctx.params.id,
+      { data: newData, ...ctx.query },
+      ctx.query
+    );
+
+    if (newuser) {
+      newuser = await sanitizeOutput(newuser, ctx);
+    }
+
+    ctx.body = newuser;
   },
 });

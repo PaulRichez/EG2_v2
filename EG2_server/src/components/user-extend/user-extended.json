@@ -13,7 +13,8 @@
         "light",
         "dark"
       ],
-      "required": true
+      "required": false,
+      "default": "light"
     },
     "avatar": {
       "type": "media",

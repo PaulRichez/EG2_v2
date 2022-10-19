@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-  'me': require("./me")
+  'me': require("./me"),
+  'users': require("./users")
 };
