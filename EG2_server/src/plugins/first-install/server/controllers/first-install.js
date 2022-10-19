@@ -14,17 +14,17 @@ module.exports = {
     }
   },
   async setup(ctx, next) {
-    await ['avatars', 'drives'].forEach(async (name) => {
-      await strapi
+    const forlders = ['avatars', 'drives', 'content'];
+    let contentFolder = null;
+    for (const folder of forlders) {
+      const result = await strapi
         .plugin('first-install')
         .service('folders')
-        .createFolderIfDoesNotExist(name);
-    })
-
-    const contentFolder = await strapi
-      .plugin('first-install')
-      .service('folders')
-      .createFolderIfDoesNotExist('content');
+        .createFolderIfDoesNotExist(folder);
+      if (folder === 'content') {
+        contentFolder = result;
+      }
+    }
 
     const data = JSON.parse(ctx.request.body.data);
 
