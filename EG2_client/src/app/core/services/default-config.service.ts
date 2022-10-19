@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DefaultConfigService {
-  defaultConfig = null;
+  defaultConfig: any = null;
   constructor(
     private http: HttpClient,
   ) { }

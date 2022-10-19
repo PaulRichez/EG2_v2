@@ -2,13 +2,16 @@
     <p-toolbar>
         <div class="p-toolbar-group-left">
             <ng-container *ngIf="defaultConfigService.defaultConfig; else defaultLogoTitle">
-                <span>Societe</span>
+                <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
+                    [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
+                <span>{{ defaultConfigService.defaultConfig.society }}</span>
             </ng-container>
             <ng-template #defaultLogoTitle>
+                <div [inlineSVG]="'/assets/icons/logo.svg'" class="logo" class="pt-1 mt-1 logo -ml-3 mr-1"></div>
                 <span>EasyGroupware</span>
             </ng-template>
             <p-tabMenu [scrollable]="true" [model]="applicationsService.applicationsTab"
-                [activeItem]="applicationsService.currentApp">
+                [activeItem]="applicationsService.currentApp" class="ml-3">
                 <ng-template pTemplate="item" let-item let-i="index">
                     <span><i class="{{ item.icon }}"></i></span>
                     <span class="ml-2 hidden md:inline ">{{ item.label }}</span>
@@ -17,10 +20,10 @@
         </div>
 
         <div class="p-toolbar-group-right">
-            <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text ">
-                <span class="mr-1">{{ authentificationService.connectedUser.username}}</span>
+            <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text">
                 <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
-                <i class="pi pi-chevron-down"></i>
+                <span class="ml-1">{{ authentificationService.connectedUser.username}}</span>
+                <i class="ml-1 pi pi-chevron-down"></i>
             </button>
         </div>
     </p-toolbar>
