@@ -52,7 +52,7 @@ export class ApplicationsService {
       }
       this.applicationsTab.push(app)
     });
-    this.selectApp('dashboard')
+    this.selectApp('profile')
   }
 
   selectApp(name: string) {

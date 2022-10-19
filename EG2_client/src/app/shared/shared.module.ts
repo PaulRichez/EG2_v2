@@ -22,6 +22,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { InlineSVGModule } from 'ng-inline-svg-u';
+import { PageProfileComponent } from './components/page-profile/page-profile.component';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -45,6 +46,7 @@ const MODULES = [
     NotFoundComponent,
     FileUploadComponent,
     AvatarComponent,
+    PageProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ const MODULES = [
     NotFoundComponent,
     MODULES,
     FileUploadComponent,
-    AvatarComponent
+    AvatarComponent,
+    PageProfileComponent
   ]
 })
 export class SharedModule { }

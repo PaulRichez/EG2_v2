@@ -1,0 +1,47 @@
+<form [formGroup]="formUser" (ngSubmit)="onSubmit()" class="p-fluid grid">
+    <div class="col-12 flex justify-content-between mb-3">
+        <div>
+            <b class="text-4xl">{{ user.userExtended.firstName + ' ' +
+                user.userExtended.lastName }}</b>
+            <br />
+            <i class="text-sm">Username : {{ user.username }}</i>
+        </div>
+        <div>
+            <p-button label="Enregister" [loading]="loading" styleClass="p-button-sm"></p-button>
+        </div>
+    </div>
+    <div class="col-12 lg:col-9">
+        <p-card header="Informations">
+            <ng-template pTemplate="body">
+                <div class="p-fluid grid">
+                    <ng-container [formGroup]="userExtendedGroup">
+                        <div class="field col-12 md:col-6">
+                            <span class="p-float-label">
+                                <input id="firstName" formControlName="firstName" type="text" pInputText class="w-full"
+                                    dFormValidation>
+                                <label for="firstName">Prénom</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <span class="p-float-label">
+                                <input id="lastName" formControlName="lastName" type="text" pInputText class="w-full"
+                                    dFormValidation>
+                                <label for="lastName">Nom</label>
+                            </span>
+                        </div>
+                    </ng-container>
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input id="email" formControlName="email" type="email" pInputText class="w-full"
+                                dFormValidation>
+                            <label for="email">Email</label>
+                        </span>
+                    </div>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="col-12 lg:col-3">
+        <p-card header="Groupes"></p-card>
+    </div>
+</form>
