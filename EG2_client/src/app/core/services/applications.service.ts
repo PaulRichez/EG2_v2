@@ -76,8 +76,10 @@ export class ApplicationsService {
     if (outlet.startsWith("app-")) {
       page = outlet.substring(4)
     }
-    if (!children) {
-      this.router.navigate([{ outlets: { ['primary']: '', [outlet]: [page] } }])
+    if (!children || this.applicationsTab.find((a: any) => a.outlet === outlet)?.visible == false) {
+      this.router.navigate([{ outlets: { ['primary']: '', [outlet]: null } }]).then(() => {
+        this.router.navigate([{ outlets: { ['primary']: '', [outlet]: [page] } }])
+      })
     }
   }
 
