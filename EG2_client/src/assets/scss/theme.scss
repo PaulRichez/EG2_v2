@@ -9,6 +9,7 @@
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
 }
+
 .p-listbox .p-listbox-list .p-listbox-item:focus {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
@@ -29,4 +30,16 @@
 .p-avatar-text {
   color: #fff;
   user-select: none;
+}
+
+.p-sidebar {
+  position: absolute !important;
+}
+
+.p-menuitem-link-active {
+  color: var(--primary-color) !important;
+
+  span {
+    color: var(--primary-color) !important;
+  }
 }

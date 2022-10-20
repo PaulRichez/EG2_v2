@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from './core/authentification/authentification.service';
 import { ApplicationsService } from './core/services/applications.service';
@@ -12,6 +12,15 @@ import { TokenStorageService } from './core/services/token-storage.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isMobile = window.innerWidth < 768
+    if (this.isMobile) {
+      this.displaySidebar = false;
+    }
+  }
+  displaySidebar = true;
+  public isMobile = window.innerWidth < 768;
   loading = true;
   constructor(
     private themesService: ThemesService,

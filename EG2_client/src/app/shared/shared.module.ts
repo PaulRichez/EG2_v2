@@ -15,6 +15,7 @@ import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
 import { ListboxModule } from 'primeng/listbox';
 import { ChartModule } from 'primeng/chart';
+import {SidebarModule} from 'primeng/sidebar';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +41,8 @@ const MODULES = [
   MenuModule,
   InlineSVGModule,
   ListboxModule,
-  ChartModule
+  ChartModule,
+  SidebarModule,
 ]
 
 @NgModule({

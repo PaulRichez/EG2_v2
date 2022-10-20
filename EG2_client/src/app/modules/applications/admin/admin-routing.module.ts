@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
-  { path: '', component: AdminComponent }
+  {
+    path: '', component: AdminComponent, children: [
+      { path: 'stats', component: StatisticsComponent }
+    ]
+  }
 ];
 
 @NgModule({

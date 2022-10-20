@@ -6,14 +6,23 @@
 <ng-container *ngIf="authService.connectedUser && !loading">
     <app-header></app-header>
     <div style="min-height: calc(100vh-70px)" class="px-4">
-        <ng-container *ngIf="applicationsService.currentApp; else defaultRouter">
-            <div *ngFor="let app of applicationsService.applicationsTab"
-                [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">
-                <named-outlet [name]="app.outlet"></named-outlet>
+        <div class="flex">
+            <div #sideBarDiv style="left: -25px; height: calc(100vh - 70px)" class="md:relative"></div>
+
+            <p-sidebar [(visible)]="displaySidebar" [modal]="isMobile" [showCloseIcon]="false" [appendTo]="sideBarDiv"
+                [closeOnEscape]="false">
+                sidebar
+            </p-sidebar>
+            <div class="flex flex-column h-full"
+                [ngStyle]="{'margin-left' : !isMobile && displaySidebar ? '20rem' : '0' }">
+                <ng-container *ngIf="applicationsService.currentApp;">
+                    <div *ngFor="let app of applicationsService.applicationsTab"
+                        [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">
+                        <named-outlet [name]="app.outlet"></named-outlet>
+                    </div>
+                </ng-container>
             </div>
-        </ng-container>
-        <ng-template #defaultRouter>
-            <router-outlet></router-outlet>
-        </ng-template>
+        </div>
+
     </div>
 </ng-container>

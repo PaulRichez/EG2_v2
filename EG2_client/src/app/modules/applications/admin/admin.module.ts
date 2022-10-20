@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    StatisticsComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
