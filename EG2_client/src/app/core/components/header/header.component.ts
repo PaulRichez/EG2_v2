@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { environment } from 'src/environments/environment';
 import { AuthentificationService } from '../../authentification/authentification.service';
 import { ApplicationsService } from '../../services/applications.service';
-import { DefaultConfigService } from '../../services/default-config.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +10,6 @@ import { DefaultConfigService } from '../../services/default-config.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  apiUrl = environment.apiUrl;
   public items: MenuItem[] = [
     {
       label: 'Mon profil',
@@ -28,7 +25,6 @@ export class HeaderComponent implements OnInit {
   constructor(
     public applicationsService: ApplicationsService,
     public authentificationService: AuthentificationService,
-    public defaultConfigService: DefaultConfigService,
     private router: Router
   ) { }
 

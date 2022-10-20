@@ -36,6 +36,7 @@ export class ApplicationsService {
     {
       appId: 'profile',
       label: 'Profile',
+      icon: 'fa fa-address-card',
       invisible: true,
       unique: true,
       route: {
