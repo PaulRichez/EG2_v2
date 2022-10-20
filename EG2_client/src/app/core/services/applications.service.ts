@@ -8,11 +8,12 @@ import { IsLoggedGuard } from '../guard/login/is-logged.guard';
   providedIn: 'root'
 })
 export class ApplicationsService {
-  private applications: MenuItemExtended[] = [
+  public readonly applications: MenuItemExtended[] = [
     {
       appId: 'dashboard',
       label: 'Dashboard',
       icon: 'fa fa-chart-line',
+      unique: true,
       route: {
         path: 'dashboard',
         outlet: 'app-dashboard',
@@ -35,7 +36,8 @@ export class ApplicationsService {
     {
       appId: 'profile',
       label: 'Profile',
-      visible: false,
+      invisible: true,
+      unique: true,
       route: {
         path: 'dashboard',
         outlet: 'app-dashboard',
@@ -63,14 +65,22 @@ export class ApplicationsService {
     })
   }
 
-  openNewApplication(appId: string) {
+  openNewApplication(appId: string, uidExistant?: string) {
     const app = Object.assign({}, this.applications.find(a => a.appId == appId));
     if (!app) {
       console.error('Application to open : ' + appId + ' not found')
       return;
     }
-    app.uid = uid();
+    if (app.unique) {
+      const appExists = this.applicationsTab.find(a => a.appId === appId);
+      if (appExists) {
+        this.selectApp(appExists);
+        return;
+      }
+    }
+    app.uid = uidExistant ? uidExistant : uid();
     app.route.outlet = app.appId + '_' + app.uid;
+    app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
     this.selectApp(app)
   }
@@ -158,4 +168,6 @@ export interface MenuItemExtended extends MenuItem {
   route: Route;
   appId: string;
   uid?: string;
+  invisible?: boolean;
+  unique?: boolean;
 }

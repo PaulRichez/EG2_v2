@@ -4,25 +4,25 @@
 </ng-container>
 
 <ng-container *ngIf="authService.connectedUser && !loading">
-    <app-header></app-header>
-    <div style="min-height: calc(100vh-70px)" class="px-4">
-        <div class="flex">
-            <div #sideBarDiv style="left: -25px; height: calc(100vh - 70px)" class="md:relative"></div>
+    <div class="flex">
+        <div #sideBarDiv class="h-full"></div>
 
-            <p-sidebar [(visible)]="displaySidebar" [modal]="isMobile" [showCloseIcon]="false" [appendTo]="sideBarDiv"
-                [closeOnEscape]="false">
-                <app-sidebar></app-sidebar>
-            </p-sidebar>
-            <div class="flex flex-column h-full"
-                [ngStyle]="{'margin-left' : !isMobile && displaySidebar ? '20rem' : '0' }">
+        <p-sidebar [(visible)]="displaySidebar" [modal]="isMobile" [showCloseIcon]="false" [appendTo]="sideBarDiv"
+            [closeOnEscape]="false">
+            <app-sidebar></app-sidebar>
+        </p-sidebar>
+        <div class="flex flex-column w-full" [ngStyle]="{'margin-left' : !isMobile && displaySidebar ? '20rem' : '0' }">
+            <div class="sticky top-0" style="z-index: 999;">
+                <app-header></app-header>
+            </div>
+            <div class="flex flex-column h-full p-4">
                 <ng-container *ngIf="applicationsService.currentApp;">
                     <div *ngFor="let app of applicationsService.applicationsTab"
-                        [ngClass]="{'hidden' :app.route.outlet !== applicationsService.currentApp.route.outlet}">
+                        [ngClass]="{'hidden' :app.uid !== applicationsService.currentApp.uid}">
                         <named-outlet [name]="app.route.outlet"></named-outlet>
                     </div>
                 </ng-container>
             </div>
         </div>
-
     </div>
 </ng-container>

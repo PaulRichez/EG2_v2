@@ -1,9 +1,22 @@
-<div class="h-full flex flex-column align-items-center">
-    <div *ngIf="applicationsService.currentApp">
+<div class="h-full p-fluid grid">
+    <div class="col-12" *ngIf="applicationsService.currentApp">
         Menu de l'app en cours
     </div>
 
-    <div class="app-listing">
-        App listing
+    <div class="p-menu col-12 w-full">
+        <ul class="p-menu-list">
+            <li *ngFor="let app of applicationsService.applications" class="p-menuitem">
+                <div *ngIf="!app.invisible" class="flex flex-row align-items-center justify-content-between">
+                    <div class="p-menuitem-link w-full" (click)="applicationsService.openNewApplication(app.appId)">
+                        <span class="{{ 'p-menuitem-icon fa ' + app.icon}}"></span>
+                        <span class="p-menuitem-text"> {{ app.appId}} </span>
+                    </div>
+                    <div>
+                        <!-- more app-->
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
+
 </div>

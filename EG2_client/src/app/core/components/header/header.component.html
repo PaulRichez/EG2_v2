@@ -1,31 +1,30 @@
-<div class="sticky top-0">
-    <p-toolbar>
-        <div class="p-toolbar-group-left">
-            <ng-container *ngIf="defaultConfigService.defaultConfig; else defaultLogoTitle">
-                <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
-                    [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
-                <span>{{ defaultConfigService.defaultConfig.society }}</span>
-            </ng-container>
-            <ng-template #defaultLogoTitle>
-                <div [inlineSVG]="'/assets/icons/logo.svg'" class="logo" class="pt-1 mt-1 logo -ml-3 mr-1"></div>
-                <span>EasyGroupware</span>
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <ng-container *ngIf="defaultConfigService.defaultConfig; else defaultLogoTitle">
+            <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
+                [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
+            <span>{{ defaultConfigService.defaultConfig.society }}</span>
+        </ng-container>
+        <ng-template #defaultLogoTitle>
+            <div [inlineSVG]="'/assets/icons/logo.svg'" class="logo" class="pt-1 mt-1 logo -ml-3 mr-1"></div>
+            <span>EasyGroupware</span>
+        </ng-template>
+        <p-tabMenu *ngIf="applicationsService.currentApp" [scrollable]="true"
+            [model]="applicationsService.applicationsTab" [activeItem]="applicationsService.currentApp" class="ml-3">
+            <ng-template pTemplate="item" let-item let-i="index">
+                <span><i class="{{ item.icon }}"></i></span>
+                <span class="ml-2 hidden md:inline ">{{ item.label }}</span>
             </ng-template>
-            <p-tabMenu *ngIf="applicationsService.currentApp" [scrollable]="true" [model]="applicationsService.applicationsTab"
-                [activeItem]="applicationsService.currentApp" class="ml-3">
-                <ng-template pTemplate="item" let-item let-i="index">
-                    <span><i class="{{ item.icon }}"></i></span>
-                    <span class="ml-2 hidden md:inline ">{{ item.label }}</span>
-                </ng-template>
-            </p-tabMenu>
-        </div>
+        </p-tabMenu>
+    </div>
 
-        <div class="p-toolbar-group-right">
-            <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text">
-                <span class="mr-1 hidden lg:inline">{{ authentificationService.connectedUser.username}}</span>
-                <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
-                <i class="ml-1 pi pi-chevron-down"></i>
-            </button>
-        </div>
-    </p-toolbar>
-</div>
-<p-menu #menu [popup]="true" [model]="items"></p-menu>
+    <div class="p-toolbar-group-right">
+        <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text">
+            <span class="mr-1 hidden lg:inline">{{ authentificationService.connectedUser.username}}</span>
+            <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
+            <i class="ml-1 pi pi-chevron-down"></i>
+        </button>
+    </div>
+</p-toolbar>
+
+<p-menu #menu [popup]="true" [model]="items" [appendTo]="'body'"></p-menu>
