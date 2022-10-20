@@ -19,8 +19,8 @@ export class AppComponent {
       this.displaySidebar = false;
     }
   }
-  displaySidebar = true;
   public isMobile = window.innerWidth < 768;
+  displaySidebar = !this.isMobile;
   loading = true;
   constructor(
     private themesService: ThemesService,

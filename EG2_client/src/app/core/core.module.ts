@@ -6,13 +6,15 @@ import { FormValidationDirective } from './directives/form-validation.directive'
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { NamedOutletDirective } from './directives/named-outlet.directive';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
     FormValidationDirective,
     HeaderComponent,
-    NamedOutletDirective
+    NamedOutletDirective,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { NamedOutletDirective } from './directives/named-outlet.directive';
     FormValidationDirective,
     SharedModule,
     HeaderComponent,
-    NamedOutletDirective
+    NamedOutletDirective,
+    SidebarComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

@@ -1,27 +1,47 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router, Routes } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../authentification/authentification.service';
-
+import { uid } from 'uid';
+import { IsLoggedGuard } from '../guard/login/is-logged.guard';
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationsService {
-  private applications = [
+  private applications: MenuItemExtended[] = [
     {
+      appId: 'dashboard',
       label: 'Dashboard',
       icon: 'fa fa-chart-line',
-      outlet: 'app-dashboard'
+      route: {
+        path: 'dashboard',
+        outlet: 'app-dashboard',
+        loadChildren: () => import('../../modules/applications/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [IsLoggedGuard]
+      },
+
     },
     {
+      appId: 'admin',
       label: 'Panel admin',
       icon: 'fa fa-hammer',
-      outlet: 'app-admin'
+      route: {
+        path: 'dashboard',
+        outlet: 'app-dashboard',
+        loadChildren: () => import('../../modules/applications/admin/admin.module').then(m => m.AdminModule),
+        canActivate: [IsLoggedGuard]
+      },
     },
     {
+      appId: 'profile',
       label: 'Profile',
       visible: false,
-      outlet: 'app-profile'
+      route: {
+        path: 'dashboard',
+        outlet: 'app-dashboard',
+        loadChildren: () => import('../../modules/applications/profile/profile.module').then(m => m.ProfileModule),
+        canActivate: [IsLoggedGuard]
+      },
     }
   ]
   public currentApp: MenuItemExtended | null = this.applications[0];
@@ -32,18 +52,66 @@ export class ApplicationsService {
     public authentificationService: AuthentificationService,
   ) {
     this.authentificationService.observableconnectedUser.subscribe((user) => {
-      if (!user) {
+      if (!user && user !== undefined) {
         this.applicationsTab = [];
         this.currentApp = null;
         this.resetAllRouterOutlets();
       }
-      else {
-        this.createApplicationsTab()
+      else if (user !== undefined) {
+        this.openNewApplication('dashboard');
       }
     })
   }
 
-  createApplicationsTab() {
+  openNewApplication(appId: string) {
+    const app = Object.assign({}, this.applications.find(a => a.appId == appId));
+    if (!app) {
+      console.error('Application to open : ' + appId + ' not found')
+      return;
+    }
+    app.uid = uid();
+    app.route.outlet = app.appId + '_' + app.uid;
+    this.applicationsTab.push(app)
+    this.selectApp(app)
+  }
+
+  selectApp(app: MenuItemExtended) {
+    if (!this.applicationsTab.find(a => a.uid == app.uid)) {
+      console.error('Application to select : ' + app.appId + ' ' + app.uid + ' not found')
+      return;
+    }
+    this.createRouterOutlet(app)
+    this.currentApp = app;
+  }
+
+  private createRouterOutlet(app: MenuItemExtended, childrens?: any) {
+    if (!childrens) {
+      childrens = (this.route.snapshot as any)._routerState._root.children
+    }
+    const children = childrens.find((a: any) => a.value.outlet === app.route.outlet);
+    if (!children || this.applicationsTab.find((a: any) => a.outlet === app.route.outlet)?.visible == false) {
+      const routes = this.router.config;
+      routes.push(app.route);
+      this.router.resetConfig(routes);
+      this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]).then(() => {
+        this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path] } }])
+      })
+    }
+  }
+
+  public resetAllRouterOutlets() {
+    console.log('resetoutlet')
+    const childrens = (this.route.snapshot as any)._routerState._root.children
+    let router: any = {};
+    childrens.forEach((a: any) => {
+      router[a.value.outlet] = null
+    })
+    if (router) {
+      this.router.navigate(['', { outlets: router }])
+    }
+  }
+
+  /*createApplicationsTab() {
     this.applications.forEach(a => {
       const app = {
         ...a, command: () => {
@@ -55,17 +123,7 @@ export class ApplicationsService {
     this.selectApp('profile')
   }
 
-  selectApp(name: string) {
-    let outlet = name;
-    if (!name.startsWith("app-")) {
-      outlet = 'app-' + name;
-    }
-    const app = this.applicationsTab.find(a => a.outlet === outlet);
-    if (app) {
-      this.createRouterOutlet(app.outlet)
-      this.currentApp = app;
-    }
-  }
+ 
 
   private createRouterOutlet(outlet: string, childrens?: any) {
     if (!childrens) {
@@ -92,11 +150,12 @@ export class ApplicationsService {
     if (router) {
       this.router.navigate(['', { outlets: router }])
     }
-  }
+  }*/
 
 }
 
 export interface MenuItemExtended extends MenuItem {
-  color?: string;
-  outlet: string;
+  route: Route;
+  appId: string;
+  uid?: string;
 }

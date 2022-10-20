@@ -7,7 +7,7 @@ import { RouterOutlet, ChildrenOutletContexts } from "@angular/router";
 })
 export class NamedOutletDirective implements OnInit, OnDestroy {
   public outlet!: RouterOutlet;
-  @Input() public name!: string;
+  @Input() public name!: any; // its a string
   constructor(
     private parentContexts: ChildrenOutletContexts,
     private location: ViewContainerRef,

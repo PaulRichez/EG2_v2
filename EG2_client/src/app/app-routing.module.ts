@@ -13,13 +13,13 @@ const routes: Routes = [
     path: '**', pathMatch: 'full',
     component: NotFoundComponent
   },
-  { path: 'dashboard', outlet: 'app-dashboard', loadChildren: () => import('./modules/applications/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [IsLoggedGuard] },
-  { path: 'admin', outlet: 'app-admin', loadChildren: () => import('./modules/applications/admin/admin.module').then(m => m.AdminModule), canActivate: [IsLoggedGuard] },
-  { path: 'profile', outlet: 'app-profile', loadChildren: () => import('./modules/applications/profile/profile.module').then(m => m.ProfileModule), canActivate: [IsLoggedGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  public routes = routes;
+  constructor() {}
+ }

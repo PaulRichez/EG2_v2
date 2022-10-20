@@ -11,14 +11,14 @@
 
             <p-sidebar [(visible)]="displaySidebar" [modal]="isMobile" [showCloseIcon]="false" [appendTo]="sideBarDiv"
                 [closeOnEscape]="false">
-                sidebar
+                <app-sidebar></app-sidebar>
             </p-sidebar>
             <div class="flex flex-column h-full"
                 [ngStyle]="{'margin-left' : !isMobile && displaySidebar ? '20rem' : '0' }">
                 <ng-container *ngIf="applicationsService.currentApp;">
                     <div *ngFor="let app of applicationsService.applicationsTab"
-                        [ngClass]="{'hidden' :app.outlet !== applicationsService.currentApp.outlet}">
-                        <named-outlet [name]="app.outlet"></named-outlet>
+                        [ngClass]="{'hidden' :app.route.outlet !== applicationsService.currentApp.route.outlet}">
+                        <named-outlet [name]="app.route.outlet"></named-outlet>
                     </div>
                 </ng-container>
             </div>
