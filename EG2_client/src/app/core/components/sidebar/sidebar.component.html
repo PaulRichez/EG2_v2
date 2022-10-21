@@ -18,12 +18,14 @@
         <ul class="p-menu-list">
             <li *ngFor="let app of applicationsService.applications" class="p-menuitem">
                 <div *ngIf="!app.invisible" class="flex flex-row align-items-center justify-content-between">
-                    <div class="p-menuitem-link w-full" (click)="applicationsService.openNewApplication(app.appId)">
+                    <div class="p-menuitem-link w-full"
+                        (click)="applicationsService.openNewApplication(app.appId, true)">
                         <span class="{{ 'p-menuitem-icon fa ' + app.icon}}"></span>
                         <span class="p-menuitem-text"> {{ app.appId}} </span>
                     </div>
-                    <div>
-                        <!-- more app-->
+                    <div *ngIf="!app.unique">
+                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-secondary p-button-text"
+                            (click)="applicationsService.openNewApplication(app.appId)"></button>
                     </div>
                 </div>
             </li>

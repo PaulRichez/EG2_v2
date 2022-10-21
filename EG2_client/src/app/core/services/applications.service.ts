@@ -68,7 +68,14 @@ export class ApplicationsService {
     })
   }
 
-  openNewApplication(appId: string, uidExistant?: string) {
+  openNewApplication(appId: string, selectIfExists?: boolean) {
+    if (selectIfExists) {
+      const app = this.applicationsTab.find(a => a.appId == appId);
+      if (app) {
+        this.selectApp(app);
+        return;
+      }
+    }
     const app = Object.assign({}, this.applications.find(a => a.appId == appId));
     if (!app) {
       console.error('Application to open : ' + appId + ' not found')
@@ -81,7 +88,7 @@ export class ApplicationsService {
         return;
       }
     }
-    app.uid = uidExistant ? uidExistant : uid();
+    app.uid = uid();
     app.route.outlet = app.appId + '_' + app.uid;
     app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
