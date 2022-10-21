@@ -29,8 +29,8 @@ export class ApplicationsService {
       label: 'Panel admin',
       icon: 'fa fa-hammer',
       route: {
-        path: 'dashboard',
-        outlet: 'app-dashboard',
+        path: 'admin',
+        outlet: 'app-admin',
         loadChildren: () => import('../../modules/applications/admin/admin.module').then(m => m.AdminModule),
         canActivate: [IsLoggedGuard]
       },
@@ -42,8 +42,8 @@ export class ApplicationsService {
       invisible: true,
       unique: true,
       route: {
-        path: 'dashboard',
-        outlet: 'app-dashboard',
+        path: 'profile',
+        outlet: 'app-profile',
         loadChildren: () => import('../../modules/applications/profile/profile.module').then(m => m.ProfileModule),
         canActivate: [IsLoggedGuard]
       },
@@ -118,10 +118,10 @@ export class ApplicationsService {
         newIndex = appIndex - 1;
       }
     }
-    this.applicationsTab.splice(appIndex, 1);
-    console.log(app.route.outlet)
+    // ToDo fix outlet name duplicated
     this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }])
-    this.selectApp(this.applicationsTab[newIndex])
+    this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
+    this.applicationsTab.splice(appIndex, 1);
   }
 
   private createRouterOutlet(app: MenuItemExtended, childrens?: any) {
