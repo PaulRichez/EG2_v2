@@ -4,6 +4,18 @@
   -moz-box-shadow: none !important;
 }
 
+.p-tabview-nav-btn:focus {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+.p-tabview-nav-link:focus {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
 .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
