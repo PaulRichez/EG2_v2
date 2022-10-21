@@ -70,14 +70,15 @@ export class ApplicationsService {
 
   openNewApplication(appId: string, selectIfExists?: boolean) {
     if (selectIfExists) {
-      if (this.currentApp?.appId !== appId) {
-        const app = this.applicationsTab.find(a => a.appId == appId);
-        if (app) {
-          this.selectApp(app);
-          return;
-        }
+      if (this.currentApp?.appId === appId) {
+        return;
       }
-      return;
+      const app = this.applicationsTab.find(a => a.appId == appId);
+      if (app) {
+        this.selectApp(app);
+        return;
+      }
+
     }
     const app = Object.assign({}, this.applications.find(a => a.appId == appId));
     if (!app) {
