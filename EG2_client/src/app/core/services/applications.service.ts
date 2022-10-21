@@ -35,7 +35,7 @@ export class ApplicationsService {
         canActivate: [IsLoggedGuard]
       },
       routeSidebar: {
-        path: 'sidebar-admin',
+        path: 'admin-sidebar',
         outlet: 'app-admin-sidebar',
         loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
         canActivate: [IsLoggedGuard]
@@ -101,11 +101,9 @@ export class ApplicationsService {
     app.uid = uid();
     app.route = Object.assign({}, app.route);
     app.route.outlet = app.appId + '_' + app.uid;
-    // app.route.path = app.route.path + '/:uid';
     if (app.routeSidebar) {
       app.routeSidebar = Object.assign({}, app.routeSidebar);
       app.routeSidebar.outlet = app.appId + '-sidebar_' + app.uid;
-      // app.routeSidebar.path = app.routeSidebar.path + '/:uid';
     }
     app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
@@ -138,10 +136,14 @@ export class ApplicationsService {
       }
     }
     // ToDO delete route from routeConfig
+    const routes = this.router.config;
+    let newRoutes = this.router.config.filter(route => route.outlet !==  app.route.outlet);
     let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
     if (app.routeSidebar) {
       outletNavNull = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
+      newRoutes = newRoutes.filter(route => route.outlet !==  app.routeSidebar?.outlet);
     }
+    this.router.resetConfig(newRoutes);
     this.router.navigate(outletNavNull)
     this.applicationsTab.splice(appIndex, 1);
   }

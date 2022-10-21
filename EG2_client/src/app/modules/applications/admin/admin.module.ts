@@ -6,13 +6,15 @@ import { AdminComponent } from './admin.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { ListingUserComponent } from './components/listing-user/listing-user.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     StatisticsComponent,
-    SideBarComponent
+    SideBarComponent,
+    ListingUserComponent
   ],
   imports: [
     CommonModule,

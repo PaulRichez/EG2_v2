@@ -15,9 +15,9 @@ import { MenuModule } from 'primeng/menu';
 import { AvatarModule } from 'primeng/avatar';
 import { ListboxModule } from 'primeng/listbox';
 import { ChartModule } from 'primeng/chart';
-import {SidebarModule} from 'primeng/sidebar';
-import {TabViewModule} from 'primeng/tabview';
-import {RippleModule} from 'primeng/ripple';
+import { SidebarModule } from 'primeng/sidebar';
+import { TabViewModule } from 'primeng/tabview';
+import { RippleModule } from 'primeng/ripple';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +27,7 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { InlineSVGModule } from 'ng-inline-svg-u';
 import { PageProfileComponent } from './components/page-profile/page-profile.component';
+import { AppHelperComponent } from './extends/app-helper/app-helper.component';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -56,6 +57,7 @@ const MODULES = [
     FileUploadComponent,
     AvatarComponent,
     PageProfileComponent,
+    AppHelperComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +71,8 @@ const MODULES = [
     MODULES,
     FileUploadComponent,
     AvatarComponent,
-    PageProfileComponent
+    PageProfileComponent,
+    AppHelperComponent
   ]
 })
 export class SharedModule { }
