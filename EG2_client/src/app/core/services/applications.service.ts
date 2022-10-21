@@ -89,6 +89,7 @@ export class ApplicationsService {
       }
     }
     app.uid = uid();
+    app.route = Object.assign({}, app.route);
     app.route.outlet = app.appId + '_' + app.uid;
     app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
@@ -118,7 +119,6 @@ export class ApplicationsService {
         newIndex = appIndex - 1;
       }
     }
-    // ToDo fix outlet name duplicated
     this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }])
     this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
     this.applicationsTab.splice(appIndex, 1);
