@@ -106,6 +106,24 @@ export class ApplicationsService {
     this.applicaitonChangeSubject.next({ app, index });
   }
 
+  closeApp(app: MenuItemExtended) {
+    if (this.applicationsTab.length == 1) {
+      console.error('Cant close last app open')
+      return;
+    }
+    const appIndex = this.applicationsTab.findIndex(a => a.uid == app.uid);
+    let newIndex = appIndex;
+    if (app.uid === this.currentApp?.uid) {
+      if (appIndex == this.applicationsTab.length - 1) {
+        newIndex = appIndex - 1;
+      }
+    }
+    this.applicationsTab.splice(appIndex, 1);
+    console.log(app.route.outlet)
+    this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }])
+    this.selectApp(this.applicationsTab[newIndex])
+  }
+
   private createRouterOutlet(app: MenuItemExtended, childrens?: any) {
     if (!childrens) {
       childrens = (this.route.snapshot as any)._routerState._root.children
@@ -132,47 +150,6 @@ export class ApplicationsService {
       this.router.navigate(['', { outlets: router }])
     }
   }
-
-  /*createApplicationsTab() {
-    this.applications.forEach(a => {
-      const app = {
-        ...a, command: () => {
-          this.selectApp(a.outlet)
-        }
-      }
-      this.applicationsTab.push(app)
-    });
-    this.selectApp('profile')
-  }
-
- 
-
-  private createRouterOutlet(outlet: string, childrens?: any) {
-    if (!childrens) {
-      childrens = (this.route.snapshot as any)._routerState._root.children
-    }
-    const children = childrens.find((a: any) => a.value.outlet === outlet);
-    let page = outlet;
-    if (outlet.startsWith("app-")) {
-      page = outlet.substring(4)
-    }
-    if (!children || this.applicationsTab.find((a: any) => a.outlet === outlet)?.visible == false) {
-      this.router.navigate([{ outlets: { ['primary']: '', [outlet]: null } }]).then(() => {
-        this.router.navigate([{ outlets: { ['primary']: '', [outlet]: [page] } }])
-      })
-    }
-  }
-
-  public resetAllRouterOutlets() {
-    const childrens = (this.route.snapshot as any)._routerState._root.children
-    let router: any = {};
-    childrens.forEach((a: any) => {
-      router[a.value.outlet] = null
-    })
-    if (router) {
-      this.router.navigate(['', { outlets: router }])
-    }
-  }*/
 
 }
 
