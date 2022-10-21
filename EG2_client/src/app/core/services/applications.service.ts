@@ -4,10 +4,12 @@ import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../authentification/authentification.service';
 import { uid } from 'uid';
 import { IsLoggedGuard } from '../guard/login/is-logged.guard';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationsService {
+  public applicaitonChangeSubject = new BehaviorSubject<{ app: MenuItemExtended, index: number } | null>(null);
   public readonly applications: MenuItemExtended[] = [
     {
       appId: 'dashboard',
@@ -93,6 +95,8 @@ export class ApplicationsService {
     }
     this.createRouterOutlet(app)
     this.currentApp = app;
+    const index = this.applicationsTab.findIndex(a => a.uid == app.uid)
+    this.applicaitonChangeSubject.next({ app, index });
   }
 
   private createRouterOutlet(app: MenuItemExtended, childrens?: any) {

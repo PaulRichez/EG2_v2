@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
   @ViewChild('avatarDiv') avatarDiv!: ElementRef;
   @ViewChild('parentDiv') parentDiv!: ElementRef;
+  public activeIndex!: number;
   public items: MenuItem[] = [
     {
       label: 'Mon profil',
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     public applicationsService: ApplicationsService,
     public authentificationService: AuthentificationService,
-    private router: Router
+    private router: Router,
   ) { }
   ngAfterViewInit(): void {
     this.redrawTabsWidth()
@@ -42,9 +43,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.applicationsService.applicaitonChangeSubject.subscribe((tab) => {
+      setTimeout(() => {
+        this.activeIndex = tab?.index || 0;
+      }, 1)
+    })
   }
 
   handleChange(event: any) {
+    this.applicationsService.selectApp(this.applicationsService.applicationsTab[event.index])
   }
   handleClose(event: any) {
 
