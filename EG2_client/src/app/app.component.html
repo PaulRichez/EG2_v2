@@ -11,7 +11,7 @@
             [closeOnEscape]="false">
             <app-sidebar></app-sidebar>
         </p-sidebar>
-        <div class="flex flex-column w-full" [ngStyle]="{'margin-left' : !isMobile && displaySidebar ? '20rem' : '0' }">
+        <div class="flex flex-column w-full" [ngStyle]="{'padding-left' : !isMobile && displaySidebar ? '20rem' : '0' }">
             <div class="sticky top-0" style="z-index: 999;">
                 <app-header></app-header>
             </div>

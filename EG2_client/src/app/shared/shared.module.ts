@@ -16,6 +16,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ListboxModule } from 'primeng/listbox';
 import { ChartModule } from 'primeng/chart';
 import {SidebarModule} from 'primeng/sidebar';
+import {TabViewModule} from 'primeng/tabview';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -43,6 +44,7 @@ const MODULES = [
   ListboxModule,
   ChartModule,
   SidebarModule,
+  TabViewModule
 ]
 
 @NgModule({

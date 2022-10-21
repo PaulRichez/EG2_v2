@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../../authentification/authentification.service';
@@ -9,7 +9,13 @@ import { ApplicationsService } from '../../services/applications.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.redrawTabsWidth()
+  }
+  @ViewChild('avatarDiv') avatarDiv!: ElementRef;
+  @ViewChild('parentDiv') parentDiv!: ElementRef;
   public items: MenuItem[] = [
     {
       label: 'Mon profil',
@@ -27,8 +33,21 @@ export class HeaderComponent implements OnInit {
     public authentificationService: AuthentificationService,
     private router: Router
   ) { }
+  ngAfterViewInit(): void {
+    this.redrawTabsWidth()
+  }
+
+  redrawTabsWidth() {
+    document.documentElement.style.setProperty(`--headerTabsWidth`, this.parentDiv.nativeElement.offsetWidth - this.avatarDiv.nativeElement.offsetWidth + 'px');
+  }
 
   ngOnInit(): void {
+  }
+
+  handleChange(event: any) {
+  }
+  handleClose(event: any) {
+
   }
 
 }
