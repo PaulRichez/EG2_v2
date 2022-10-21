@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../../authentification/authentification.service';
@@ -9,7 +9,7 @@ import { ApplicationsService } from '../../services/applications.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.redrawTabsWidth()
@@ -29,11 +29,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       command: () => { this.authentificationService.logout() }
     }
   ];
+  private sub!: any;
   constructor(
     public applicationsService: ApplicationsService,
     public authentificationService: AuthentificationService,
     private router: Router,
   ) { }
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
   ngAfterViewInit(): void {
     this.redrawTabsWidth()
   }
@@ -43,7 +49,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.applicationsService.applicaitonChangeSubject.subscribe((tab) => {
+    this.sub = this.applicationsService.applicaitonChangeSubject.subscribe((tab) => {
       setTimeout(() => {
         this.activeIndex = tab?.index || 0;
       }, 1)
