@@ -15,7 +15,7 @@
             <div class="sticky top-0" style="z-index: 999;">
                 <app-header></app-header>
             </div>
-            <div class="flex flex-column h-full md:p-4">
+            <div class="flex flex-column h-full p-2 md:p-4">
                 <ng-container *ngIf="applicationsService.currentApp;">
                     <div *ngFor="let app of applicationsService.applicationsTab"
                         [ngClass]="{'hidden' :app.uid !== applicationsService.currentApp.uid}">

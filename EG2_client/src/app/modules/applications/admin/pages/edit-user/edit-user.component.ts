@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from 'src/app/core/services/users.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
+import { IUser } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-edit-user',
@@ -8,15 +10,32 @@ import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent extends AppHelperComponent implements OnInit {
-
+  public user!: IUser;
+  public loadingData = true;
+  public idUser!: string;
   constructor(
     public override route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private usersService: UsersService
   ) {
     super(route);
   }
 
   ngOnInit(): void {
+    this.idUser = this.route.snapshot.params['id'];
+    if (this.idUser) {
+      this.usersService.findOne(this.idUser).subscribe({
+        next: result => {
+          this.user = result;
+          this.loadingData = false;
+        },
+        error: err => {
+          this.loadingData = false;
+        }
+      })
+    } else {
+      this.loadingData = false;
+    }
   }
 
 }
