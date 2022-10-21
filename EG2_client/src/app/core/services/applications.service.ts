@@ -120,6 +120,8 @@ export class ApplicationsService {
       if (appIndex == this.applicationsTab.length - 1) {
         const newIndex = appIndex - 1;
         this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
+      } else {
+        this.selectApp(Object.assign({}, this.applicationsTab[appIndex]))
       }
     }
     this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }])
