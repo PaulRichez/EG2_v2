@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Route, Router, Routes } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Route, Router, Routes } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../authentification/authentification.service';
 import { uid } from 'uid';
@@ -34,6 +34,12 @@ export class ApplicationsService {
         loadChildren: () => import('../../modules/applications/admin/admin.module').then(m => m.AdminModule),
         canActivate: [IsLoggedGuard]
       },
+      routeSidebar: {
+        path: 'sidebar-admin',
+        outlet: 'app-admin-sidebar',
+        loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
+        canActivate: [IsLoggedGuard]
+      }
     },
     {
       appId: 'profile',
@@ -95,6 +101,10 @@ export class ApplicationsService {
     app.uid = uid();
     app.route = Object.assign({}, app.route);
     app.route.outlet = app.appId + '_' + app.uid;
+    if (app.routeSidebar) {
+      app.routeSidebar = Object.assign({}, app.routeSidebar);
+      app.routeSidebar.outlet = app.appId + '-sidebar_' + app.uid;
+    }
     app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
     this.selectApp(app)
@@ -125,7 +135,12 @@ export class ApplicationsService {
         this.selectApp(Object.assign({}, this.applicationsTab[appIndex]))
       }
     }
-    this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }])
+    // ToDO delete route from routeConfig
+    let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
+    if (app.routeSidebar) {
+      outletNavNull = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
+    }
+    this.router.navigate(outletNavNull)
     this.applicationsTab.splice(appIndex, 1);
   }
 
@@ -134,12 +149,19 @@ export class ApplicationsService {
       childrens = (this.route.snapshot as any)._routerState._root.children
     }
     const children = childrens.find((a: any) => a.value.outlet === app.route.outlet);
-    if (!children || this.applicationsTab.find((a: any) => a.outlet === app.route.outlet)?.visible == false) {
+    if (!children) {
       const routes = this.router.config;
       routes.push(app.route);
+      let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
+      let outletNavPath: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path] } }]
+      if (app.routeSidebar) {
+        routes.push(app.routeSidebar);
+        outletNavNull = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
+        outletNavPath = [{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path], [app.routeSidebar.outlet as string]: [app.routeSidebar.path] } }]
+      }
       this.router.resetConfig(routes);
-      this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]).then(() => {
-        this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path] } }])
+      this.router.navigate(outletNavNull).then(() => {
+        this.router.navigate(outletNavPath)
       })
     }
   }
@@ -160,6 +182,7 @@ export class ApplicationsService {
 
 export interface MenuItemExtended extends MenuItem {
   route: Route;
+  routeSidebar?: Route;
   appId: string;
   uid?: string;
   invisible?: boolean;

@@ -5,7 +5,7 @@
 
 <ng-container *ngIf="authService.connectedUser && !loading">
     <div class="flex">
-        <div #sideBarDiv class="h-full"></div>
+        <div #sideBarDiv class="h-full" id="sidebar-nav"></div>
 
         <p-sidebar [(visible)]="displaySidebar" [modal]="isMobile" [showCloseIcon]="false" [appendTo]="sideBarDiv"
             [closeOnEscape]="false">

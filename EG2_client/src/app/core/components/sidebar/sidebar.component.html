@@ -1,20 +1,26 @@
-<div class="h-full p-fluid grid">
-    <div class="col-12">
-        <ng-container *ngIf="defaultConfigService.defaultConfig; else defaultLogoTitle">
-            <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
-                [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
-            <span>{{ defaultConfigService.defaultConfig.society }}</span>
-        </ng-container>
-        <ng-template #defaultLogoTitle>
-            <div [inlineSVG]="'/assets/icons/logo.svg'" class="logo" class="pt-1 mt-1 logo -ml-3 mr-1"></div>
-            <span>EasyGroupware</span>
-        </ng-template>
-    </div>
-    <div class="col-12" *ngIf="applicationsService.currentApp">
-        Menu de l'app en cours
+<div class="h-full flex flex-column align-items-center justify-content-between">
+    <div class="grid w-full">
+        <div class="col-12 w-full flex flex-row align-items-center">
+            <ng-container *ngIf="defaultConfigService.defaultConfig?.logo; else defaultLogoTitle">
+                <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
+                    [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
+            </ng-container>
+            <ng-template #defaultLogoTitle>
+                <div [inlineSVG]="'/assets/icons/logo.svg'" class="logo" class="logo"></div>
+            </ng-template>
+            <span class="ml-3">{{ defaultConfigService.defaultConfig?.society || 'EasyGroupware' }}</span>
+        </div>
+        <div class="col-12" *ngIf="applicationsService.currentApp">
+            <ng-container *ngIf="applicationsService.currentApp;">
+                <div *ngFor="let app of applicationsService.applicationsTab"
+                    [ngClass]="{'hidden' :app.uid !== applicationsService.currentApp.uid}">
+                    <named-outlet *ngIf="app.routeSidebar?.outlet" [name]="app.routeSidebar?.outlet"></named-outlet>
+                </div>
+            </ng-container>
+        </div>
     </div>
 
-    <div class="p-menu col-12 w-full">
+    <div class="p-menu w-full">
         <div class="text-xl  p-2"><b>Applications</b></div>
         <ul class="p-menu-list">
             <li *ngFor="let app of applicationsService.applications" class="p-menuitem">
