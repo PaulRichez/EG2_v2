@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services/users.service';
 import * as qs from 'qs'
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from 'src/app/shared/models/user.model';
 import { LazyLoadEvent } from 'primeng/api';
 @Component({
@@ -13,10 +13,12 @@ import { LazyLoadEvent } from 'primeng/api';
 export class ListingUserComponent extends AppHelperComponent implements OnInit {
   public loadingData = true;
   public users: IUser[] = [];
+  public addRoutlet!: any;
   totalRecords = 0;
   constructor(
     private usersService: UsersService,
     public override route: ActivatedRoute,
+    private router: Router
   ) {
     super(route)
   }
@@ -27,7 +29,6 @@ export class ListingUserComponent extends AppHelperComponent implements OnInit {
 
   fetchUsers(event: LazyLoadEvent) {
     const sort = event.sortField ? [`${event.sortField}:${event.sortOrder === 1 ? 'asc' : 'desc'}`] : {};
-    console.log(event)
     const query = qs.stringify({
       offset: event.first,
       limit: event.rows,
@@ -42,7 +43,6 @@ export class ListingUserComponent extends AppHelperComponent implements OnInit {
         this.users = result.data;
         this.totalRecords = result.meta.count;
         this.loadingData = false;
-        console.log(this.loadingData)
       },
       error: err => {
         this.loadingData = false;
@@ -51,4 +51,11 @@ export class ListingUserComponent extends AppHelperComponent implements OnInit {
     });
   }
 
+  public add() {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user'] } }])
+  }
+
+  public edit(user: IUser) {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user', user.id] } }])
+  }
 }

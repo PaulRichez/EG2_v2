@@ -8,6 +8,8 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { ListingUserComponent } from './pages/listing-user/listing-user.component';
 import { ListingGroupComponent } from './pages/listing-group/listing-group.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { EditGroupComponent } from './pages/edit-group/edit-group.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ListingGroupComponent } from './pages/listing-group/listing-group.compo
     StatisticsComponent,
     SideBarComponent,
     ListingUserComponent,
-    ListingGroupComponent
+    ListingGroupComponent,
+    EditUserComponent,
+    EditGroupComponent
   ],
   imports: [
     CommonModule,

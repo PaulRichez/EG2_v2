@@ -5,7 +5,7 @@
         <i class="text-sm"></i>
     </div>
     <div>
-        <p-button label="Nouveau" styleClass="p-button-sm"></p-button>
+        <p-button label="Nouveau" (click)="add()" styleClass="p-button-sm"></p-button>
     </div>
 </div>
 <p-card>
@@ -55,7 +55,8 @@
                     {{user.createdAt | amTimeAgo}}
                 </td>
                 <td>
-                    <button pButton type="button" class="p-button-secondary p-button-text" icon="fa-solid fa-pen"></button>
+                    <button pButton type="button" class="p-button-secondary p-button-text" icon="fa-solid fa-pen"
+                        (click)="edit(user)"></button>
                 </td>
             </tr>
         </ng-template>

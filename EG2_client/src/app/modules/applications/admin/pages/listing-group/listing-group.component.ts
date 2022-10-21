@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LazyLoadEvent } from 'primeng/api';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
@@ -20,6 +20,7 @@ export class ListingGroupComponent extends AppHelperComponent implements OnInit 
   constructor(
     private groupesService: GroupesService,
     public override route: ActivatedRoute,
+    private router: Router,
   ) {
     super(route)
   }
@@ -29,7 +30,6 @@ export class ListingGroupComponent extends AppHelperComponent implements OnInit 
 
   fetchGroups(event: LazyLoadEvent) {
     const sort = event.sortField ? [`${event.sortField}:${event.sortOrder === 1 ? 'asc' : 'desc'}`] : {};
-    console.log(event)
     const query = qs.stringify({
       pagination: {
         page: (event.first || 0) / (event.rows || 5) + 1,
@@ -46,13 +46,20 @@ export class ListingGroupComponent extends AppHelperComponent implements OnInit 
         this.groups = result.data;
         this.totalRecords = result.meta.count;
         this.loadingData = false;
-        console.log(this.loadingData)
       },
       error: err => {
         this.loadingData = false;
       }
 
     });
+  }
+
+  public add() {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group'] } }])
+  }
+
+  public edit(group: IUserGroup) {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group', group.id] } }])
   }
 
 }

@@ -25,12 +25,12 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
       {
         label: 'Listing Users',
         icon: 'fa-solid fa-users',
-        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'listing-user'] } }]
+        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'users'] } }]
       },
       {
         label: 'Listing Groups',
         icon: 'fa-solid fa-user-group',
-        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'listing-group'] } }],
+        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'groups'] } }],
       },
       {
         label: 'Paramètres du site',
