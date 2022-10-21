@@ -113,14 +113,13 @@ export class ApplicationsService {
       return;
     }
     const appIndex = this.applicationsTab.findIndex(a => a.uid == app.uid);
-    let newIndex = appIndex;
     if (app.uid === this.currentApp?.uid) {
       if (appIndex == this.applicationsTab.length - 1) {
-        newIndex = appIndex - 1;
+        const newIndex = appIndex - 1;
+        this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
       }
     }
     this.router.navigate([{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }])
-    this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
     this.applicationsTab.splice(appIndex, 1);
   }
 
