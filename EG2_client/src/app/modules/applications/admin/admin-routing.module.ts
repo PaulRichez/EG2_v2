@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
-import { ListingGroupComponent } from './components/listing-group/listing-group.component';
-import { ListingUserComponent } from './components/listing-user/listing-user.component';
+import { ListingGroupComponent } from './pages/listing-group/listing-group.component';
+import { ListingUserComponent } from './pages/listing-user/listing-user.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 
 const routes: Routes = [
