@@ -12,12 +12,12 @@ const routes: Routes = [
     path: '', component: AdminComponent, children: [
       { path: '', redirectTo: 'stats', pathMatch: 'full' },
       { path: 'stats', component: StatisticsComponent },
-      { path: 'users', component: ListingUserComponent },
-      { path: 'groups', component: ListingGroupComponent },
-      { path: 'user', component: EditUserComponent },
-      { path: 'group', component: EditGroupComponent },
-      { path: 'user/:id', component: EditUserComponent },
-      { path: 'group/:id', component: EditGroupComponent },
+      { path: 'user', component: ListingUserComponent },
+      { path: 'group', component: ListingGroupComponent },
+      { path: 'user/add', component: EditUserComponent },
+      { path: 'group/add', component: EditGroupComponent },
+      { path: 'user/edit/:id', component: EditUserComponent },
+      { path: 'group/edit/:id', component: EditGroupComponent },
     ]
   }
 ];

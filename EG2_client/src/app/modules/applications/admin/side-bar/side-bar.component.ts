@@ -25,12 +25,12 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
       {
         label: 'Listing Users',
         icon: 'fa-solid fa-users',
-        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'users'] } }]
+        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'user'] } }]
       },
       {
         label: 'Listing Groups',
         icon: 'fa-solid fa-user-group',
-        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'groups'] } }],
+        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'group'] } }],
       },
       {
         label: 'Paramètres du site',
@@ -38,6 +38,7 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
         routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'website-settings'] } }],
       },
     ];
+    this.items.forEach(item => item.routerLinkActiveOptions = { exact: false })
   }
 
 }

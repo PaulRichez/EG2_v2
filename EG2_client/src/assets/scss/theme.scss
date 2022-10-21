@@ -4,6 +4,12 @@
   -moz-box-shadow: none !important;
 }
 
+.p-menuitem-link:focus {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
 .p-tabview-nav-btn:focus {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
@@ -66,15 +72,18 @@
 
 .headerTab {
   max-width: var(--headerTabsWidth);
+
   .p-tabview-nav-link {
     padding-right: 0 !important;
   }
+
   .p-tabview-panels {
     display: none;
   }
+
   .p-button-sm {
     padding: 0.3rem !important;
-    padding-bottom: 0!important;
+    padding-bottom: 0 !important;
     width: auto !important;
   }
 }

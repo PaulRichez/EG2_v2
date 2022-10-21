@@ -55,11 +55,11 @@ export class ListingGroupComponent extends AppHelperComponent implements OnInit 
   }
 
   public add() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group', 'add'] } }])
   }
 
   public edit(group: IUserGroup) {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group', group.id] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group', 'edit', group.id] } }])
   }
 
 }
