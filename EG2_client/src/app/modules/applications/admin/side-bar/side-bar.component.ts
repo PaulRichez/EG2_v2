@@ -30,7 +30,7 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
       {
         label: 'Listing Groups',
         icon: 'fa-solid fa-user-group',
-        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'listing-groups'] } }],
+        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'listing-group'] } }],
       },
       {
         label: 'Paramètres du site',

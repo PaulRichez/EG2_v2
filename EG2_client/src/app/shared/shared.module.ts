@@ -18,6 +18,7 @@ import { ChartModule } from 'primeng/chart';
 import { SidebarModule } from 'primeng/sidebar';
 import { TabViewModule } from 'primeng/tabview';
 import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,6 +27,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { InlineSVGModule } from 'ng-inline-svg-u';
+import { MomentModule } from 'ngx-moment';
+import 'moment/locale/fr';
 import { PageProfileComponent } from './components/page-profile/page-profile.component';
 import { AppHelperComponent } from './extends/app-helper/app-helper.component';
 const MODULES = [
@@ -47,7 +50,9 @@ const MODULES = [
   ChartModule,
   SidebarModule,
   TabViewModule,
-  RippleModule
+  RippleModule,
+  TableModule,
+  MomentModule
 ]
 
 @NgModule({

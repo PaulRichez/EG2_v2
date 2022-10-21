@@ -39,6 +39,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "qs",
+              "moment"
+            ],
             "outputPath": "dist/eg2-client",
             "index": "src/index.html",
             "main": "src/main.ts",

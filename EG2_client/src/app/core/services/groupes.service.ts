@@ -1,26 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class GroupesService {
 
   constructor(
     private http: HttpClient,
   ) { }
+
   public find(query: string) {
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user?${query}`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user-group?${query}`);
   }
   public findOne(id: string | number) {
     id = id.toString();
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user-group/${id}?populate=deep`);
   }
   public update(id: string | number, formData: FormData) {
     id = id.toString();
-    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`, formData).pipe(map(result => {
+    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user-group/${id}?populate=deep`, formData).pipe(map(result => {
       console.log(result);
       // TODO update connected user
       return result;
