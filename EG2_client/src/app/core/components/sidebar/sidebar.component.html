@@ -1,6 +1,6 @@
 <div class="h-full flex flex-column align-items-center justify-content-between">
-    <div class="grid w-full">
-        <div class="col-12 w-full flex flex-row align-items-center">
+    <div class="w-full mb-1">
+        <div class="w-full flex flex-row align-items-center">
             <ng-container *ngIf="defaultConfigService.defaultConfig?.logo; else defaultLogoTitle">
                 <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
                     [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
@@ -10,7 +10,7 @@
             </ng-template>
             <span class="ml-3">{{ defaultConfigService.defaultConfig?.society || 'EasyGroupware' }}</span>
         </div>
-        <div class="col-12" *ngIf="applicationsService.currentApp">
+        <div class="w-full" *ngIf="applicationsService.currentApp">
             <ng-container *ngIf="applicationsService.currentApp;">
                 <div *ngFor="let app of applicationsService.applicationsTab"
                     [ngClass]="{'hidden' :app.uid !== applicationsService.currentApp.uid}">
@@ -21,22 +21,25 @@
     </div>
 
     <div class="p-menu w-full">
-        <div class="text-xl  p-2"><b>Applications</b></div>
-        <ul class="p-menu-list">
-            <li *ngFor="let app of applicationsService.applications" class="p-menuitem">
-                <div *ngIf="!app.invisible" class="flex flex-row align-items-center justify-content-between">
-                    <div class="p-menuitem-link w-full"
-                        (click)="applicationsService.openNewApplication(app.appId, true)">
-                        <span class="{{ 'p-menuitem-icon fa ' + app.icon}}"></span>
-                        <span class="p-menuitem-text"> {{ app.appId}} </span>
+        <div class="text-xl p-2"><b>Applications</b></div>
+        <div class="p-menu w-full">
+            <ul class="p-menu-list">
+                <li *ngFor="let app of applicationsService.applications" class="p-menuitem">
+                    <div *ngIf="!app.invisible" class="flex flex-row align-items-center justify-content-between">
+                        <div class="p-menuitem-link w-full"
+                            (click)="applicationsService.openNewApplication(app.appId, true)">
+                            <span class="{{ 'p-menuitem-icon fa ' + app.icon}}"></span>
+                            <span class="p-menuitem-text"> {{ app.appId}} </span>
+                        </div>
+                        <div *ngIf="!app.unique">
+                            <button pButton pRipple type="button" icon="fa-solid fa-arrow-up-right-from-square"
+                                class="p-button-secondary p-button-text"
+                                (click)="applicationsService.openNewApplication(app.appId)"></button>
+                        </div>
                     </div>
-                    <div *ngIf="!app.unique">
-                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-secondary p-button-text"
-                            (click)="applicationsService.openNewApplication(app.appId)"></button>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </div>

@@ -69,7 +69,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('dashboard');
+        this.openNewApplication('admin');
       }
     })
   }
@@ -101,9 +101,11 @@ export class ApplicationsService {
     app.uid = uid();
     app.route = Object.assign({}, app.route);
     app.route.outlet = app.appId + '_' + app.uid;
+    // app.route.path = app.route.path + '/:uid';
     if (app.routeSidebar) {
       app.routeSidebar = Object.assign({}, app.routeSidebar);
       app.routeSidebar.outlet = app.appId + '-sidebar_' + app.uid;
+      // app.routeSidebar.path = app.routeSidebar.path + '/:uid';
     }
     app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
@@ -152,6 +154,7 @@ export class ApplicationsService {
     if (!children) {
       const routes = this.router.config;
       routes.push(app.route);
+      console.log
       let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
       let outletNavPath: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path] } }]
       if (app.routeSidebar) {

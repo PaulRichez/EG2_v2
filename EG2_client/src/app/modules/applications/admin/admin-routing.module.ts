@@ -6,6 +6,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 const routes: Routes = [
   {
     path: '', component: AdminComponent, children: [
+      { path: '', redirectTo: 'stats', pathMatch: 'full' },
       { path: 'stats', component: StatisticsComponent }
     ]
   }
