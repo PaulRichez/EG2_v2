@@ -6,6 +6,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { ListingGroupComponent } from './pages/listing-group/listing-group.component';
 import { ListingUserComponent } from './pages/listing-user/listing-user.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { WebsiteSettingsComponent } from './pages/website-settings/website-settings.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'stats', component: StatisticsComponent },
       { path: 'user', component: ListingUserComponent },
       { path: 'group', component: ListingGroupComponent },
+      { path: 'website-settings', component: WebsiteSettingsComponent },
       { path: 'user/add', component: EditUserComponent },
       { path: 'group/add', component: EditGroupComponent },
       { path: 'user/edit/:id', component: EditUserComponent },

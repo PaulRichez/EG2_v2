@@ -11,6 +11,7 @@ import { ListingGroupComponent } from './pages/listing-group/listing-group.compo
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { EditGroupComponent } from './pages/edit-group/edit-group.component';
 import { StatsCardComponent } from './components/stats-card/stats-card.component';
+import { WebsiteSettingsComponent } from './pages/website-settings/website-settings.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { StatsCardComponent } from './components/stats-card/stats-card.component
     ListingGroupComponent,
     EditUserComponent,
     EditGroupComponent,
-    StatsCardComponent
+    StatsCardComponent,
+    WebsiteSettingsComponent
   ],
   imports: [
     CommonModule,
