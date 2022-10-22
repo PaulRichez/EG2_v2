@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../../authentification/authentification.service';
@@ -14,8 +14,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   onResize(event: any) {
     this.redrawTabsWidth()
   }
+  @Output() toggleSidebar = new EventEmitter();
   @ViewChild('avatarDiv') avatarDiv!: ElementRef;
   @ViewChild('parentDiv') parentDiv!: ElementRef;
+  @ViewChild('buttonToggleSidebar') buttonToggleSidebar!: ElementRef;
   public activeIndex!: number;
   public items: MenuItem[] = [
     {
@@ -45,7 +47,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   redrawTabsWidth() {
-    document.documentElement.style.setProperty(`--headerTabsWidth`, this.parentDiv.nativeElement.offsetWidth - this.avatarDiv.nativeElement.offsetWidth + 'px');
+    document.documentElement.style.setProperty(`--headerTabsWidth`, this.parentDiv.nativeElement.offsetWidth - this.avatarDiv.nativeElement.offsetWidth - this.buttonToggleSidebar.nativeElement.offsetWidth + 'px');
   }
 
   ngOnInit(): void {
@@ -58,9 +60,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handleChange(event: any) {
     this.applicationsService.selectApp(this.applicationsService.applicationsTab[event.index])
-  }
-  handleClose(event: any) {
-
   }
 
 }
