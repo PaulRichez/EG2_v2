@@ -1,1 +1,24 @@
-<p>statistics works!</p>
+<div class="mb-2">
+    <b class="text-4xl">Stats global</b>
+</div>
+<div class="p-fluid grid col-12">
+    <div *ngFor="let statCard of statsCard" class="col-6 xl:col-3">
+        <app-stats-card [icon]="statCard.icon" [text]="statCard.text" [obs]="statCard.obs">
+        </app-stats-card>
+    </div>
+</div>
+
+<div class="mb-2">
+    <b class="text-4xl">Stats utilistateur</b>
+</div>
+<div class="p-fluid grid col-12">
+    Comming soon
+</div>
+
+<div class="mb-2">
+    <b class="text-4xl">Stats emailEngine</b>
+</div>
+<div class="p-fluid grid col-12">
+    Comming soon
+</div>
+

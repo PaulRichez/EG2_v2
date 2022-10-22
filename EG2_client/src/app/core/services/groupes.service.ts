@@ -10,7 +10,9 @@ export class GroupesService {
   constructor(
     private http: HttpClient,
   ) { }
-
+  public count() {
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user-group/count`);
+  }
   public find(query: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user-group?${query}`);
   }

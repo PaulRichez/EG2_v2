@@ -13,6 +13,9 @@ export class UsersService {
     private http: HttpClient,
   ) { }
 
+  public count() {
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/count`);
+  }
   public find(query: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user?${query}`);
   }

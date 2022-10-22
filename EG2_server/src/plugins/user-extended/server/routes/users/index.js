@@ -12,6 +12,15 @@ module.exports = {
     },
     {
       method: 'GET',
+      path: '/user/count',
+      handler: 'user-extended.count',
+      config: {
+        policies: [],
+        roles: ['authenticated']
+      },
+    },
+    {
+      method: 'GET',
       path: '/user/:id',
       handler: 'user-extended.findOne',
       config: {

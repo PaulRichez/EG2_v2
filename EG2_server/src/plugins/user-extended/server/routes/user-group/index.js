@@ -12,6 +12,15 @@ module.exports = {
     },
     {
       method: 'GET',
+      path: '/user-group/count',
+      handler: 'user-group.count',
+      config: {
+        policies: [],
+        roles: ['authenticated']
+      },
+    },
+    {
+      method: 'GET',
       path: '/user-group/:id',
       handler: 'user-group.findOne',
       config: {

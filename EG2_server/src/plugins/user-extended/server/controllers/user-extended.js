@@ -51,5 +51,8 @@ module.exports = ({ strapi }) => ({
   },
   async findOne(ctx) {
     await strapi.plugin('users-permissions').controller('user').findOne(ctx)
+  },
+  async count(ctx) {
+    await strapi.plugin('users-permissions').controller('user').count(ctx)
   }
 });
