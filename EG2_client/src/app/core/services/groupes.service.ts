@@ -26,4 +26,8 @@ export class GroupesService {
       return result;
     }));;
   }
+
+  public create(formData: FormData) {
+    return this.http.post<any>(`${environment.apiUrl}/api/user-extended/user-group/?populate=deep`, formData);
+  }
 }

@@ -1,6 +1,6 @@
 <div class="h-full flex flex-column align-items-center justify-content-between">
     <div class="w-full mb-1">
-        <div class="w-full flex flex-row align-items-center">
+        <div class="w-full flex flex-row align-items-center mb-2">
             <ng-container *ngIf="defaultConfigService.defaultConfig?.logo; else defaultLogoTitle">
                 <img *ngIf="defaultConfigService.defaultConfig.logo" class="logo mr-1"
                     [src]="apiUrl + defaultConfigService.defaultConfig.logo.url" />
