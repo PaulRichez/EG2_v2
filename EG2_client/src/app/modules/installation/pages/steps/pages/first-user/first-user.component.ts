@@ -24,7 +24,7 @@ export class FirstUserComponent implements OnInit {
       this.installationService.formWebsite.disable();
       this.installationService.formFirstUser.disable();
 
-      let logo = null;
+      let logo: any = null;
       if (this.installationService.formWebsite.get('logo')?.value) {
         logo = this.installationService.formWebsite.get('logo')?.value[0]
       }

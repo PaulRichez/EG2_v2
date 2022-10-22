@@ -12,6 +12,8 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { EditGroupComponent } from './pages/edit-group/edit-group.component';
 import { StatsCardComponent } from './components/stats-card/stats-card.component';
 import { WebsiteSettingsComponent } from './pages/website-settings/website-settings.component';
+import { ListingNewComponent } from './pages/listing-new/listing-new.component';
+import { EditNewComponent } from './pages/edit-new/edit-new.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { WebsiteSettingsComponent } from './pages/website-settings/website-setti
     EditUserComponent,
     EditGroupComponent,
     StatsCardComponent,
-    WebsiteSettingsComponent
+    WebsiteSettingsComponent,
+    ListingNewComponent,
+    EditNewComponent
   ],
   imports: [
     CommonModule,

@@ -18,23 +18,28 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
     this.items = [
       {
         label: 'Stats',
-        icon: 'fa-solid fa-chart-bar',
+        icon: 'fa-solid fa-chart-bar fa-fw',
         routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'stats'] } }]
         // visible: this.apiAuthService.checkpermission('admin-monitoring'),
       },
       {
-        label: 'Listing Users',
-        icon: 'fa-solid fa-users',
+        label: 'Utilisateurs',
+        icon: 'fa-solid fa-users fa-fw',
         routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'user'] } }]
       },
       {
-        label: 'Listing Groups',
-        icon: 'fa-solid fa-user-group',
+        label: 'Groupes',
+        icon: 'fa-solid fa-user-group fa-fw',
         routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'group'] } }],
       },
       {
+        label: 'News',
+        icon: 'fa-solid fa-newspaper fa-fw',
+        routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'new'] } }],
+      },
+      {
         label: 'Paramètres du site',
-        icon: 'fa-solid fa-gears',
+        icon: 'fa-solid fa-gears fa-fw',
         routerLink: ['', { outlets: { [this.appOutlet as string]: ['admin', 'website-settings'] } }],
       },
     ];

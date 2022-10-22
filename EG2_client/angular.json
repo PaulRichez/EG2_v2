@@ -41,7 +41,8 @@
           "options": {
             "allowedCommonJsDependencies": [
               "qs",
-              "moment"
+              "moment",
+              "quill-image-resize-module"
             ],
             "outputPath": "dist/eg2-client",
             "index": "src/index.html",
@@ -62,6 +63,8 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.scss",
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css",
               {
                 "input": "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
                 "bundleName": "light",
@@ -79,7 +82,8 @@
               }
             ],
             "scripts": [
-              "node_modules/chart.js/dist/chart.js"
+              "node_modules/chart.js/dist/chart.js",
+              "node_modules/quill/dist/quill.min.js"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
@@ -89,8 +93,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "3mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

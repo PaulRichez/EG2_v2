@@ -67,6 +67,21 @@ module.exports = {
     firstUserCtx.request.body = data.firstUser;
     await strapi.plugin('users-permissions').controller('user').create(firstUserCtx)
 
+
+    // permisisons role
+    await strapi.entityService.create('plugin::users-permissions.permission', {
+      data: {
+        action: 'plugin::users-permissions.user.find',
+        role: 'authenticated',
+      },
+    });
+    await strapi.entityService.create('plugin::users-permissions.user.findOne', {
+      data: {
+        action: route.perm_action,
+        role: 'authenticated',
+      },
+    });
+
     ctx.body = { status: 'ok' };
   }
 };

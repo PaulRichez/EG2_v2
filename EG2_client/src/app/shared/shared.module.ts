@@ -19,6 +19,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { TabViewModule } from 'primeng/tabview';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
+import { EditorModule } from 'primeng/editor';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -52,7 +53,8 @@ const MODULES = [
   TabViewModule,
   RippleModule,
   TableModule,
-  MomentModule
+  MomentModule,
+  EditorModule
 ]
 
 @NgModule({

@@ -22,11 +22,7 @@ export class GroupesService {
   }
   public update(id: string | number, formData: FormData) {
     id = id.toString();
-    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user-group/${id}?populate=deep`, formData).pipe(map(result => {
-      console.log(result);
-      // TODO update connected user
-      return result;
-    }));;
+    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user-group/${id}?populate=deep`, formData);
   }
 
   public create(formData: FormData) {

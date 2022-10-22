@@ -101,9 +101,9 @@ export class PageProfileComponent implements OnInit, OnChanges {
     this.formUser.disable();
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.formUser.value));
-    let action = this.usersService.update(this.user.id, formData);
-    if (this.type == 'add') {
-      action = this.usersService.create(formData)
+    let action = this.usersService.create(formData)
+    if (this.type != 'add') {
+      action = this.usersService.update(this.user.id, formData);
     }
     action.subscribe(
       {

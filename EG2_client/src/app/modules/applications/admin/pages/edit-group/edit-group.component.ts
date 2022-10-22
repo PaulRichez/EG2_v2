@@ -64,9 +64,9 @@ export class EditGroupComponent extends AppHelperComponent implements OnInit {
     this.formGroup.disable();
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.formGroup.value));
-    let action = this.groupesService.update(this.group.id, formData);
-    if (!this.idGroup) {
-      action = this.groupesService.create(formData)
+    let action = this.groupesService.create(formData)
+    if (this.idGroup) {
+      action = this.groupesService.update(this.group.id, formData);
     }
     action.subscribe(
       {

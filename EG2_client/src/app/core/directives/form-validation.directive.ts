@@ -16,7 +16,7 @@ export class FormValidationDirective {
   validate() {
     const myControl = this.control.control;
     const el = this.el.nativeElement;
-    let parentNode = null;
+    let parentNode: any = null;
     if (el.tagName === 'INPUT') {
       parentNode = el.parentElement.parentElement
     }
