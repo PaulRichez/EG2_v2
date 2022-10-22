@@ -29,7 +29,7 @@
                         <div class="p-menuitem-link w-full"
                             (click)="applicationsService.openNewApplication(app.appId, true)">
                             <span class="{{ 'p-menuitem-icon fa ' + app.icon}}"></span>
-                            <span class="p-menuitem-text"> {{ app.appId}} </span>
+                            <span class="p-menuitem-text"> {{ app.label}} </span>
                         </div>
                         <div *ngIf="!app.unique">
                             <button pButton pRipple type="button" icon="fa-solid fa-arrow-up-right-from-square"

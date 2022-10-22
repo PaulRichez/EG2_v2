@@ -25,6 +25,18 @@ export class ApplicationsService {
 
     },
     {
+      appId: 'contact',
+      label: 'Carnet d\'adresse',
+      icon: 'fa fa-address-book',
+      route: {
+        path: 'contact',
+        outlet: 'app-contact',
+        loadChildren: () => import('../../modules/applications/contact/contact.module').then(m => m.ContactModule),
+        canActivate: [IsLoggedGuard]
+      },
+
+    },
+    {
       appId: 'admin',
       label: 'Panel admin',
       icon: 'fa fa-hammer',
@@ -69,7 +81,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('admin');
+        this.openNewApplication('contact');
       }
     })
   }
@@ -137,11 +149,11 @@ export class ApplicationsService {
     }
     // ToDO delete route from routeConfig
     const routes = this.router.config;
-    let newRoutes = this.router.config.filter(route => route.outlet !==  app.route.outlet);
+    let newRoutes = this.router.config.filter(route => route.outlet !== app.route.outlet);
     let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
     if (app.routeSidebar) {
       outletNavNull = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
-      newRoutes = newRoutes.filter(route => route.outlet !==  app.routeSidebar?.outlet);
+      newRoutes = newRoutes.filter(route => route.outlet !== app.routeSidebar?.outlet);
     }
     this.router.resetConfig(newRoutes);
     this.router.navigate(outletNavNull)

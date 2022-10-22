@@ -32,6 +32,7 @@ import { MomentModule } from 'ngx-moment';
 import 'moment/locale/fr';
 import { PageProfileComponent } from './components/page-profile/page-profile.component';
 import { AppHelperComponent } from './extends/app-helper/app-helper.component';
+import { SimpleAvatarComponent } from './components/simple-avatar/simple-avatar.component';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -65,6 +66,7 @@ const MODULES = [
     AvatarComponent,
     PageProfileComponent,
     AppHelperComponent,
+    SimpleAvatarComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,8 @@ const MODULES = [
     FileUploadComponent,
     AvatarComponent,
     PageProfileComponent,
-    AppHelperComponent
+    AppHelperComponent,
+    SimpleAvatarComponent
   ]
 })
 export class SharedModule { }

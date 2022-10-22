@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_contact_emails",
+  "info": {
+    "displayName": "email"
+  },
+  "options": {},
+  "attributes": {
+    "personal": {
+      "type": "string"
+    },
+    "work": {
+      "type": "string"
+    },
+    "other": {
+      "type": "string"
+    }
+  }
+}
