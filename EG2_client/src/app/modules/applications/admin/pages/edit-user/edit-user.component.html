@@ -1,1 +1,4 @@
-<app-page-profile [user]="user" [loadingData]="loadingData" [type]="idUser ? 'edit' : 'add'"></app-page-profile>
+<div>
+    <p-button label="Retour" styleClass="p-button-secondary p-button-text p-button-sm" icon="pi pi-arrow-left" (click)="goBack()"></p-button>
+</div>
+<app-page-profile [user]="user" [loadingData]="loadingData" [type]="idUser ? 'edit' : 'add'" ></app-page-profile>

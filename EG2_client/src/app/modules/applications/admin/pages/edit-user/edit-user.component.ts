@@ -37,5 +37,7 @@ export class EditUserComponent extends AppHelperComponent implements OnInit {
       this.loadingData = false;
     }
   }
-
+  goBack() {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user'] } }])
+  }
 }

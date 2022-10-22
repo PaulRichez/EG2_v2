@@ -18,4 +18,8 @@ export class EditGroupComponent extends AppHelperComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goBack() {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group'] } }])
+  }
+
 }
