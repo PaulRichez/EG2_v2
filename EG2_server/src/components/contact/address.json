@@ -1,27 +1,28 @@
 {
-  "collectionName": "components_address_addresses",
+  "collectionName": "components_contact_addresses",
   "info": {
-    "displayName": "addressForm",
+    "displayName": "address",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "street": {
-      "type": "string"
-    },
-    "postalCode": {
-      "type": "string"
+    "country": {
+      "type": "component",
+      "repeatable": false,
+      "component": "contact.country"
     },
     "city": {
+      "type": "component",
+      "repeatable": false,
+      "component": "contact.city"
+    },
+    "street1": {
       "type": "string"
     },
-    "state": {
+    "street2": {
       "type": "string"
     },
-    "country": {
-      "type": "string"
-    },
-    "name": {
+    "role": {
       "type": "string"
     }
   }

@@ -18,23 +18,19 @@
       "target": "plugin::users-permissions.user"
     },
     "name": {
-      "type": "string",
-      "required": true
-    },
-    "email": {
       "type": "component",
       "repeatable": false,
-      "component": "contact.email"
+      "component": "contact.name"
     },
-    "phone": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "pro": {
       "type": "component",
       "repeatable": false,
-      "component": "contact.phone"
-    },
-    "address": {
-      "type": "component",
-      "repeatable": false,
-      "component": "contact.address-contact"
+      "component": "contact.bloc"
     }
   }
 }
