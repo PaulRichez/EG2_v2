@@ -20,6 +20,10 @@ import { TabViewModule } from 'primeng/tabview';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { EditorModule } from 'primeng/editor';
+import { TreeModule } from 'primeng/tree';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TreeSelectModule } from 'primeng/treeselect';
+
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -55,7 +59,10 @@ const MODULES = [
   RippleModule,
   TableModule,
   MomentModule,
-  EditorModule
+  EditorModule,
+  TreeModule,
+  OverlayPanelModule,
+  TreeSelectModule
 ]
 
 @NgModule({

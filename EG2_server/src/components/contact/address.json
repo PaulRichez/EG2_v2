@@ -21,9 +21,6 @@
     },
     "street2": {
       "type": "string"
-    },
-    "role": {
-      "type": "string"
     }
   }
 }
