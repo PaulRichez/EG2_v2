@@ -7,6 +7,7 @@ import * as qs from 'qs'
 import { IContact } from 'src/app/shared/models/contact.model';
 import { TreeNode } from 'primeng/api';
 import * as _ from "lodash";
+import * as objectPath from "object-path";
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
@@ -124,5 +125,8 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
 
   getColumn() {
     return this.selectedColumnsTree.filter(column => !!column.data)
+  }
+  getContactBypath(contact: IContact, col: any) {
+    return objectPath.get(contact, col.data);
   }
 }
