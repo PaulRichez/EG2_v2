@@ -3,7 +3,7 @@
         <div #buttonToggleSidebar class="flex  align-items-center ">
             <button pButton pRipple type="button" icon="pi pi-bars"
                 class="p-button-secondary p-button-text"
-                (click)="toggleSidebar.emit()"></button>
+                (click)="toggleSidebarEmit()"></button>
         </div>
         <div class="w-full">
             <p-tabView *ngIf="applicationsService.currentApp" [scrollable]="true" [activeIndex]="activeIndex"

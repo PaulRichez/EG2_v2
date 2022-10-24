@@ -47,7 +47,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   redrawTabsWidth() {
-    document.documentElement.style.setProperty(`--headerTabsWidth`, this.parentDiv.nativeElement.offsetWidth - this.avatarDiv.nativeElement.offsetWidth - this.buttonToggleSidebar.nativeElement.offsetWidth + 'px');
+    setTimeout(() => {
+      document.documentElement.style.setProperty(`--headerTabsWidth`, this.parentDiv.nativeElement.offsetWidth - this.avatarDiv.nativeElement.offsetWidth - this.buttonToggleSidebar.nativeElement.offsetWidth + 'px');
+    });
   }
 
   ngOnInit(): void {
@@ -60,6 +62,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handleChange(event: any) {
     this.applicationsService.selectApp(this.applicationsService.applicationsTab[event.index])
+  }
+
+  toggleSidebarEmit() {
+    this.toggleSidebar.emit();
+    this.redrawTabsWidth();
   }
 
 }
