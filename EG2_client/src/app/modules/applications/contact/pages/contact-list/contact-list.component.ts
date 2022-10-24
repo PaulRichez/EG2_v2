@@ -115,11 +115,11 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
   }
 
   public add() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user', 'add'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['contact', 'add'] } }])
   }
 
-  public edit(user: IContact) {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user', 'edit', user.id] } }])
+  public edit(contact: IContact) {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['contact', 'edit', contact.id] } }])
   }
 
   getColumn() {

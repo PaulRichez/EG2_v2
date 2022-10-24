@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ContactComponent } from './contact.component';
+import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { ContactListComponent } from './pages/contact-list/contact-list.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: ContactListComponent },
+      { path: 'add', component: ContactEditComponent },
     ]
   }
 ];
