@@ -17,12 +17,10 @@
                 <app-header (toggleSidebar)="displaySidebar = !displaySidebar"></app-header>
             </div>
             <div class="flex flex-column h-full p-2 md:p-4">
-                <ng-container *ngIf="applicationsService.currentApp;">
                     <div *ngFor="let app of applicationsService.applicationsTab"
-                        [ngClass]="{'hidden' :app.uid !== applicationsService.currentApp.uid}">
+                        [ngClass]="{'hidden' :app.uid !== applicationsService.currentApp?.uid}">
                         <named-outlet [name]="app.route.outlet"></named-outlet>
                     </div>
-                </ng-container>
             </div>
         </div>
     </div>

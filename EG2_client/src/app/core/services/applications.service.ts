@@ -145,16 +145,10 @@ export class ApplicationsService {
         newIndex = appIndex - 1;
       }
     }
-    // ToDO delete route from routeConfig
-    const routes = this.router.config;
-    let newRoutes = this.router.config.filter(route => route.outlet !== app.route.outlet);
     let outletNavNull: any = [{ outlets: { [app.route.outlet as string]: null } }]
     if (app.routeSidebar) {
       outletNavNull = [{ outlets: { [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
-      newRoutes = newRoutes.filter(route => route.outlet !== app.routeSidebar?.outlet);
     }
-    this.router.resetConfig(newRoutes);
-    console.log(outletNavNull)
     this.router.navigate(outletNavNull)
     this.applicationsTab.splice(appIndex, 1);
     this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
