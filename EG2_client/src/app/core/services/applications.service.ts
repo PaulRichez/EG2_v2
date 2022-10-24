@@ -139,25 +139,25 @@ export class ApplicationsService {
       return;
     }
     const appIndex = this.applicationsTab.findIndex(a => a.uid == app.uid);
+    let newIndex = appIndex;
     if (app.uid === this.currentApp?.uid) {
       if (appIndex == this.applicationsTab.length - 1) {
-        const newIndex = appIndex - 1;
-        this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
-      } else {
-        this.selectApp(Object.assign({}, this.applicationsTab[appIndex]))
+        newIndex = appIndex - 1;
       }
     }
     // ToDO delete route from routeConfig
     const routes = this.router.config;
     let newRoutes = this.router.config.filter(route => route.outlet !== app.route.outlet);
-    let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
+    let outletNavNull: any = [{ outlets: { [app.route.outlet as string]: null } }]
     if (app.routeSidebar) {
-      outletNavNull = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
+      outletNavNull = [{ outlets: { [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
       newRoutes = newRoutes.filter(route => route.outlet !== app.routeSidebar?.outlet);
     }
     this.router.resetConfig(newRoutes);
+    console.log(outletNavNull)
     this.router.navigate(outletNavNull)
     this.applicationsTab.splice(appIndex, 1);
+    this.selectApp(Object.assign({}, this.applicationsTab[newIndex]))
   }
 
   private createRouterOutlet(app: MenuItemExtended, childrens?: any) {
@@ -168,7 +168,6 @@ export class ApplicationsService {
     if (!children) {
       const routes = this.router.config;
       routes.push(app.route);
-      console.log
       let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
       let outletNavPath: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path] } }]
       if (app.routeSidebar) {
