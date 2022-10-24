@@ -6,7 +6,7 @@ import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper
 import * as qs from 'qs'
 import { IContact } from 'src/app/shared/models/contact.model';
 import { TreeNode } from 'primeng/api';
-
+import * as _ from "lodash";
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
@@ -67,7 +67,6 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedColumnsTree = this.preselectColums(this.columnsTree);
-
   }
 
 
@@ -85,17 +84,18 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
   }
 
   changeColumnSelectedTree(event: any) {
-
   }
 
 
   fetchContact(event: LazyLoadEvent) {
     const sort = event.sortField ? [`${event.sortField}:${event.sortOrder === 1 ? 'asc' : 'desc'}`] : {};
     const query = qs.stringify({
-      offset: event.first,
-      limit: event.rows,
+      pagination: {
+        page: (event.first || 0) / (event.rows || 5) + 1,
+        pageSize: event.rows,
+      },
+      sort,
       populate: ['deep'],
-      sort
     }, {
       encodeValuesOnly: true,
     });
@@ -122,5 +122,7 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
     this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user', 'edit', user.id] } }])
   }
 
-
+  getColumn() {
+    return this.selectedColumnsTree.filter(column => !!column.data)
+  }
 }
