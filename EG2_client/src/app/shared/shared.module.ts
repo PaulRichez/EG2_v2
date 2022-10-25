@@ -23,7 +23,7 @@ import { EditorModule } from 'primeng/editor';
 import { TreeModule } from 'primeng/tree';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TreeSelectModule } from 'primeng/treeselect';
-
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -62,7 +62,8 @@ const MODULES = [
   EditorModule,
   TreeModule,
   OverlayPanelModule,
-  TreeSelectModule
+  TreeSelectModule,
+  BreadcrumbModule
 ]
 
 @NgModule({

@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { DriveRoutingModule } from './drive-routing.module';
 import { DriveComponent } from './drive.component';
+import { DriveMainComponent } from './pages/drive-main/drive-main.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FileTableViewComponent } from './components/file-table-view/file-table-view.component';
 
 
 @NgModule({
   declarations: [
-    DriveComponent
+    DriveComponent,
+    DriveMainComponent,
+    FileTableViewComponent
   ],
   imports: [
     CommonModule,
-    DriveRoutingModule
+    DriveRoutingModule,
+    SharedModule
   ]
 })
 export class DriveModule { }
