@@ -11,7 +11,7 @@
 <p-card>
     <p-table #dt [value]="contacts" [rows]="25" [rowsPerPageOptions]="[25,50]" [paginator]="true" [lazy]="true"
         (onLazyLoad)="fetchContact($event)" responsiveLayout="scroll" [rowHover]="true" dataKey="id"
-        styleClass="p-datatable-gridlines"
+        styleClass="p-datatable-gridlines p-datatable-striped"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
        <!-- <ng-template pTemplate="caption">
             <div class="p-fluid grid mt-2">

@@ -99,7 +99,7 @@ export class ContactEditComponent extends AppHelperComponent implements OnInit {
     this.formContact = this.formBuilder.group({
       owner: [this.contact?.owner || this.authentificationService.connectedUser.id],
       user:  [this.contact?.user?.id],
-      thisname: this.formName,
+      name: this.formName,
       pro: this.formPro,
       private: this.formPrivate
     });
