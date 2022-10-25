@@ -18,8 +18,8 @@ export class AppHelperComponent {
       parent = parent?.parent
     } while (parent.outlet === 'primary');
     this.outlet = parent.outlet;
-    if ((parent.outlet as string).includes('-sidebar')) {
-      this.appOutlet = (parent.outlet as string).replace('-sidebar', '');
+    if ((parent.outlet as string).includes('sidebar')) {
+      this.appOutlet = (parent.outlet as string).replace('sidebar', 'tab');
       this.appId = this.appOutlet.split('_')[0];
     } else {
       this.appOutlet = parent.outlet;

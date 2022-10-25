@@ -52,10 +52,10 @@ export class ListingUserComponent extends AppHelperComponent implements OnInit {
   }
 
   public add() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user', 'add'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'user', 'add'] } }])
   }
 
   public edit(user: IUser) {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user', 'edit', user.id] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'user', 'edit', user.id] } }])
   }
 }

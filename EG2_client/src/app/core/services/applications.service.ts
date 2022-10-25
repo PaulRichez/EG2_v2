@@ -18,9 +18,6 @@ export class ApplicationsService {
       unique: true,
       route: {
         path: 'dashboard',
-        outlet: 'app-dashboard',
-        loadChildren: () => import('../../modules/applications/dashboard/dashboard.module').then(m => m.DashboardModule),
-        canActivate: [IsLoggedGuard]
       },
 
     },
@@ -30,9 +27,6 @@ export class ApplicationsService {
       icon: 'fa fa-address-book',
       route: {
         path: 'contact',
-        outlet: 'app-contact',
-        loadChildren: () => import('../../modules/applications/contact/contact.module').then(m => m.ContactModule),
-        canActivate: [IsLoggedGuard]
       },
 
     },
@@ -42,15 +36,9 @@ export class ApplicationsService {
       icon: 'fa fa-hammer',
       route: {
         path: 'admin',
-        outlet: 'app-admin',
-        loadChildren: () => import('../../modules/applications/admin/admin.module').then(m => m.AdminModule),
-        canActivate: [IsLoggedGuard]
       },
       routeSidebar: {
-        path: 'admin-sidebar',
-        outlet: 'app-admin-sidebar',
-        loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
-        canActivate: [IsLoggedGuard]
+        path: 'admin',
       }
     },
     {
@@ -61,9 +49,6 @@ export class ApplicationsService {
       unique: true,
       route: {
         path: 'profile',
-        outlet: 'app-profile',
-        loadChildren: () => import('../../modules/applications/profile/profile.module').then(m => m.ProfileModule),
-        canActivate: [IsLoggedGuard]
       },
     }
   ]
@@ -98,6 +83,10 @@ export class ApplicationsService {
       }
 
     }
+    if (this.applicationsTab.length >= 10) {
+      console.error('Application max level')
+      return;
+    }
     const app = Object.assign({}, this.applications.find(a => a.appId == appId));
     if (!app) {
       console.error('Application to open : ' + appId + ' not found')
@@ -112,14 +101,30 @@ export class ApplicationsService {
     }
     app.uid = uid();
     app.route = Object.assign({}, app.route);
-    app.route.outlet = app.appId + '_' + app.uid;
+    const freeSlot = this.getFreeSlot()
+    app.route.outlet = 'tab_' + freeSlot;
     if (app.routeSidebar) {
       app.routeSidebar = Object.assign({}, app.routeSidebar);
-      app.routeSidebar.outlet = app.appId + '-sidebar_' + app.uid;
+      app.routeSidebar.outlet = 'sidebar_' + freeSlot;
     }
     app.command = () => this.selectApp(app);
     this.applicationsTab.push(app)
     this.selectApp(app)
+  }
+
+  private getFreeSlot() {
+    if (!this.applicationsTab.length) {
+      return 0;
+    }
+    const slotUsed = this.applicationsTab.map((app) => app?.route?.outlet?.toString().replace('tab_', ''))
+    let free: any = null;
+    for (let i = 0; i < 10; i++) {
+      if (!slotUsed.includes(i.toString())) {
+        free = i;
+        break;
+      }
+    }
+    return free;
   }
 
   selectApp(app: MenuItemExtended) {
@@ -155,21 +160,18 @@ export class ApplicationsService {
   }
 
   private createRouterOutlet(app: MenuItemExtended, childrens?: any) {
+    console.log(this.router.config)
     if (!childrens) {
       childrens = (this.route.snapshot as any)._routerState._root.children
     }
     const children = childrens.find((a: any) => a.value.outlet === app.route.outlet);
     if (!children) {
-      const routes = this.router.config;
-      routes.push(app.route);
       let outletNavNull: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null } }]
-      let outletNavPath: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path] } }]
+      let outletNavPath: any = [{ outlets: { ['primary']: '', [app.route.outlet as string]: ['tab', app.route.path] } }]
       if (app.routeSidebar) {
-        routes.push(app.routeSidebar);
         outletNavNull = [{ outlets: { ['primary']: '', [app.route.outlet as string]: null, [app.routeSidebar.outlet as string]: null } }]
-        outletNavPath = [{ outlets: { ['primary']: '', [app.route.outlet as string]: [app.route.path], [app.routeSidebar.outlet as string]: [app.routeSidebar.path] } }]
+        outletNavPath = [{ outlets: { ['primary']: '', [app.route.outlet as string]: ['tab', app.route.path], [app.routeSidebar.outlet as string]: ['sidebar', app.route.path] } }]
       }
-      this.router.resetConfig(routes);
       this.router.navigate(outletNavNull).then(() => {
         this.router.navigate(outletNavPath)
       })
@@ -191,7 +193,10 @@ export class ApplicationsService {
 }
 
 export interface MenuItemExtended extends MenuItem {
-  route: Route;
+  route: {
+    path: string,
+    outlet?: string,
+  },
   routeSidebar?: Route;
   appId: string;
   uid?: string;

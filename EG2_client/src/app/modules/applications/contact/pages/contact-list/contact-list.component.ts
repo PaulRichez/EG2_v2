@@ -116,11 +116,11 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
   }
 
   public add() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['contact', 'add'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'contact', 'add'] } }])
   }
 
   public edit(contact: IContact) {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['contact', 'edit', contact.id] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab','contact', 'edit', contact.id] } }])
   }
 
   getColumn() {
