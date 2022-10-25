@@ -83,7 +83,7 @@ export class EditGroupComponent extends AppHelperComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'group'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'group'] } }])
   }
 
 }

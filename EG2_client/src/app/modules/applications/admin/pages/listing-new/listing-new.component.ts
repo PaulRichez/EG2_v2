@@ -54,10 +54,10 @@ export class ListingNewComponent extends AppHelperComponent implements OnInit {
     });
   }
   public add() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'new', 'add'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'new', 'add'] } }])
   }
 
   public edit(news: INews) {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'new', 'edit', news.id] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'new', 'edit', news.id] } }])
   }
 }

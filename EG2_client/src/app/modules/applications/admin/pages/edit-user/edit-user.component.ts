@@ -38,6 +38,6 @@ export class EditUserComponent extends AppHelperComponent implements OnInit {
     }
   }
   goBack() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['admin', 'user'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'user'] } }])
   }
 }

@@ -137,7 +137,7 @@ export class ContactEditComponent extends AppHelperComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['contact'] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'contact'] } }])
   }
 
 }
