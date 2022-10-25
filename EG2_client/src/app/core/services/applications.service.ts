@@ -31,6 +31,15 @@ export class ApplicationsService {
 
     },
     {
+      appId: 'drive',
+      label: 'Fichiers',
+      icon: 'fa fa-folder-closed',
+      route: {
+        path: 'drive',
+      },
+
+    },
+    {
       appId: 'admin',
       label: 'Panel admin',
       icon: 'fa fa-hammer',
@@ -66,7 +75,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('contact');
+        this.openNewApplication('drive');
       }
     })
   }
@@ -160,7 +169,6 @@ export class ApplicationsService {
   }
 
   private createRouterOutlet(app: MenuItemExtended, childrens?: any) {
-    console.log(this.router.config)
     if (!childrens) {
       childrens = (this.route.snapshot as any)._routerState._root.children
     }

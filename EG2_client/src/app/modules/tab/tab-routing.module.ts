@@ -60,6 +60,11 @@ const routes: Routes = [{
       canActivate: [IsLoggedGuard]
     },
     {
+      path: 'drive',
+      loadChildren: () => import('../../modules/applications/drive/drive.module').then(m => m.DriveModule),
+      canActivate: [IsLoggedGuard]
+    },
+    {
       path: 'admin',
       loadChildren: () => import('../../modules/applications/admin/admin.module').then(m => m.AdminModule),
       canActivate: [IsLoggedGuard]
