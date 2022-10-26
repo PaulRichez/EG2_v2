@@ -51,4 +51,8 @@ module.exports = ({ env }) => ({
         enabled: true,
         resolve: './src/plugins/user-extended'
     },
+    'folder': {
+        enabled: true,
+        resolve: './src/plugins/folder'
+    },
 });

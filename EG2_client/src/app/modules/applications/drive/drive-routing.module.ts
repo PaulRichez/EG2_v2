@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '', component: DriveComponent,
     children: [
-      { path: '', component: DriveMainComponent }
+      { path: '', component: DriveMainComponent },
+      { path: ':idFolder', component: DriveMainComponent },
     ]
   }
 ];

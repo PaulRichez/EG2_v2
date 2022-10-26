@@ -2143,6 +2143,11 @@
   dependencies:
     "semver" "^7.0.0"
 
+"byte-size@^8.1.0":
+  "integrity" "sha512-FkgMTAg44I0JtEaUAvuZTtU2a2YDmBRbQxdsQNSMtLCjhG0hMcF5b1IMN9UjSCJaU4nvlj/GER7B9sI4nKdCgA=="
+  "resolved" "https://registry.npmjs.org/byte-size/-/byte-size-8.1.0.tgz"
+  "version" "8.1.0"
+
 "bytes@3.0.0":
   "integrity" "sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw=="
   "resolved" "https://registry.npmjs.org/bytes/-/bytes-3.0.0.tgz"
