@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { DriveService } from 'src/app/core/services/drive.service';
@@ -10,11 +10,12 @@ import { IFolder } from 'src/app/shared/models/folder.model';
   templateUrl: './drive-main.component.html',
   styleUrls: ['./drive-main.component.scss']
 })
-export class DriveMainComponent extends AppHelperComponent implements OnInit {
+export class DriveMainComponent extends AppHelperComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
 
   home!: MenuItem;
   public loadingData = true;
+  private subscribeData: any;
 
   public idFolder!: string
   folder!: IFolder;
@@ -24,6 +25,11 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit {
     private driveService: DriveService
   ) {
     super(route)
+  }
+  ngOnDestroy(): void {
+    if (this.subscribeData) {
+      this.subscribeData.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
@@ -54,7 +60,10 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit {
       encodeValuesOnly: true,
     });
     this.loadingData = true;
-    this.driveService.findOne(this.idFolder, query).subscribe({
+    if (this.subscribeData) {
+      this.subscribeData.unsubscribe();
+    }
+    this.subscribeData = this.driveService.findOne(this.idFolder, query).subscribe({
       next: result => {
         this.folder = result;
         this.loadingData = false;
