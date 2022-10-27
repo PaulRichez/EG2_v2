@@ -15,6 +15,7 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
   @Input() loadingData = true;
   @Input() folder!: IFolder;
   @Output() dbClick = new EventEmitter<any>();
+  @Output() renameEntry = new EventEmitter<IFolder | any>();
   directoryData!: IFolder[] | any[];
   constructor(
     public override route: ActivatedRoute,
