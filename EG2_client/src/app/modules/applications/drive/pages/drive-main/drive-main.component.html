@@ -11,17 +11,16 @@
     </div>
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 </div>
-<p-card>
-    <div class="relative">
-        <div #mainFiles></div>
-        <app-file-table-view [selectedFolderId]="idFolder" [folder]="folder" [loadingData]="loadingData"
-            (dbClick)="dbClick($event)" (renameEntry)="renameOrCreateEntry($event)"
-            (showInfoEntry)="showInfoEntry($event)" [showSelectedEntryInfo]="showSelectedEntryInfo" [selectedEntry]="selectedEntry">
-        </app-file-table-view>
-    </div>
 
-</p-card>
-<p-sidebar [(visible)]="showSelectedEntryInfo" [modal]="false" [appendTo]="mainFiles" [showCloseIcon]="false" position="right"
-    styleClass="sideBarCustom" styleClass="right-sidebar">
+<div class="relative">
+    <div #mainFiles></div>
+    <app-file-table-view [selectedFolderId]="idFolder" [folder]="folder" [loadingData]="loadingData"
+        (dbClick)="dbClick($event)" (renameEntry)="renameOrCreateEntry($event)" (showInfoEntry)="showInfoEntry($event)"
+        [showSelectedEntryInfo]="showSelectedEntryInfo" [selectedEntry]="selectedEntry">
+    </app-file-table-view>
+</div>
+
+<p-sidebar [(visible)]="showSelectedEntryInfo" [modal]="false" [appendTo]="mainFiles" [showCloseIcon]="false"
+    position="right" styleClass="sideBarCustom" styleClass="right-sidebar">
     <app-selected-entry-infos [selectedEntry]="selectedEntry" (close)="closeInfos()"></app-selected-entry-infos>
 </p-sidebar>

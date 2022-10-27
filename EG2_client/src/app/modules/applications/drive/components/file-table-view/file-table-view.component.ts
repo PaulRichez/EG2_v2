@@ -55,7 +55,7 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
         label: 'Afficher les détails', icon: 'fa fa-circle-info', command: (event) => { this.showInfoEntry.emit(entry) }
       },
       {
-        label: 'Télécharger', icon: 'fa fa-download', command: (event) => { this.downloadEntry.emit(entry) }, visible: !!entry.file
+        label: 'Télécharger', icon: 'fa fa-download', command: (event) => { this.downloadEntry.emit(entry) }, visible: !!entry.url
       },
       {
         separator: true,

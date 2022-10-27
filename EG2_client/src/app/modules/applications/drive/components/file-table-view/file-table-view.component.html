@@ -1,4 +1,4 @@
-<div class="" [ngStyle]="{'width': 'calc(100% - '+ ( showSelectedEntryInfo ? '300' : '0') + 'px)'}" style="height: calc(100vh - 330px);min-height: 200px">
+<div class="" [ngStyle]="{'width': 'calc(100% - '+ ( showSelectedEntryInfo ? '300' : '0') + 'px)'}" style="height: calc(100vh - 250px);min-height: 200px">
     <p-table [value]="directoryData" [loading]="loadingData"
         [selectionMode]="showSelectedEntryInfo ? 'single' : 'null'" [scrollable]="true" [scrollHeight]="'flex'">
         <ng-template pTemplate="header">
@@ -13,7 +13,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-entry>
-            <tr class="cursor-pointer row" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}">
+            <tr class="cursor-pointer" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}">
                 <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     <i [ngClass]="filesHelper.getIconEntry(entry) + ' fa-xl w-2rem'"></i>
                     {{ entry.name }}
