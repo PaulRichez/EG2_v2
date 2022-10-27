@@ -10,5 +10,6 @@
 <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
 <p-card>
-    <app-file-table-view [selectedFolderId]="idFolder"></app-file-table-view>
+    <app-file-table-view [selectedFolderId]="idFolder" [folder]="folder" [loadingData]="loadingData" (dbClick)="dbClick($event)">
+    </app-file-table-view>
 </p-card>

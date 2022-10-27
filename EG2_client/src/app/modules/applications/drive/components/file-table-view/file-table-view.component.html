@@ -1,9 +1,9 @@
 <p-table [value]="directoryData" responsiveLayout="scroll" selectionMode="single" [loading]="loadingData"
-    [(selection)]="tableSelectedEntry" [scrollable]="true" [scrollHeight]="'100%'" styleClass="h-full w-full">
+    [scrollable]="true" [scrollHeight]="'100%'" styleClass="h-full w-full">
     <ng-template pTemplate="header">
     </ng-template>
     <ng-template pTemplate="body" let-entry>
-        <tr [pSelectableRow]="entry">
+        <tr (dblclick)="dbClick.emit(entry)">
             <td>
                 <i [ngClass]="filesHelper.getIconEntry(entry) + ' fa-xl w-2rem'"></i>
                 {{ entry.name }}
