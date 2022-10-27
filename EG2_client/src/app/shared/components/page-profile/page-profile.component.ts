@@ -43,11 +43,19 @@ export class PageProfileComponent implements OnInit, OnChanges {
   }
 
   public setForm() {
+    const city = this.user?.userExtended?.city;
+    if (city) {
+      delete (city as any).id;
+    }
+    const country = this.user?.userExtended?.country;
+    if (country) {
+      delete (country as any).id;
+    }
     this.userExtendedGroup = this.formBuilder.group({
       firstName: [{ value: this.user?.userExtended?.firstName, disabled: false }, [Validators.required]],
       lastName: [{ value: this.user?.userExtended?.lastName, disabled: false }, [Validators.required]],
-      country: [{ value: this.user?.userExtended?.country, disabled: false }],
-      city: [{ value: this.user?.userExtended?.city, disabled: false }],
+      country: [{ value: country, disabled: false }],
+      city: [{ value: city, disabled: false }],
       theme: [{ value: this.user?.userExtended?.theme, disabled: false }],
     });
     this.formUser = this.formBuilder.group({

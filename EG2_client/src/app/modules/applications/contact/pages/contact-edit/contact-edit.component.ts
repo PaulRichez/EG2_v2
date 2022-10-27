@@ -55,6 +55,23 @@ export class ContactEditComponent extends AppHelperComponent implements OnInit {
   }
 
   setForm() {
+    const cityPro = this.contact?.pro?.address?.city;
+    if (cityPro) {
+      delete (cityPro as any).id;
+    }
+    console.log(cityPro)
+    const countryPro = this.contact?.pro?.address?.country;
+    if (countryPro) {
+      delete (countryPro as any).id;
+    }
+    const cityPrivate = this.contact?.private?.address?.city;
+    if (cityPrivate) {
+      delete (cityPrivate as any).id;
+    }
+    const countryPrivate = this.contact?.private?.address?.country;
+    if (countryPrivate) {
+      delete (countryPrivate as any).id;
+    }
     this.formName = this.formBuilder.group({
       civility: [this.contact?.name?.civility],
       firstName: [this.contact?.name?.firstName],
@@ -68,14 +85,14 @@ export class ContactEditComponent extends AppHelperComponent implements OnInit {
       email: [this.contact?.pro?.contacts?.email],
     })
     this.formAddressPro = this.formBuilder.group({
-      country: [this.contact?.pro?.address?.country],
-      city: [this.contact?.pro?.address?.city],
+      country: [countryPro],
+      city: [cityPro],
       street1: [this.contact?.pro?.address?.street1],
       street2: [this.contact?.pro?.address?.street2],
     })
     this.formAddressPrivate = this.formBuilder.group({
-      country: [this.contact?.private?.address?.country],
-      city: [this.contact?.private?.address?.city],
+      country: [countryPrivate],
+      city: [cityPrivate],
       street1: [this.contact?.private?.address?.street1],
       street2: [this.contact?.private?.address?.street2],
     })
@@ -98,7 +115,7 @@ export class ContactEditComponent extends AppHelperComponent implements OnInit {
     })
     this.formContact = this.formBuilder.group({
       owner: [this.contact?.owner || this.authentificationService.connectedUser.id],
-      user:  [this.contact?.user?.id],
+      user: [this.contact?.user?.id],
       name: this.formName,
       pro: this.formPro,
       private: this.formPrivate

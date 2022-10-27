@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Country, City } from 'country-state-city';
 import { ICountry, ICity } from 'country-state-city'
@@ -8,7 +8,7 @@ import { ICountry, ICity } from 'country-state-city'
   templateUrl: './bloc.component.html',
   styleUrls: ['./bloc.component.scss']
 })
-export class BlocComponent implements OnInit {
+export class BlocComponent implements OnInit, OnChanges {
   @Input() formBloc!: FormGroup;
   @Input() formContacts!: FormGroup;
   @Input() formAddress!: FormGroup;
@@ -17,7 +17,14 @@ export class BlocComponent implements OnInit {
   public cities: ICity[] = [];
   constructor() { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['formAddress']) {
+      this.setCitiesAvailable(this.formAddress.get('country')?.value);
+    }
+  }
+
   ngOnInit(): void {
+    this.setCitiesAvailable(this.formAddress.get('country')?.value);
   }
 
   private setCitiesAvailable(country: ICountry): void {
