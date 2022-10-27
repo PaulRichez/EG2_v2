@@ -9,7 +9,7 @@ export class FilesHelperService {
   constructor() { }
   getByteSizeEntry(entry) {
     if (!entry.url) {
-      return `${entry.children.count} dossiers / ${entry.files.count} fichiers`
+      return `${entry?.children?.count} dossiers / ${entry?.files?.count} fichiers`
       return '-';
     } else {
       return byteSize(entry.size * 1000, { units: 'metric_octet' });

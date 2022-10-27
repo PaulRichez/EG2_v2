@@ -14,9 +14,11 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
   @Input() selectedFolderId!: string;
   @Input() loadingData = true;
   @Input() folder!: IFolder;
+  @Input() showSelectedEntryInfo!: boolean;
+  @Input() selectedEntry!: IFolder | any;
   @Output() dbClick = new EventEmitter<any>();
   @Output() renameEntry = new EventEmitter<IFolder | any>();
-  @Output() showDetailsEntry = new EventEmitter<IFolder | any>();
+  @Output() showInfoEntry = new EventEmitter<IFolder | any>();
   @Output() downloadEntry = new EventEmitter<IFolder | any>();
   @Output() deleteEntry = new EventEmitter<IFolder | any>();
   directoryData!: IFolder[] | any[];
@@ -43,14 +45,14 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
       {
         label: 'Renommer', icon: 'fa fa-edit', command: (event) => { this.renameEntry.emit(entry) }
       },
-     /* {
-        label: 'Déplacer', icon: 'fa fa-folder-open', command: (event) => { this.moveEntry() }
-      },*/
+      /* {
+         label: 'Déplacer', icon: 'fa fa-folder-open', command: (event) => { this.moveEntry() }
+       },*/
       {
         separator: true,
       },
       {
-        label: 'Afficher les détails', icon: 'fa fa-circle-info', command: (event) => { this.showDetailsEntry.emit(entry) }
+        label: 'Afficher les détails', icon: 'fa fa-circle-info', command: (event) => { this.showInfoEntry.emit(entry) }
       },
       {
         label: 'Télécharger', icon: 'fa fa-download', command: (event) => { this.downloadEntry.emit(entry) }, visible: !!entry.file
@@ -75,5 +77,9 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
     }
   }
 
-
+  clickRow(entry) {
+    if (this.showSelectedEntryInfo) {
+      this.showInfoEntry.emit(entry)
+    }
+  }
 }

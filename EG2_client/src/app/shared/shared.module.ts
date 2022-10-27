@@ -26,6 +26,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DividerModule } from 'primeng/divider';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -68,7 +69,8 @@ const MODULES = [
   TreeSelectModule,
   BreadcrumbModule,
   DynamicDialogModule,
-  ConfirmDialogModule
+  ConfirmDialogModule,
+  DividerModule
 ]
 
 @NgModule({

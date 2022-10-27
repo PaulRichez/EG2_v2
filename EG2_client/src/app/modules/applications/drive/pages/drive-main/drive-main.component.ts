@@ -15,10 +15,11 @@ import { NewFolderComponent } from 'src/app/shared/components/new-folder/new-fol
 })
 export class DriveMainComponent extends AppHelperComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
-
+  selectedEntry: IFolder | any;
   home!: MenuItem;
   public loadingData = true;
   private subscribeData: any;
+  showSelectedEntryInfo = false;
 
   public idFolder!: string
   folder!: IFolder;
@@ -153,5 +154,15 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
         })
       }
     });
+  }
+
+  showInfoEntry(entry: IFolder | any) {
+    this.showSelectedEntryInfo = true;
+    this.selectedEntry = entry;
+  }
+
+  closeInfos() {
+    this.showSelectedEntryInfo = false;
+    this.selectedEntry = null;
   }
 }
