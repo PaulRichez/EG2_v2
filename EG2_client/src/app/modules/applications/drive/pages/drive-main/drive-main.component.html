@@ -1,15 +1,18 @@
-<div class="col-12 flex justify-content-between mb-3">
-    <div>
-        <b class="text-4xl">Fichiers</b>
+<div class="sticky header">
+    <div class="col-12 flex justify-content-between mb-3">
+        <div>
+            <b class="text-4xl">Fichiers</b>
+        </div>
+        <div>
+            <p-button label="Ajouter un dossier" styleClass="p-button-sm" class="mr-2" (click)="renameOrCreateEntry()">
+            </p-button>
+            <p-button label="Ajouter un fichier" styleClass="p-button-sm"></p-button>
+        </div>
     </div>
-    <div>
-        <p-button label="Ajouter un dossier" styleClass="p-button-sm" class="mr-2" (click)="renameOrCreateEntry()"></p-button>
-        <p-button label="Ajouter un fichier" styleClass="p-button-sm"></p-button>
-    </div>
+    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 </div>
-<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
-
 <p-card>
-    <app-file-table-view [selectedFolderId]="idFolder" [folder]="folder" [loadingData]="loadingData" (dbClick)="dbClick($event)" (renameEntry)="renameOrCreateEntry($event)">
+    <app-file-table-view [selectedFolderId]="idFolder" [folder]="folder" [loadingData]="loadingData"
+        (dbClick)="dbClick($event)" (renameEntry)="renameOrCreateEntry($event)">
     </app-file-table-view>
 </p-card>

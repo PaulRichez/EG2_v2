@@ -1,5 +1,4 @@
-<p-table [value]="directoryData" responsiveLayout="scroll" [loading]="loadingData" [scrollable]="true"
-    [scrollHeight]="'100%'" styleClass="h-full w-full">
+<p-table [value]="directoryData" [loading]="loadingData" >
     <ng-template pTemplate="header">
         <tr>
             <th pSortableColumn="name">Nom <p-sortIcon field="name"></p-sortIcon>
@@ -12,21 +11,26 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-entry>
-        <tr (dblclick)="dbClick.emit(entry)" class="cursor-pointer row">
-            <td>
+        <tr class="cursor-pointer row">
+            <td (dblclick)="dbClick.emit(entry)">
                 <i [ngClass]="filesHelper.getIconEntry(entry) + ' fa-xl w-2rem'"></i>
                 {{ entry.name }}
             </td>
-            <td>
+            <td (dblclick)="dbClick.emit(entry)">
                 {{ entry.owner?.username }}
             </td>
-            <td>
+            <td (dblclick)="dbClick.emit(entry)">
                 {{entry.createdAt | date:'dd/MM/yyyy HH:mm'}}
             </td>
-            <td>
+            <td (dblclick)="dbClick.emit(entry)">
                 {{ filesHelper.getByteSizeEntry(entry) }}
             </td>
-            <td style="max-width:80px"></td>
+            <td style="max-width:80px">
+                <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+                    class="p-button-rounded p-button-secondary p-button-text"
+                    (click)="createMenuItems(entry);menu.toggle($event)"></button>
+                <p-menu #menu [popup]="true" [model]="itemsEntry" [appendTo]="'body'"></p-menu>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage" let-columns>

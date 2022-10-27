@@ -45,5 +45,25 @@ module.exports = {
             }
         );
         ctx.body = data;
+    },
+    async renameFolder(ctx) {
+        const data = await strapi.entityService.update(
+            'plugin::upload.folder',
+            ctx.params.id,
+            {
+                data: { name: ctx.request.body.data.name },
+                filters: {
+                    owner: {
+                        id: ctx.state.user.id
+                    }
+                },
+                populate: {
+                    'files': true,
+                    'children': { count: true }, files: { count: true },
+                    'owner': true
+                }
+            }
+        );
+        ctx.body = data;
     }
 };

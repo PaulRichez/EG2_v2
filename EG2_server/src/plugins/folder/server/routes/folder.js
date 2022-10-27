@@ -27,5 +27,13 @@ module.exports = {
         roles: ['authenticated'],
       }
     },
+    {
+      method: 'PUT',
+      path: '/drive/rename-folder/:id',
+      handler: 'folder.renameFolder',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
   ]
 }

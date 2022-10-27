@@ -135,13 +135,19 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
     this.refNewFolder.onClose.subscribe(result => {
       if (result) {
         let sub = this.driveService.createFolder(result, this.idFolder)
-
+        if (entry) {
+          sub = this.driveService.renameFolder(result, entry.id)
+        }
         sub.subscribe({
           next: value => {
             if (!this.folder.children) {
               this.folder.children = [];
             }
-            (this.folder.children as IFolder[]).push(value)
+            if (!entry) {
+              (this.folder.children as IFolder[]).push(value)
+            } else {
+              (this.folder.children as IFolder[]).filter(f => f.id == value.id).map(f => f.name = value.name)
+            }
             this.folder = Object.assign({}, this.folder);
           },
         })

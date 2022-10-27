@@ -16,7 +16,11 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
   @Input() folder!: IFolder;
   @Output() dbClick = new EventEmitter<any>();
   @Output() renameEntry = new EventEmitter<IFolder | any>();
+  @Output() showDetailsEntry = new EventEmitter<IFolder | any>();
+  @Output() downloadEntry = new EventEmitter<IFolder | any>();
+  @Output() deleteEntry = new EventEmitter<IFolder | any>();
   directoryData!: IFolder[] | any[];
+  itemsEntry!: any;
   constructor(
     public override route: ActivatedRoute,
     private router: Router,
@@ -28,7 +32,37 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
 
   ngOnInit(): void {
   }
-
+  createMenuItems(entry: IFolder | any) {
+    this.itemsEntry = [
+      {
+        label: 'Ouvrir', icon: 'fa fa-folder-open', command: (event) => { this.dbClick.emit(entry) }, visible: !entry.url
+      },
+      {
+        separator: true, visible: !entry.file
+      },
+      {
+        label: 'Renommer', icon: 'fa fa-edit', command: (event) => { this.renameEntry.emit(entry) }
+      },
+     /* {
+        label: 'Déplacer', icon: 'fa fa-folder-open', command: (event) => { this.moveEntry() }
+      },*/
+      {
+        separator: true,
+      },
+      {
+        label: 'Afficher les détails', icon: 'fa fa-circle-info', command: (event) => { this.showDetailsEntry.emit(entry) }
+      },
+      {
+        label: 'Télécharger', icon: 'fa fa-download', command: (event) => { this.downloadEntry.emit(entry) }, visible: !!entry.file
+      },
+      {
+        separator: true,
+      },
+      {
+        label: 'Supprimer', icon: 'fa fa-trash', command: (event) => { this.deleteEntry.emit(entry) }
+      },
+    ];
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['folder']) {
       this.directoryData = [];
