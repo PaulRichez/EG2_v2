@@ -1,14 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 import { DriveService } from 'src/app/core/services/drive.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 import * as qs from 'qs'
 import { IFolder } from 'src/app/shared/models/folder.model';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { NewFolderComponent } from 'src/app/shared/components/new-folder/new-folder.component';
 @Component({
   selector: 'app-drive-main',
   templateUrl: './drive-main.component.html',
-  styleUrls: ['./drive-main.component.scss']
+  styleUrls: ['./drive-main.component.scss'],
+  providers: [DialogService, ConfirmationService]
 })
 export class DriveMainComponent extends AppHelperComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
@@ -19,10 +22,13 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
 
   public idFolder!: string
   folder!: IFolder;
+  refNewFolder!: DynamicDialogRef;
   constructor(
     public override route: ActivatedRoute,
     private router: Router,
-    private driveService: DriveService
+    private driveService: DriveService,
+    private confirmationService: ConfirmationService,
+    public dialogService: DialogService,
   ) {
     super(route)
   }
@@ -118,5 +124,18 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
       this.goToFolder(entry.id);
     }
   }
-
+  renameOrCreateEntry(entry?: IFolder | any) {
+    this.refNewFolder = this.dialogService.open(NewFolderComponent, {
+      header: entry ? `Renommer le ${!entry.url ? 'dossier' : 'fichier'}` : 'Nouveau dossier',
+      baseZIndex: 10000,
+      data: {
+        name: entry ? entry.name : ''
+      }
+    });
+    this.refNewFolder.onClose.subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
 }

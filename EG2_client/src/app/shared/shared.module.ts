@@ -23,7 +23,9 @@ import { EditorModule } from 'primeng/editor';
 import { TreeModule } from 'primeng/tree';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TreeSelectModule } from 'primeng/treeselect';
-import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +39,7 @@ import 'moment/locale/fr';
 import { PageProfileComponent } from './components/page-profile/page-profile.component';
 import { AppHelperComponent } from './extends/app-helper/app-helper.component';
 import { SimpleAvatarComponent } from './components/simple-avatar/simple-avatar.component';
+import { NewFolderComponent } from './components/new-folder/new-folder.component';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -63,7 +66,9 @@ const MODULES = [
   TreeModule,
   OverlayPanelModule,
   TreeSelectModule,
-  BreadcrumbModule
+  BreadcrumbModule,
+  DynamicDialogModule,
+  ConfirmDialogModule
 ]
 
 @NgModule({
@@ -74,7 +79,8 @@ const MODULES = [
     AvatarComponent,
     PageProfileComponent,
     AppHelperComponent,
-    SimpleAvatarComponent
+    SimpleAvatarComponent,
+    NewFolderComponent,
   ],
   imports: [
     CommonModule,
@@ -90,7 +96,8 @@ const MODULES = [
     AvatarComponent,
     PageProfileComponent,
     AppHelperComponent,
-    SimpleAvatarComponent
+    SimpleAvatarComponent,
+    NewFolderComponent
   ]
 })
 export class SharedModule { }
