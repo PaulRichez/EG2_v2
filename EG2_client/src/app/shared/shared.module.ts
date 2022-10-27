@@ -27,6 +27,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DividerModule } from 'primeng/divider';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -70,7 +71,8 @@ const MODULES = [
   BreadcrumbModule,
   DynamicDialogModule,
   ConfirmDialogModule,
-  DividerModule
+  DividerModule,
+  SplitButtonModule
 ]
 
 @NgModule({

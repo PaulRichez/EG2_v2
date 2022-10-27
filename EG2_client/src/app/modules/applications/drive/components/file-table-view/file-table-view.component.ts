@@ -74,6 +74,9 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
       if (this.folder?.files) {
         (this.folder.files as any[]).forEach(f => this.directoryData.push(f))
       }
+      if (this.showSelectedEntryInfo && !this.selectedEntry) {
+        this.showInfoEntry.emit(this.directoryData[0])
+      }
     }
   }
 

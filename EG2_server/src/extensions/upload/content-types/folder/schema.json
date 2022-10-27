@@ -19,12 +19,6 @@
     }
   },
   "attributes": {
-    "name": {
-      "type": "string",
-      "min": 1,
-      "required": true,
-      "configurable": false
-    },
     "pathId": {
       "type": "integer",
       "unique": true,
@@ -56,6 +50,13 @@
       "type": "string",
       "min": 1,
       "required": true,
+      "configurable": false
+    },
+    "name": {
+      "type": "string",
+      "min": 1,
+      "required": true,
+      "maxLength": 25,
       "configurable": false
     },
     "owner": {

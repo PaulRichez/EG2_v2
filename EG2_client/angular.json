@@ -42,7 +42,8 @@
             "allowedCommonJsDependencies": [
               "qs",
               "moment",
-              "quill-image-resize-module"
+              "quill-image-resize-module",
+              "object-path"
             ],
             "outputPath": "dist/eg2-client",
             "index": "src/index.html",
@@ -58,7 +59,6 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/theme.scss",
-              "src/assets/scss/font-awesome.scss",
               "src/assets/scss/scrollbar.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.scss",

@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="flex justify-content-center align-items-center" style="min-height: 200px">
-        <i *ngIf="!preview" [ngClass]="filesHelperService.getIconEntry(selectedEntry) + ' fa-4xl'"></i>
+        <i *ngIf="!preview" [ngClass]="filesHelperService.getIconEntry(selectedEntry) + ' fa-6x'"></i>
         <img *ngIf="preview" [src]="getThumbnail()">
     </div>
     <p-divider></p-divider>

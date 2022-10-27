@@ -1,30 +1,35 @@
-<div class="" [ngStyle]="{'width': 'calc(100% - '+ ( showSelectedEntryInfo ? '300' : '0') + 'px)'}" style="height: calc(100vh - 250px);min-height: 200px">
-    <p-table [value]="directoryData" [loading]="loadingData"
-        [selectionMode]="showSelectedEntryInfo ? 'single' : 'null'" [scrollable]="true" [scrollHeight]="'flex'">
+<div class="" [ngStyle]="{'width': 'calc(100% - '+ ( showSelectedEntryInfo ? '300' : '0') + 'px)'}"
+    style="height: calc(100vh - 250px);min-height: 200px">
+    <p-table [value]="directoryData" [loading]="loadingData" [scrollable]="true" [scrollHeight]="'flex'"
+        scrollDirection="vertical" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="name">Nom <p-sortIcon field="name"></p-sortIcon>
+                <th pSortableColumn="name" #nameColumn>Nom <p-sortIcon field="name"></p-sortIcon>
                 </th>
-                <th>Proprietaire</th>
-                <th pSortableColumn="createdAt">Date de création<p-sortIcon field="createdAt"></p-sortIcon>
+                <th class="hidden md:block">Proprietaire</th>
+                <th class="hidden md:block" pSortableColumn="createdAt">Date de création<p-sortIcon field="createdAt">
+                    </p-sortIcon>
                 </th>
-                <th>Taille</th>
+                <th class="hidden md:block">Taille</th>
                 <th style="max-width:80px"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-entry>
             <tr class="cursor-pointer" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}">
-                <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)"
+                    class="text-overflow-ellipsis white-space-nowrap overflow-hidden">
+
                     <i [ngClass]="filesHelper.getIconEntry(entry) + ' fa-xl w-2rem'"></i>
                     {{ entry.name }}
+
                 </td>
-                <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{ entry.owner?.username }}
                 </td>
-                <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{entry.createdAt | date:'dd/MM/yyyy HH:mm'}}
                 </td>
-                <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{ filesHelper.getByteSizeEntry(entry) }}
                 </td>
                 <td style="max-width:80px">

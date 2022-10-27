@@ -15,6 +15,9 @@ import { NewFolderComponent } from 'src/app/shared/components/new-folder/new-fol
 })
 export class DriveMainComponent extends AppHelperComponent implements OnInit, OnDestroy {
   items: MenuItem[] = [];
+  itemsTop: MenuItem[] = [
+    { label: 'Ajouter un dossier', command: () => this.renameOrCreateEntry() }
+  ];
   selectedEntry: IFolder | any;
   home!: MenuItem;
   public loadingData = true;
@@ -114,6 +117,7 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
   goToFolder(id: string) {
     this.idFolder = id;
     this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'drive', id] } }]).then(() => {
+      this.selectedEntry = null;
       if (this.home) {
         this.fetchData();
       }
@@ -157,8 +161,12 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
   }
 
   showInfoEntry(entry: IFolder | any) {
-    this.showSelectedEntryInfo = true;
-    this.selectedEntry = entry;
+    if (entry) {
+      this.showSelectedEntryInfo = true;
+      this.selectedEntry = entry;
+    } else {
+      this.closeInfos();
+    }
   }
 
   closeInfos() {

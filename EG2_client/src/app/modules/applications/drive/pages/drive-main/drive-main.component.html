@@ -4,9 +4,7 @@
             <b class="text-4xl">Fichiers</b>
         </div>
         <div>
-            <p-button label="Ajouter un dossier" styleClass="p-button-sm" class="mr-2" (click)="renameOrCreateEntry()">
-            </p-button>
-            <p-button label="Ajouter un fichier" styleClass="p-button-sm"></p-button>
+            <p-splitButton label="Ajouter un fichier" [model]="itemsTop" styleClass="p-button-sm"></p-splitButton>
         </div>
     </div>
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
