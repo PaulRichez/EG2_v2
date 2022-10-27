@@ -9,7 +9,7 @@ module.exports = {
             {
                 populate: {
                     'files': true,
-                    'parent': { populate: ['parent','parent.parent'] },
+                    'parent': { populate: ['parent','parent.parent', 'parent.parent.parent'] },
                     'children': {
                         populate: { children: { count: true }, files: { count: true } },
                     },
@@ -22,6 +22,9 @@ module.exports = {
         }
         if (!data?.parent?.parent?.parent && data?.parent?.parent) {
             data.parent.parent = null;
+        }
+        if (!data?.parent?.parent?.parent?.parent && data?.parent?.parent?.parent) {
+            data.parent.parent.parent = null;
         }
         ctx.body = data;
     }

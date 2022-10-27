@@ -11,7 +11,7 @@ import { IFolder } from 'src/app/shared/models/folder.model';
   styleUrls: ['./drive-main.component.scss']
 })
 export class DriveMainComponent extends AppHelperComponent implements OnInit {
-  items!: MenuItem[];
+  items: MenuItem[] = [];
 
   home!: MenuItem;
   public loadingData = true;
@@ -27,20 +27,25 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRoot()
     this.idFolder = this.route.snapshot.params['idFolder'];
-    if (!this.idFolder) {
-      this.driveService.getmyDriveRoot('').subscribe({
-        next: result => {
-          this.goToFolder(result.id)
-        },
-        error(err) {
-          console.error(err)
-        },
-      })
-    } else {
-      this.fetchData()
+    if (this.idFolder) {
+      this.goToFolder(this.idFolder)
     }
   }
+
+  getRoot() {
+    this.driveService.getmyDriveRoot('').subscribe({
+      next: result => {
+        this.home = { id: result.id, icon: 'fa fa-home', routerLink: ['', { outlets: { [this.appOutlet as string]: ['tab', 'drive', result.id] } }], command: () => this.goToFolder(result.id) }
+        this.goToFolder(result.id)
+      },
+      error(err) {
+        console.error(err)
+      },
+    })
+  }
+
 
   fetchData() {
     const query = qs.stringify({
@@ -53,6 +58,7 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit {
       next: result => {
         this.folder = result;
         this.loadingData = false;
+        this.createBreadcrumb();
       },
       error: err => {
         this.loadingData = false;
@@ -61,15 +67,46 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit {
     })
   }
 
+  createBreadcrumb() {
+    this.items = []
+    if (this.folder.parent?.parent && this.folder.parent.parent.id !== this.home.id) {
+      this.items.push(
+        {
+          id: this.folder.parent.parent?.id,
+          label: '...',
+          routerLink: ['', { outlets: { [this.appOutlet as string]: ['tab', 'drive', this.folder.parent.parent?.id] } }],
+          command: () => this.goToFolder(this.folder.parent?.parent?.id as string)
+        }
+      )
+    }
+    if (this.folder.parent && this.folder.parent.id !== this.home.id) {
+      this.items.push(
+        {
+          id: this.folder.parent.id,
+          label: this.folder.parent.name,
+          routerLink: ['', { outlets: { [this.appOutlet as string]: ['tab', 'drive', this.folder.parent.id] } }],
+          command: () => this.goToFolder(this.folder?.parent?.id as string)
+        }
+      )
+    }
+    if (this.folder && this.folder.id !== this.home.id) {
+      this.items.push({ id: this.folder.id, label: this.folder.name, routerLink: ['', { outlets: { [this.appOutlet as string]: ['tab', 'drive', this.folder.id] } }], command: () => this.goToFolder(this.folder.id) }
+      )
+    }
+  }
+
   goToFolder(id: string) {
     this.idFolder = id;
-    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'drive', id] } }])
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'drive', id] } }]).then(() => {
+      if (this.home) {
+        this.fetchData();
+      }
+    })
   }
 
   dbClick(entry: IFolder | any) {
     if (!entry.url) {
       this.goToFolder(entry.id);
-      this.fetchData();
     }
   }
 
