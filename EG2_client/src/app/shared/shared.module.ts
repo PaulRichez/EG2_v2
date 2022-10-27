@@ -28,6 +28,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DividerModule } from 'primeng/divider';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { AutoFocusModule } from 'primeng/autofocus';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -72,7 +73,8 @@ const MODULES = [
   DynamicDialogModule,
   ConfirmDialogModule,
   DividerModule,
-  SplitButtonModule
+  SplitButtonModule,
+  AutoFocusModule
 ]
 
 @NgModule({
