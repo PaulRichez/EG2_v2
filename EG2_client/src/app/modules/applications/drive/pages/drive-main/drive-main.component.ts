@@ -134,7 +134,17 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
     });
     this.refNewFolder.onClose.subscribe(result => {
       if (result) {
-        console.log(result);
+        let sub = this.driveService.createFolder(result, this.idFolder)
+
+        sub.subscribe({
+          next: value => {
+            if (!this.folder.children) {
+              this.folder.children = [];
+            }
+            (this.folder.children as IFolder[]).push(value)
+            this.folder = Object.assign({}, this.folder);
+          },
+        })
       }
     });
   }

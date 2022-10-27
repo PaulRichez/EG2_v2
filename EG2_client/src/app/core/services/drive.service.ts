@@ -16,4 +16,8 @@ export class DriveService {
   public getmyDriveRoot(query: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/folder/drive/my-drive?${query}`);
   }
+
+  public createFolder(name, idParent) {
+    return this.http.post<any>(`${environment.apiUrl}/api/folder/drive/new-folder/${idParent}`, { data: {name} });
+  }
 }

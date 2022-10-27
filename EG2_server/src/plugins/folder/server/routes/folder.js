@@ -19,5 +19,13 @@ module.exports = {
         roles: ['authenticated'],
       }
     },
+    {
+      method: 'POST',
+      path: '/drive/new-folder/:id',
+      handler: 'folder.createFolder',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
   ]
 }

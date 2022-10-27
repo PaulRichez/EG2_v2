@@ -11,9 +11,18 @@ module.exports = ({ strapi }) => ({
             where: { name: ctx.state.user.id.toString(), parent: folderDrives.id }
         });
         if (!myDriveFolder) {
-            myDriveFolder = await strapi.plugins.upload.services.folder.create({ name: ctx.state.user.id.toString(), parent: folderDrives.id })
+            myDriveFolder = await strapi.plugins.upload.services.folder.create({ name: ctx.state.user.id.toString(), parent: folderDrives.id, owner: ctx.state.user })
         }
 
         return myDriveFolder;
+    },
+    async createNewFolder(ctx, name, parentId) {
+        const parent = await strapi.db.query('plugin::upload.folder').findOne({
+            where: { id: parentId }, populate: ['owner']
+        });
+        if (parent?.owner?.id !== ctx.state.user.id) {
+            return ctx.unauthorized(`Permission denied`);
+        }
+        return await strapi.plugins.upload.services.folder.create({ name, owner: ctx.state.user, parent: parentId })
     }
 })
