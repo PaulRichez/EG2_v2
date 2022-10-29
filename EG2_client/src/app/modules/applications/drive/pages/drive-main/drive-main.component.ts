@@ -7,6 +7,8 @@ import * as qs from 'qs'
 import { IFolder } from 'src/app/shared/models/folder.model';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { NewFolderComponent } from 'src/app/shared/components/new-folder/new-folder.component';
+import { FilesTransfertService } from 'src/app/core/services/files-transfert.service';
+import { FilesHelperService } from 'src/app/core/services/files-helper.service';
 @Component({
   selector: 'app-drive-main',
   templateUrl: './drive-main.component.html',
@@ -33,6 +35,8 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
     private driveService: DriveService,
     private confirmationService: ConfirmationService,
     public dialogService: DialogService,
+    private filesTransfertService: FilesTransfertService,
+    private filesHelperService: FilesHelperService,
   ) {
     super(route)
   }
@@ -172,5 +176,12 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
   closeInfos() {
     this.showSelectedEntryInfo = false;
     this.selectedEntry = null;
+  }
+
+  upload(event, fileInput) {
+    const file: File = event.target.files[0];
+    const formData = new FormData();
+    formData.append('files.file', file, file.name);
+    this.filesTransfertService.addToQueue('upload', file, this.driveService.createFiles(formData, this.idFolder));
   }
 }

@@ -43,8 +43,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::upload.file",
-      "mappedBy": "folder",
-      "configurable": false
+      "mappedBy": "folder"
     },
     "path": {
       "type": "string",

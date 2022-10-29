@@ -35,5 +35,13 @@ module.exports = {
         roles: ['authenticated'],
       }
     },
+    {
+      method: 'POST',
+      path: '/drive/upload/:id',
+      handler: 'folder.uploadFiles',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
   ]
 }

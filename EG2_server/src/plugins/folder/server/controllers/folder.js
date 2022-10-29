@@ -8,7 +8,7 @@ module.exports = {
             ctx.params.id,
             {
                 populate: {
-                    'files': true,
+                    'files':  { populate: ['owner'] },
                     'parent': { populate: ['parent', 'parent.parent', 'parent.parent.parent'] },
                     'children': {
                         populate: { owner: true, children: { count: true }, files: { count: true } },
@@ -65,5 +65,32 @@ module.exports = {
             }
         );
         ctx.body = data;
+    },
+    async uploadFiles(ctx) {
+        if (!ctx.request.files['files.file']) {
+            ctx.forbidden('uploadFiles')
+        }
+        let folder = await strapi.entityService.findOne(
+            'plugin::upload.folder',
+            ctx.params.id,
+            {
+                populate: {
+                    'owner': true
+                }
+            }
+        );
+        if (!folder.owner || folder.owner.id !== ctx.state.user.id) {
+            ctx.unauthorized('uploadFiles')
+        }
+        const file = await strapi.plugins.upload.services.upload.upload({
+            data: {
+            },
+            files: ctx.request.files['files.file']
+        });
+        const fileUpdated = await strapi.db.query('plugin::upload.file').update({
+            where: { id: file[0].id },
+            data: { folder: ctx.params.id, owner: ctx.state.user.id },
+        });
+        ctx.body = fileUpdated;
     }
 };

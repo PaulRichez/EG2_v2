@@ -18,9 +18,17 @@ export class DriveService {
   }
 
   public createFolder(name, idParent) {
-    return this.http.post<any>(`${environment.apiUrl}/api/folder/drive/new-folder/${idParent}`, { data: {name} });
+    return this.http.post<any>(`${environment.apiUrl}/api/folder/drive/new-folder/${idParent}`, { data: { name } });
   }
   public renameFolder(name, idParent) {
-    return this.http.put<any>(`${environment.apiUrl}/api/folder/drive/rename-folder/${idParent}`, { data: {name} });
+    return this.http.put<any>(`${environment.apiUrl}/api/folder/drive/rename-folder/${idParent}`, { data: { name } });
+  }
+
+
+  public createFiles(formData: any, idParent) {
+    return this.http.post<any>(`${environment.apiUrl}/api/folder/drive/upload/${idParent}`, formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 }
