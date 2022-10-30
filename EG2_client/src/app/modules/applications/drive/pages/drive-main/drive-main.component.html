@@ -5,7 +5,8 @@
             <b class="text-4xl">Fichiers</b>
         </div>
         <div>
-            <p-splitButton label="Ajouter des fichiers" [model]="itemsTop" (onClick)="fileInput.click()" styleClass="p-button-sm"></p-splitButton>
+            <p-splitButton label="Ajouter des fichiers" [model]="itemsTop" (onClick)="fileInput.click()"
+                styleClass="p-button-sm"></p-splitButton>
         </div>
     </div>
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
@@ -15,8 +16,8 @@
     <div #mainFiles></div>
     <app-file-table-view [selectedFolderId]="idFolder" [folder]="folder" [loadingData]="loadingData"
         (dbClick)="dbClick($event)" (renameEntry)="renameOrCreateEntry($event)" (showInfoEntry)="showInfoEntry($event)"
-        [showSelectedEntryInfo]="showSelectedEntryInfo" [selectedEntry]="selectedEntry">
-    </app-file-table-view>
+        [showSelectedEntryInfo]="showSelectedEntryInfo" [selectedEntry]="selectedEntry"
+        (downloadEntry)="downloadEntry($event)"></app-file-table-view>
 </div>
 
 <p-sidebar [(visible)]="showSelectedEntryInfo" [modal]="false" [appendTo]="mainFiles" [showCloseIcon]="false"

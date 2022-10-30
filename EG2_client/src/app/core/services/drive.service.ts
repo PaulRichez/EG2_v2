@@ -31,4 +31,11 @@ export class DriveService {
       observe: 'events'
     });
   }
+  public downloadFile(file: any) {
+    return this.http.get(`${environment.apiUrl}${file.url}`, {
+      responseType: 'blob',
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
 }

@@ -22,7 +22,7 @@ export class FilesTransfertService {
       queue.file = fileOrData;
       queue.request.subscribe({
         next: (event: any) => {
-          if (event.type === HttpEventType.DownloadProgress) {
+          if (event.type === HttpEventType.UploadProgress) {
             queue.progress = Math.round(100 * event.loaded / event.total);
           }
           if (event.type === HttpEventType.Response) {

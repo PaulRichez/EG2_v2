@@ -19,7 +19,7 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
   @Output() dbClick = new EventEmitter<any>();
   @Output() renameEntry = new EventEmitter<IFolder | any>();
   @Output() showInfoEntry = new EventEmitter<IFolder | any>();
-  @Output() downloadEntry = new EventEmitter<IFolder | any>();
+  @Output() downloadEntry = new EventEmitter<any>();
   @Output() deleteEntry = new EventEmitter<IFolder | any>();
   directoryData!: IFolder[] | any[];
   itemsEntry!: any;

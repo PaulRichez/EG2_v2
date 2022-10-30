@@ -184,8 +184,15 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
       const file = event.target.files[i];
       const formData = new FormData();
       formData.append('files.file', file, file.name);
-      console.log(formData);
       this.filesTransfertService.addToQueue('upload', file, this.driveService.createFiles(formData, this.idFolder));
     }
+  }
+
+  downloadEntry(entry: any) {
+    this.filesTransfertService.addToQueue(
+      'download',
+      entry,
+      this.driveService.downloadFile(entry)
+    );
   }
 }
