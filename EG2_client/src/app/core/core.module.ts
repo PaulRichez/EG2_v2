@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { NamedOutletDirective } from './directives/named-outlet.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FilesTransfertComponent } from './components/files-transfert/files-transfert.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FormValidationDirective,
     HeaderComponent,
     NamedOutletDirective,
-    SidebarComponent
+    SidebarComponent,
+    FilesTransfertComponent
   ],
   imports: [
     CommonModule,

@@ -16,13 +16,14 @@ export class FilesTransfertService {
     let queue: IFileQueue = {
       type,
       progress: 0,
-      request
+      request,
+      data: fileOrData
     }
     if (type === 'download') {
       queue.file = fileOrData;
       queue.request.subscribe({
         next: (event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
+          if (event.type === 3) {
             queue.progress = Math.round(100 * event.loaded / event.total);
           }
           if (event.type === HttpEventType.Response) {
@@ -42,7 +43,7 @@ export class FilesTransfertService {
       queue.data = fileOrData;
       queue.request.subscribe({
         next: (event: any) => {
-          if (event.type === HttpEventType.UploadProgress) {
+          if (event.type === 3) {
             queue.progress = Math.round(100 * event.loaded / event.total);
           }
           if (event.type === HttpEventType.Response) {

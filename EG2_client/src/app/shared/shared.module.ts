@@ -29,6 +29,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DividerModule } from 'primeng/divider';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -74,7 +75,8 @@ const MODULES = [
   ConfirmDialogModule,
   DividerModule,
   SplitButtonModule,
-  AutoFocusModule
+  AutoFocusModule,
+  ProgressBarModule
 ]
 
 @NgModule({

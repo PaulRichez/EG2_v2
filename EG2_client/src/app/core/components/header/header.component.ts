@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../../authentification/authentification.service';
 import { ApplicationsService } from '../../services/applications.service';
+import { FilesTransfertService } from '../../services/files-transfert.service';
 
 @Component({
   selector: 'app-header',
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     public applicationsService: ApplicationsService,
     public authentificationService: AuthentificationService,
     private router: Router,
+    public filesTransfert: FilesTransfertService
   ) { }
   ngOnDestroy(): void {
     if (this.sub) {

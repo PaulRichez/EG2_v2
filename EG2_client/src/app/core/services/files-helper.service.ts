@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import byteSize from 'byte-size'
 import { SortEvent } from 'primeng/api';
+import { IFileQueue } from 'src/app/shared/models/files-queue.model';
 @Injectable({
   providedIn: 'root'
 })
 export class FilesHelperService {
   public eventSort!: SortEvent;
   constructor() { }
+
+  getByteSizeTransfet(entry: IFileQueue) {
+    if (entry.type == 'download') {
+      return this.getByteSizeFile(entry.data)
+    } else {
+      return this.getByteSizeFileUpload(entry.data)
+    }
+  }
   getByteSizeEntry(entry) {
     if (!entry.url) {
       return `${entry?.children?.count} dossiers / ${entry?.files?.count} fichiers`
