@@ -15,7 +15,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-entry>
-            <tr class="cursor-pointer" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}">
+            <tr class="cursor-pointer" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}" style="max-width: calc(100vw - 16px)">
                 <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)"
                     class="text-overflow-ellipsis white-space-nowrap overflow-hidden">
 
