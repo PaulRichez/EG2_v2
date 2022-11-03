@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * calendar router
+ *  router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::calendar.calendar');
+module.exports = createCoreRouter('api::calendar.event-source');

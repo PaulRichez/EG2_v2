@@ -6,4 +6,4 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::calendar.calendar');
+module.exports = createCoreController('api::calendar.event');
