@@ -60,6 +60,11 @@ const routes: Routes = [{
       canActivate: [IsLoggedGuard]
     },
     {
+      path: 'calendar',
+      loadChildren: () => import('../../modules/applications/calendar/calendar.module').then(m => m.CalendarModule),
+      canActivate: [IsLoggedGuard]
+    },
+    {
       path: 'drive',
       loadChildren: () => import('../../modules/applications/drive/drive.module').then(m => m.DriveModule),
       canActivate: [IsLoggedGuard]

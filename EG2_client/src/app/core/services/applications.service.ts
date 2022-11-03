@@ -31,6 +31,15 @@ export class ApplicationsService {
 
     },
     {
+      appId: 'calendar',
+      label: 'Calendrier',
+      icon: 'fa fa-calendar',
+      route: {
+        path: 'calendar',
+      },
+
+    },
+    {
       appId: 'drive',
       label: 'Fichiers',
       icon: 'fa fa-folder-closed',
@@ -75,7 +84,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('drive');
+        this.openNewApplication('calendar');
       }
     })
   }
