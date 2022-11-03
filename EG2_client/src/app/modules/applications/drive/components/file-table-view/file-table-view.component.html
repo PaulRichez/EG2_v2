@@ -1,7 +1,8 @@
 <div class="" [ngStyle]="{'width': 'calc(100% - '+ ( showSelectedEntryInfo ? '300' : '0') + 'px)'}"
     style="height: calc(100vh - 250px);min-height: 200px">
     <p-table [value]="directoryData" [loading]="loadingData" [scrollable]="true" [scrollHeight]="'flex'"
-        scrollDirection="vertical" responsiveLayout="scroll">
+        scrollDirection="vertical" responsiveLayout="scroll" (sortFunction)="customSort($event)" [customSort]="true"
+        sortField="name">
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="name" #nameColumn>Nom <p-sortIcon field="name"></p-sortIcon>
@@ -15,7 +16,8 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-entry>
-            <tr class="cursor-pointer" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}" style="max-width: calc(100vw - 16px)">
+            <tr class="cursor-pointer" [ngClass]="{'p-highlight' : selectedEntry?.id == entry.id}"
+                style="max-width: calc(100vw - 16px)">
                 <td (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)"
                     class="text-overflow-ellipsis white-space-nowrap overflow-hidden">
 

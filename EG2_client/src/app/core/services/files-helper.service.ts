@@ -56,7 +56,6 @@ export class FilesHelperService {
       let value1 = a[this.eventSort.field || 'name'];
       let value2 = b[this.eventSort.field || 'name'];
       let result;
-
       if (value1 == null && value2 != null)
         result = -1;
       else if (value1 != null && value2 == null)
@@ -68,7 +67,7 @@ export class FilesHelperService {
       else
         result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
       return (
-        (a.file === null ? -1 : 1) - (b.file === null ? -1 : 1) ||
+        (!a.url ? -1 : 1) - (!b.url ? -1 : 1) ||
         (this.eventSort.order || 1) * result
       );
     });

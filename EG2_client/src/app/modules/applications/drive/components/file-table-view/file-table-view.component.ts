@@ -5,6 +5,7 @@ import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper
 
 import { IFolder } from 'src/app/shared/models/folder.model';
 import { FilesHelperService } from 'src/app/core/services/files-helper.service';
+import { SortEvent } from 'primeng/api';
 @Component({
   selector: 'app-file-table-view',
   templateUrl: './file-table-view.component.html',
@@ -84,5 +85,8 @@ export class FileTableViewComponent extends AppHelperComponent implements OnInit
     if (this.showSelectedEntryInfo) {
       this.showInfoEntry.emit(entry)
     }
+  }
+  customSort(event: SortEvent) {
+    this.filesHelper.customSort(event);
   }
 }
