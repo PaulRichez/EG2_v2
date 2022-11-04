@@ -30,6 +30,8 @@ import { DividerModule } from 'primeng/divider';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { ProgressBarModule } from 'primeng/progressbar';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import {CalendarModule} from 'primeng/calendar';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -76,7 +78,9 @@ const MODULES = [
   DividerModule,
   SplitButtonModule,
   AutoFocusModule,
-  ProgressBarModule
+  ProgressBarModule,
+  ColorPickerModule,
+  CalendarModule
 ]
 
 @NgModule({

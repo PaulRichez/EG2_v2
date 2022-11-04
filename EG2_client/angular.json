@@ -41,6 +41,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "qs",
+              "quill",
               "moment",
               "quill-image-resize-module",
               "object-path"

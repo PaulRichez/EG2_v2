@@ -1,0 +1,21 @@
+<div class="p-menu w-full">
+    <div class="text-xl p-2"><b>Calendriers</b></div>
+    <div class="p-menu w-full">
+        <ul class="p-menu-list">
+            <li class="pl-2 w-full" *ngIf="!sourceEvents || sourceEvents.length == 0"> Aucun calendrier</li>
+            <li *ngFor="let source of sourceEvents" class="p-menuitem-link w-full">
+                <div class="flex flex-row align-items-center">
+                    <!--<p-toggleButton [(ngModel)]="source.visible" [onIcon]="'pi pi-eye'" [offIcon]="'pi pi-eye-slash'"
+                        [ngStyle]="{'background-color': source.color}" (click)="toggleSource(source)"></p-toggleButton>-->
+                    <div class="text-overflow-ellipsis white-space-nowrap overflow-hidden calendarName ml-2">
+                        {{ source.name}}
+                    </div>
+                </div>
+                <div class="flex flex-row">
+                    <button type="button" pButton icon="pi pi-pencil"
+                        class="p-button-rounded p-button-secondary p-button-text" (click)="editSource(source)"></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -9,6 +9,10 @@ const routes: Routes = [{
       path: 'admin',
       loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
     },
+    {
+      path: 'calendar',
+      loadChildren: () => import('../../modules/applications/calendar/side-bar/side-bar.module').then(m => m.SideBarModule),
+    },
   ]
 }
 ];

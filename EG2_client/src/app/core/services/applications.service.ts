@@ -37,7 +37,9 @@ export class ApplicationsService {
       route: {
         path: 'calendar',
       },
-
+      routeSidebar: {
+        path: 'calendar',
+      }
     },
     {
       appId: 'drive',
