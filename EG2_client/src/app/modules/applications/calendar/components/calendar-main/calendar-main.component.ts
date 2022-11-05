@@ -8,6 +8,8 @@ import { ConfirmationService, MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NewEventComponent } from '../new-event/new-event.component';
 import { EventService } from 'src/app/core/services/event.service';
+import * as qs from 'qs'
+import { AuthentificationService } from 'src/app/core/authentification/authentification.service';
 @Component({
   selector: 'app-calendar-main',
   templateUrl: './calendar-main.component.html',
@@ -89,7 +91,8 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
     private confirmationService: ConfirmationService,
     private eventSourceService: EventSourceService,
     private eventService: EventService,
-    public override route: ActivatedRoute
+    private authentificationService: AuthentificationService,
+    public override route: ActivatedRoute,
   ) {
     super(route)
   }
@@ -117,7 +120,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
       this.refSource = this.eventSourceService.findOne(idSource).subscribe({
         next: (data) => {
           this.selectedSource = data.data;
-          this.fetchEvents();
+          this.addEventSource();
         },
         error(err) {
 
@@ -128,8 +131,52 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
     }
   }
 
-  fetchEvents() {
-
+  private addEventSource() {
+    const eventSource = this.calendarComponent.getApi().getEventSources()[0]
+    if (eventSource) {
+      this.calendarComponent.getApi().getEventSourceById(eventSource.id)?.remove()
+    }
+    this.calendarComponent.getApi().addEventSource(
+      {
+        id: this.selectedSource.id,
+        events: (info, successCallback, failureCallback) => {
+          const query = qs.stringify({
+            filters: {
+              'event_source': {
+                id: this.selectedSource.id,
+                owner: this.authentificationService.connectedUser.id
+              },
+              start: {
+                $gte: info.start,
+              },
+              $or: [
+                {
+                  end: {
+                    $lte: info.end,
+                  },
+                },
+                {
+                  end: {
+                    $null: info.end
+                  }
+                }
+              ]
+            },
+            populate: ['']
+          }, {
+            encodeValuesOnly: true,
+          });
+          this.eventService.find(query).subscribe(result => {
+            successCallback(result.data.map(item => {
+              return {
+                ...item, extendedProps: item
+              }
+            }));
+          });
+        },
+        color: this.selectedSource.color,
+      }
+    );
   }
 
   showEvent(eventToEdit: any) {
@@ -137,7 +184,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
       header: 'Evenement ' + eventToEdit.title,
       baseZIndex: 10000,
       data: {
-        sourceEvents: [],
+        sourceEvent: this.selectedSource,
         event: eventToEdit
       }
     });
@@ -231,7 +278,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
       data: {
         start: this.selectedDate?.start,
         end: this.selectedDate?.end,
-        sourceEvents: []
+        sourceEvent: this.selectedSource,
       }
     });
 

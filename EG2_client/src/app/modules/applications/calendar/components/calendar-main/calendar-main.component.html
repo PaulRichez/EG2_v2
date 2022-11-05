@@ -3,10 +3,11 @@
         <div>
             <b class="text-4xl">Calendrier</b>
             <br />
-            <i class="text-sm" *ngIf="selectedSource">{{ selectedSource.name }}</i>
+            <i class="text-sm">{{ selectedSource ? selectedSource.name : 'Aucun calendrier séléctionné' }}</i>
         </div>
         <div>
-            <p-button label="Ajouter un evenement" styleClass="p-button-sm" (click)="createNewEvent()"></p-button>
+            <p-button label="Ajouter un evenement" styleClass="p-button-sm" (click)="createNewEvent()"
+                [disabled]="!selectedSource"></p-button>
         </div>
     </div>
     <div class="col-12 flex flex-column h-full">
@@ -23,16 +24,16 @@
                 </div>
                 <div class="flex flex-row align-items-center">
                     <button pButton pRipple type="button" label="Ajourd'hui" icon="fa-solid fa-calendar-check"
-                        class="p-button-outlined p-button-secondary p-button-sm"
+                        class="p-button-outlined p-button-secondary p-button-sm mr-1"
                         (click)="moveCalendar('today')"></button>
                     <p-divider layout="vertical"></p-divider>
                     <p-splitButton label="Jour" icon="fa-solid fa-calendar-day" (onClick)="changeViewCalendar('day')"
                         [appendTo]="'body'" [model]="itemsDay"
-                        styleClass="p-button-outlined p-button-secondary p-button-sm">
+                        styleClass="p-button-outlined p-button-secondary p-button-sm" class="mr-1">
                     </p-splitButton>
                     <p-splitButton label="Semaine" icon="fa-solid fa-calendar-week" [appendTo]="'body'"
                         (onClick)="changeViewCalendar('week')" [model]="itemsWeek"
-                        styleClass="p-button-outlined p-button-secondary p-button-sm"></p-splitButton>
+                        styleClass="p-button-outlined p-button-secondary p-button-sm" class="mr-1"></p-splitButton>
                     <button pButton pRipple type="button" label="Mois" icon="fa-solid fa-calendar-days"
                         class="p-button-outlined p-button-secondary p-button-sm"
                         (click)="changeViewCalendar('month')"></button>

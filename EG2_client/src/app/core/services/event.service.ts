@@ -13,18 +13,18 @@ export class EventService {
     private authentificationService: AuthentificationService,
   ) { }
   public find(query: string) {
-    return this.http.get<any>(`${environment.apiUrl}/api/event-sources?${query}`);
+    return this.http.get<any>(`${environment.apiUrl}/api/events?${query}`);
   }
 
   public create(source: any) {
     source.owner = this.authentificationService.connectedUser.id;
-    return this.http.post<any>(`${environment.apiUrl}/api/event-sources`, { data: source });
+    return this.http.post<any>(`${environment.apiUrl}/api/events`, { data: source });
   }
 
   public update(source: any) {
-    return this.http.put<any>(`${environment.apiUrl}/api/event-sources/${source.id}`, { data: source });
+    return this.http.put<any>(`${environment.apiUrl}/api/events/${source.id}`, { data: source });
   }
   public delete(sourceId: string | number) {
-    return this.http.delete<any>(`${environment.apiUrl}/api/event-sources/${sourceId}`);
+    return this.http.delete<any>(`${environment.apiUrl}/api/events/${sourceId}`);
   }
 }

@@ -12,7 +12,7 @@ module.exports = createCoreRouter('api::calendar.event', {
             roles: ["authenticated"],
             middlewares: [
                 (ctx, next) => {
-                    const data = JSON.parse(ctx.request.body.data)
+                    const data = JSON.parse(JSON.stringify(ctx.request.body.data))
                     if (!data.owner || data.owner.toString() !== ctx.state.user.id.toString()) {
                         return ctx.badRequest(`Field owner error`);
                     }

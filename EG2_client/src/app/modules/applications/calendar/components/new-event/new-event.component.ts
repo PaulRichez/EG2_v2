@@ -13,14 +13,14 @@ Quill.register('modules/imageResize', ImageResize);
 })
 export class NewEventComponent implements OnInit {
   public form!: FormGroup;
-  public sourceEvents: any[] = [];
+  public sourceEvent: any;
   public modules = {
     imageResize: true
   }
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.sourceEvents = this.config.data?.sourceEvents;
+    this.sourceEvent = this.config.data?.sourceEvent;
     if (this.config.data.event) {
       this.form = this.formBuilder.group({
         title: [this.config.data.event.title, Validators.required],
@@ -34,12 +34,12 @@ export class NewEventComponent implements OnInit {
     } else {
       const roundedUp = Math.ceil(moment().minute() / 15) * 15;
       this.form = this.formBuilder.group({
-        sourceEvent: ['', [Validators.required]],
+        sourceEvent: [this.sourceEvent, [Validators.required]],
         lieu: ['', [Validators.minLength(3)]],
         description: ['', []],
         title: ['', [Validators.required, Validators.minLength(3)]],
         allDay: [false, [Validators.required]],
-        start: [this.config.data?.start ? new Date(this.config.data.start) :moment().minute(roundedUp).second(0).toDate() , [Validators.required]],
+        start: [this.config.data?.start ? new Date(this.config.data.start) : moment().minute(roundedUp).second(0).toDate(), [Validators.required]],
         end: [this.config.data?.end ? new Date(this.config.data.end) : moment().minute(roundedUp).second(0).add(30, 'minute').toDate(), [Validators.required]],
       });
     }

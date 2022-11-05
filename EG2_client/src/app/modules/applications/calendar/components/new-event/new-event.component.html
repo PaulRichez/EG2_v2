@@ -8,8 +8,6 @@
             class="w-full mb-2" />
         <input pInputText type="text" formControlName="lieu" minlength="3" placeholder="Lieu" class="w-full mb-2" />
         <p-editor formControlName="description" [modules]="modules" #Editor></p-editor>
-        <p-dropdown [options]="sourceEvents" optionLabel="name" optionValue="id" formControlName="sourceEvent"
-            placeholder="Calendrier" styleClass="w-full mb-2" class="mb-2"></p-dropdown>
         <div class="field-checkbox mb-2">
             <p-checkbox formControlName="allDay" [value]="form.get('allDay')?.value" inputId="allDay" [binary]="true">
             </p-checkbox>
