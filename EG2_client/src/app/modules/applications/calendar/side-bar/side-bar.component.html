@@ -17,6 +17,7 @@
                     [routerLinkActive]="'p-menuitem-link-active'">
                     <!--<p-toggleButton [(ngModel)]="source.visible" [onIcon]="'pi pi-eye'" [offIcon]="'pi pi-eye-slash'"
                         [ngStyle]="{'background-color': source.color}" (click)="toggleSource(source)"></p-toggleButton>-->
+                    <div class="w-1rem h-1rem color-checker border-1" [ngStyle]="{'background-color': source.color}"></div>
                     <div class="text-overflow-ellipsis white-space-nowrap overflow-hidden calendarName ml-2">
                         {{ source.name}}
                     </div>
