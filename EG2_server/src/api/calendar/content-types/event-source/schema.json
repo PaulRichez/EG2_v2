@@ -34,14 +34,6 @@
     },
     "type": {
       "type": "string"
-    },
-    "public": {
-      "type": "boolean",
-      "default": false
-    },
-    "visible": {
-      "type": "boolean",
-      "default": true
     }
   }
 }

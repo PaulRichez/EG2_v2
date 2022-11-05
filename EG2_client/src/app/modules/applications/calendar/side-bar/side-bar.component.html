@@ -1,5 +1,13 @@
 <div class="p-menu w-full">
-    <div class="text-xl p-2"><b>Calendriers</b></div>
+    <div class="text-xl p-2 flex flex-row align-items-center justify-content-between">
+        <div>
+            <b>Calendriers</b>
+        </div>
+        <div>
+            <button pButton pRipple type="button" icon="fa-solid fa-plus"
+                class="p-button-secondary p-button-text" (click)="createNewSourceEvents()"></button>
+        </div>
+    </div>
     <div class="p-menu w-full">
         <ul class="p-menu-list">
             <li class="pl-2 w-full" *ngIf="!sourceEvents || sourceEvents.length == 0"> Aucun calendrier</li>

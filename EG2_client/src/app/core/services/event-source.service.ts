@@ -29,7 +29,8 @@ export class EventSourceService {
   }
 
   public create(source: any) {
-    return this.http.post<any>(`${environment.apiUrl}/api/event-sources`, source);
+    source.owner = this.authentificationService.connectedUser.id;
+    return this.http.post<any>(`${environment.apiUrl}/api/event-sources`, { data: source });
   }
 
   public update(source: any) {

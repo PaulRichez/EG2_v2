@@ -46,4 +46,18 @@ export class SideBarComponent implements OnInit, OnDestroy {
       }
     });
   }
+  createNewSourceEvents() {
+    this.ref = this.dialogService.open(NewSourceComponent, {
+      header: 'Créer un nouveau calendrier',
+      baseZIndex: 10000
+    });
+
+    this.ref.onClose.subscribe((source: any) => {
+      if (source) {
+        this.eventSourceService.create(source).subscribe((response) => {
+          console.log(response);
+        });
+      }
+    });
+  }
 }
