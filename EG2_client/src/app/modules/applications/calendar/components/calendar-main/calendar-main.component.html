@@ -23,9 +23,11 @@
                         calendar.getApi().getCurrentData().viewTitle}}</span>
                 </div>
                 <div class="flex flex-row align-items-center">
-                    <button pButton pRipple type="button" label="Ajourd'hui" icon="fa-solid fa-calendar-check"
-                        class="p-button-outlined p-button-secondary p-button-sm mr-1"
-                        (click)="moveCalendar('today')"></button>
+                    <div>
+                        <button pButton pRipple type="button" label="Aujourd'hui" icon="fa-solid fa-calendar-check"
+                            class="p-button-outlined p-button-secondary p-button-sm mr-1"
+                            (click)="moveCalendar('today')"></button>
+                    </div>
                     <p-divider layout="vertical"></p-divider>
                     <p-splitButton label="Jour" icon="fa-solid fa-calendar-day" (onClick)="changeViewCalendar('day')"
                         [appendTo]="'body'" [model]="itemsDay"
@@ -53,9 +55,11 @@
                     </div>
                 </div>
                 <div class="flex justify-content-between align-items-center">
-                    <button pButton pRipple type="button" label="Ajourd'hui" icon="fa-solid fa-calendar-check"
-                        class="p-button-outlined p-button-secondary p-button-sm"
-                        (click)="moveCalendar('today')"></button>
+                    <div>
+                        <button pButton pRipple type="button" label="Aujourd'hui" icon="fa-solid fa-calendar-check"
+                            class="p-button-outlined p-button-secondary p-button-sm"
+                            (click)="moveCalendar('today')"></button>
+                    </div>
                     <p-divider layout="vertical"></p-divider>
                     <p-splitButton label="Mois" icon="fa-solid fa-calendar-days" [appendTo]="'body'"
                         (onClick)="changeViewCalendar('month')" [model]="itemsMobile"
