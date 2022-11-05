@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '', component: CalendarComponent,
     children: [
       { path: '', component: CalendarMainComponent },
+      { path: ':id', component: CalendarMainComponent },
     ]
   }
 ];

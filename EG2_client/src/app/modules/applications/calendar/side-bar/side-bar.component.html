@@ -4,15 +4,17 @@
             <b>Calendriers</b>
         </div>
         <div>
-            <button pButton pRipple type="button" icon="fa-solid fa-plus"
-                class="p-button-secondary p-button-text" (click)="createNewSourceEvents()"></button>
+            <button pButton pRipple type="button" icon="fa-solid fa-plus" class="p-button-secondary p-button-text"
+                (click)="createNewSourceEvents()"></button>
         </div>
     </div>
     <div class="p-menu w-full">
         <ul class="p-menu-list">
             <li class="pl-2 w-full" *ngIf="!eventSources || eventSources.length == 0"> Aucun calendrier</li>
-            <li *ngFor="let source of eventSources" class="px-2  w-full flex flex-row align-items-center justify-content-between">
-                <div class="flex flex-row align-items-center">
+            <li *ngFor="let source of eventSources"
+                class="w-full flex flex-row align-items-center justify-content-between">
+                <div class="p-menuitem-link w-full flex flex-row align-items-center" [routerLink]="source.routerLink"
+                    [routerLinkActive]="'p-menuitem-link-active'">
                     <!--<p-toggleButton [(ngModel)]="source.visible" [onIcon]="'pi pi-eye'" [offIcon]="'pi pi-eye-slash'"
                         [ngStyle]="{'background-color': source.color}" (click)="toggleSource(source)"></p-toggleButton>-->
                     <div class="text-overflow-ellipsis white-space-nowrap overflow-hidden calendarName ml-2">
@@ -20,8 +22,8 @@
                     </div>
                 </div>
                 <div class="flex flex-row">
-                    <button type="button" pButton icon="pi pi-pencil"
-                        class="p-button-secondary p-button-text" (click)="editSource(source)"></button>
+                    <button type="button" pButton icon="pi pi-pencil" class="p-button-secondary p-button-text"
+                        (click)="editSource(source)"></button>
                 </div>
             </li>
         </ul>

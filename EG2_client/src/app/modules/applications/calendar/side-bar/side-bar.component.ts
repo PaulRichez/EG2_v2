@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EventSourceService } from 'src/app/core/services/event-source.service';
+import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 import { NewSourceComponent } from '../components/new-source/new-source.component';
 
 @Component({
@@ -9,14 +11,17 @@ import { NewSourceComponent } from '../components/new-source/new-source.componen
   styleUrls: ['./side-bar.component.scss'],
   providers: [DialogService]
 })
-export class SideBarComponent implements OnInit, OnDestroy {
+export class SideBarComponent extends AppHelperComponent implements OnInit, OnDestroy {
   public loadingData = true;
   private ref!: DynamicDialogRef;
   eventSources: any[] = [];
   constructor(
     public dialogService: DialogService,
     private eventSourceService: EventSourceService,
-  ) { }
+    public override route: ActivatedRoute
+  ) {
+    super(route)
+  }
 
   ngOnDestroy() {
     if (this.ref) {
@@ -31,7 +36,11 @@ export class SideBarComponent implements OnInit, OnDestroy {
     this.loadingData = true;
     this.eventSourceService.find().subscribe({
       next: result => {
+        if (result.data.length > 0) {
+          result.data.forEach(s => this.putRouterLinkOnSource(s))
+        }
         this.eventSources = result.data;
+        console.log(this.eventSources)
         this.loadingData = false;
       },
       error: err => {
@@ -39,6 +48,10 @@ export class SideBarComponent implements OnInit, OnDestroy {
       }
 
     });
+  }
+
+  private putRouterLinkOnSource(source: any) {
+    source.routerLink = ['', { outlets: { [this.appOutlet as string]: ['tab', 'calendar', source.id] } }]
   }
 
 
