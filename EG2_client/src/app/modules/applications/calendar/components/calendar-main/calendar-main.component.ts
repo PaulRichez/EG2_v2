@@ -107,9 +107,6 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
     if (this.refEvents) {
       this.refEvents.unsubscribe();
     }
-    if (this.refDialog) {
-      this.refDialog.unsubscribe();
-    }
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => this.selectSource(params['id']))
@@ -227,4 +224,33 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
     });
   }
 
+  createNewEvent() {
+    this.refDialog = this.dialogService.open(NewEventComponent, {
+      header: 'Ajouter un nouvel evenement',
+      baseZIndex: 9000,
+      data: {
+        start: this.selectedDate?.start,
+        end: this.selectedDate?.end,
+        sourceEvents: []
+      }
+    });
+
+    this.refDialog.onClose.subscribe((event: any) => {
+      if (event) {
+        console.log(event)
+        const eventToSend = {
+          title: event.title,
+          start: event.start,
+          end: event.end,
+          event_source: event.sourceEvent,
+          sharedWith: event.sharedWith || [],
+          description: event.description,
+          allDay: event.allDay
+        }
+        this.eventService.create(eventToSend).subscribe((response) => {
+          console.log(response);
+        });
+      }
+    });
+  }
 }

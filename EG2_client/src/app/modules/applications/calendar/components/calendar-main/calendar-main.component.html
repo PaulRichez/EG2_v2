@@ -1,4 +1,4 @@
-<div class="p-fluid grid" style="height: calc(100vh - 165px);min-height: 200px">
+<div class="p-fluid grid" style="height: calc(100vh - 190px);min-height: 200px">
     <div class="col-12 flex justify-content-between mb-3">
         <div>
             <b class="text-4xl">Calendrier</b>
@@ -6,7 +6,7 @@
             <i class="text-sm" *ngIf="selectedSource">{{ selectedSource.name }}</i>
         </div>
         <div>
-            <p-button label="Ajouter un evenement" styleClass="p-button-sm"></p-button>
+            <p-button label="Ajouter un evenement" styleClass="p-button-sm" (click)="createNewEvent()"></p-button>
         </div>
     </div>
     <div class="col-12 flex flex-column h-full">
