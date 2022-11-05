@@ -26,6 +26,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
   selectedDate: { start: Date, end: Date } | null = null;
   viewTitle = false;
   public selectedSource: any;
+  private refBehavior: any;
   private refSource: any;
   private refEvents: any;
   private refDialog: any;
@@ -56,7 +57,6 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
       this.editEvent(info.event);
     },
     eventResize: (info) => {
-      console.log(info.event)
       this.editEvent(info.event);
     },
     select: (info) => {
@@ -98,6 +98,9 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
   }
   ngOnDestroy(): void {
     this.unref();
+    if (this.refBehavior) {
+      this.refBehavior.unsubscribe();
+    }
   }
   ngAfterViewInit(): void {
     this.subSeen = setTimeout(() => { this.calendarComponent.getApi().updateSize(); this.viewTitle = true }, 550);
@@ -113,6 +116,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => this.selectSource(params['id']))
+    this.refBehavior = this.eventService.observableEvents.subscribe(event => this.updateCalender(event))
   }
   selectSource(idSource: any) {
     this.unref();
@@ -207,9 +211,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
           allDay: event.allDay,
           id: eventToEdit.id
         }
-        this.eventService.update(eventToSend).subscribe((response) => {
-          console.log(response);
-        });
+        this.eventService.update(eventToSend).subscribe();
       }
     });
   }
@@ -225,9 +227,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
       allDay: event.allDay,
       id: event.id
     }
-    this.eventService.update(eventToSend).subscribe((response) => {
-      console.log(response);
-    });
+    this.eventService.update(eventToSend).subscribe();
   }
 
   moveCalendar(state: string) {
@@ -259,9 +259,7 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.eventService.delete(event.id).subscribe((response) => {
-          console.log(response);
-        });
+        this.eventService.delete(event.id).subscribe();
         return;
       },
       reject: (type) => {
@@ -284,7 +282,6 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
 
     this.refDialog.onClose.subscribe((event: any) => {
       if (event) {
-        console.log(event)
         const eventToSend = {
           title: event.title,
           start: event.start,
@@ -294,10 +291,32 @@ export class CalendarMainComponent extends AppHelperComponent implements OnInit,
           description: event.description,
           allDay: event.allDay
         }
-        this.eventService.create(eventToSend).subscribe((response) => {
-          console.log(response);
-        });
+        this.eventService.create(eventToSend).subscribe();
       }
     });
+  }
+
+  private updateCalender(event: any) {
+    // Need improvement // TODO
+    if (!event) return;
+    if (!this.selectedSource) return;
+    const events = this.calendarComponent.getApi().getEvents();
+    const eventSource = this.calendarComponent.getApi().getEventSources()[0];
+    switch (event.type) {
+      case 'delete':
+        events.find(e => e.id.toString() == event.event.toString())?.remove()
+        break;
+      case 'create':
+        if (!event?.event?.data?.event_source) return;
+        if (event.event.data.event_source.id != this.selectedSource.id) return;
+        this.calendarComponent.getApi().addEvent(event.event.data, eventSource)
+        break
+      case 'update':
+        if (!event?.event?.data?.event_source) return;
+        if (event.event.data.event_source.id != this.selectedSource.id) return;
+        events.find(e => e.id.toString() == event.event.data.id.toString())?.remove()
+        this.calendarComponent.getApi().addEvent(event.event.data, eventSource)
+        break
+    }
   }
 }
