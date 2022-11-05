@@ -13,7 +13,7 @@ export class EventSourceService {
     private authentificationService: AuthentificationService,
   ) { }
 
-  public findOne(id: string | number, query: string) {
+  public findOne(id: string | number, query?: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/event-sources/${id}?${query}`);
   }
   public find() {
