@@ -19,14 +19,12 @@ export class NewSourceComponent implements OnInit {
         name: [this.config.data.source.name, [Validators.required, Validators.minLength(3)]],
         type: [this.config.data.source.type, Validators.required],
         color: [this.config.data.source.color, Validators.required],
-        textColor: [this.config.data.source.textColor, Validators.required],
       });
     } else {
       this.form = this.formBuilder.group({
         type: ['easyGroupware', [Validators.required]],
         name: ['', [Validators.required, Validators.minLength(3)]],
         color: ['#000', [Validators.required]],
-        textColor: ['#472847', [Validators.required]],
       });
     }
   }

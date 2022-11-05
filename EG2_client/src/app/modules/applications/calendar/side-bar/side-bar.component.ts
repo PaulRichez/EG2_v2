@@ -10,8 +10,9 @@ import { NewSourceComponent } from '../components/new-source/new-source.componen
   providers: [DialogService]
 })
 export class SideBarComponent implements OnInit, OnDestroy {
+  public loadingData = true;
   private ref!: DynamicDialogRef;
-  sourceEvents: any[] = [];
+  eventSources: any[] = [];
   constructor(
     public dialogService: DialogService,
     private eventSourceService: EventSourceService,
@@ -23,6 +24,21 @@ export class SideBarComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    this.loadingData = true;
+    this.eventSourceService.find().subscribe({
+      next: result => {
+        this.eventSources = result.data;
+        this.loadingData = false;
+      },
+      error: err => {
+        this.loadingData = false;
+      }
+
+    });
   }
 
 
@@ -39,9 +55,9 @@ export class SideBarComponent implements OnInit, OnDestroy {
       if (source) {
         source.id = oldSource.id;
         this.eventSourceService.update(source).subscribe((response) => {
-          this.sourceEvents.find((sourceEvent) => sourceEvent.id === oldSource.id).name = source.name;
-          this.sourceEvents.find((sourceEvent) => sourceEvent.id === oldSource.id).textColor = source.textColor;
-          this.sourceEvents.find((sourceEvent) => sourceEvent.id === oldSource.id).color = source.color;
+          this.eventSources.find((sourceEvent) => sourceEvent.id === oldSource.id).name = source.name;
+          this.eventSources.find((sourceEvent) => sourceEvent.id === oldSource.id).textColor = source.textColor;
+          this.eventSources.find((sourceEvent) => sourceEvent.id === oldSource.id).color = source.color;
         });
       }
     });

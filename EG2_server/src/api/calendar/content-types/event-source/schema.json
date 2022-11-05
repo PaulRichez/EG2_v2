@@ -13,10 +13,8 @@
   },
   "attributes": {
     "color": {
-      "type": "string"
-    },
-    "textColor": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "events": {
       "type": "relation",
@@ -30,10 +28,12 @@
       "target": "plugin::users-permissions.user"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

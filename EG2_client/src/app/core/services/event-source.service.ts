@@ -25,7 +25,7 @@ export class EventSourceService {
     }, {
       encodeValuesOnly: true,
     });
-    return this.http.get<any>(`${environment.apiUrl}/api/event-sources/${query}`);
+    return this.http.get<any>(`${environment.apiUrl}/api/event-sources?${query}`);
   }
 
   public create(source: any) {
@@ -34,6 +34,6 @@ export class EventSourceService {
   }
 
   public update(source: any) {
-    return this.http.put<any>(`${environment.apiUrl}/api/event-sources/${source.id}`, source);
+    return this.http.put<any>(`${environment.apiUrl}/api/event-sources/${source.id}`, { data: source });
   }
 }

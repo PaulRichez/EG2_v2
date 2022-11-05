@@ -10,8 +10,8 @@
     </div>
     <div class="p-menu w-full">
         <ul class="p-menu-list">
-            <li class="pl-2 w-full" *ngIf="!sourceEvents || sourceEvents.length == 0"> Aucun calendrier</li>
-            <li *ngFor="let source of sourceEvents" class="p-menuitem-link w-full">
+            <li class="pl-2 w-full" *ngIf="!eventSources || eventSources.length == 0"> Aucun calendrier</li>
+            <li *ngFor="let source of eventSources" class="px-2  w-full flex flex-row align-items-center justify-content-between">
                 <div class="flex flex-row align-items-center">
                     <!--<p-toggleButton [(ngModel)]="source.visible" [onIcon]="'pi pi-eye'" [offIcon]="'pi pi-eye-slash'"
                         [ngStyle]="{'background-color': source.color}" (click)="toggleSource(source)"></p-toggleButton>-->
@@ -21,7 +21,7 @@
                 </div>
                 <div class="flex flex-row">
                     <button type="button" pButton icon="pi pi-pencil"
-                        class="p-button-rounded p-button-secondary p-button-text" (click)="editSource(source)"></button>
+                        class="p-button-secondary p-button-text" (click)="editSource(source)"></button>
                 </div>
             </li>
         </ul>
