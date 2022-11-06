@@ -60,6 +60,11 @@ const routes: Routes = [{
       canActivate: [IsLoggedGuard]
     },
     {
+      path: 'mail',
+      loadChildren: () => import('../../modules/applications/mail/mail.module').then(m => m.MailModule),
+      canActivate: [IsLoggedGuard]
+    },
+    {
       path: 'calendar',
       loadChildren: () => import('../../modules/applications/calendar/calendar.module').then(m => m.CalendarModule),
       canActivate: [IsLoggedGuard]

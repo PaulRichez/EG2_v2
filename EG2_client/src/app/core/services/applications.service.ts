@@ -42,6 +42,17 @@ export class ApplicationsService {
       }
     },
     {
+      appId: 'mail',
+      label: 'Email',
+      icon: 'fa fa-envelope',
+      route: {
+        path: 'mail',
+      },
+      routeSidebar: {
+        path: 'mail',
+      }
+    },
+    {
       appId: 'drive',
       label: 'Fichiers',
       icon: 'fa fa-folder-closed',
@@ -86,7 +97,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('calendar');
+        this.openNewApplication('mail');
       }
     })
   }

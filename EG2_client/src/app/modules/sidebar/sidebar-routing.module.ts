@@ -10,6 +10,10 @@ const routes: Routes = [{
       loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
     },
     {
+      path: 'mail',
+      loadChildren: () => import('../../modules/applications/mail/side-bar/side-bar.module').then(m => m.SideBarModule),
+    },
+    {
       path: 'calendar',
       loadChildren: () => import('../../modules/applications/calendar/side-bar/side-bar.module').then(m => m.SideBarModule),
     },
