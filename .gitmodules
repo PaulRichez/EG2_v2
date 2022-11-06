@@ -1,0 +1,3 @@
+[submodule "emailengine"]
+	path = emailengine
+	url = git@github.com:PaulRichez/emailengine.git
