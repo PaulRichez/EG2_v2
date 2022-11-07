@@ -14,6 +14,7 @@ import { StatsCardComponent } from './components/stats-card/stats-card.component
 import { WebsiteSettingsComponent } from './pages/website-settings/website-settings.component';
 import { ListingNewComponent } from './pages/listing-new/listing-new.component';
 import { EditNewComponent } from './pages/edit-new/edit-new.component';
+import { ConfigImapComponent } from './components/config-imap/config-imap.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { EditNewComponent } from './pages/edit-new/edit-new.component';
     StatsCardComponent,
     WebsiteSettingsComponent,
     ListingNewComponent,
-    EditNewComponent
+    EditNewComponent,
+    ConfigImapComponent
   ],
   imports: [
     CommonModule,

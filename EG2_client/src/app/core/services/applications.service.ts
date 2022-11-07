@@ -97,7 +97,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('mail');
+        this.openNewApplication('admin');
       }
     })
   }

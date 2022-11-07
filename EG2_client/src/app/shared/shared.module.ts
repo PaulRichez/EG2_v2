@@ -32,6 +32,7 @@ import { AutoFocusModule } from 'primeng/autofocus';
 import { ProgressBarModule } from 'primeng/progressbar';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {CalendarModule} from 'primeng/calendar';
+import {PanelModule} from 'primeng/panel';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -46,6 +47,7 @@ import { PageProfileComponent } from './components/page-profile/page-profile.com
 import { AppHelperComponent } from './extends/app-helper/app-helper.component';
 import { SimpleAvatarComponent } from './components/simple-avatar/simple-avatar.component';
 import { NewFolderComponent } from './components/new-folder/new-folder.component';
+import { EmailConfComponent } from './components/email-conf/email-conf.component';
 const MODULES = [
   ReactiveFormsModule,
   FormsModule,
@@ -80,7 +82,8 @@ const MODULES = [
   AutoFocusModule,
   ProgressBarModule,
   ColorPickerModule,
-  CalendarModule
+  CalendarModule,
+  PanelModule
 ]
 
 @NgModule({
@@ -93,6 +96,7 @@ const MODULES = [
     AppHelperComponent,
     SimpleAvatarComponent,
     NewFolderComponent,
+    EmailConfComponent
   ],
   imports: [
     CommonModule,
@@ -109,7 +113,8 @@ const MODULES = [
     PageProfileComponent,
     AppHelperComponent,
     SimpleAvatarComponent,
-    NewFolderComponent
+    NewFolderComponent,
+    EmailConfComponent
   ]
 })
 export class SharedModule { }
