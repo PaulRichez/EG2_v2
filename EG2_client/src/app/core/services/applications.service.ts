@@ -81,6 +81,9 @@ export class ApplicationsService {
       route: {
         path: 'profile',
       },
+      routeSidebar: {
+        path: 'profile',
+      }
     }
   ]
   public currentApp: MenuItemExtended | null = this.applications[0];
@@ -97,7 +100,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('admin');
+        this.openNewApplication('profile');
       }
     })
   }

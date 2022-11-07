@@ -17,6 +17,10 @@ const routes: Routes = [{
       path: 'calendar',
       loadChildren: () => import('../../modules/applications/calendar/side-bar/side-bar.module').then(m => m.SideBarModule),
     },
+    {
+      path: 'profile',
+      loadChildren: () => import('../../modules/applications/profile/side-bar/side-bar.module').then(m => m.SideBarModule),
+    },
   ]
 }
 ];
