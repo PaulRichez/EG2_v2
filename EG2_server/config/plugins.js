@@ -55,4 +55,8 @@ module.exports = ({ env }) => ({
         enabled: true,
         resolve: './src/plugins/folder'
     },
+    'emailengine': {
+        enabled: true,
+        resolve: './src/plugins/emailengine'
+    },
 });
