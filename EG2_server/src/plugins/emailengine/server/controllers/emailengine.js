@@ -2,6 +2,6 @@
 
 module.exports = {
   async verifyCredentials(ctx, next) {
-    ctx.body = await strapi.service('api::emailengine.accounts').verifyCredentials(ctx);
+    ctx.body = await strapi.service('plugin::emailengine.accounts').verifyCredentials(ctx);
   },
 };
