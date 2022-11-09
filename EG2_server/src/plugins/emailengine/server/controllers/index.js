@@ -3,5 +3,5 @@
 
 
 module.exports = {
-    'emailengine': require('./emailengine')
+    'account': require('./account')
 };

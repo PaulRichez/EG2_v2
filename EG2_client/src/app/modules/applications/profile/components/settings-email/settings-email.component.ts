@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthentificationService } from 'src/app/core/authentification/authentification.service';
+import { EmailAccountService } from 'src/app/core/services/email-account.service';
 import { ImapService } from 'src/app/core/services/imap.service';
 
 @Component({
@@ -13,13 +14,16 @@ export class SettingsEmailComponent implements OnInit {
   public imapForm!: FormGroup;
   public smtpForm!: FormGroup;
   private imapSmtpConfig: any;
+  public emailAccount: any;
   constructor(
     public authentificationService: AuthentificationService,
     private imapService: ImapService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private emailAccountService: EmailAccountService
   ) { }
 
   ngOnInit(): void {
+    this.getAccountinfo();
     this.setForm();
     this.imapService.get().subscribe({
       next: data => {
@@ -31,6 +35,18 @@ export class SettingsEmailComponent implements OnInit {
       }
     })
   }
+
+  private getAccountinfo() {
+    this.emailAccountService.findMe().subscribe({
+      next: data => {
+        this.emailAccount = data;
+      },
+      error: err => {
+        this.emailAccount = err?.error;
+      }
+    });
+  }
+
   private setForm(enabled?: boolean) {
     this.imapForm = this.formBuilder.group({
       host: [this.imapSmtpConfig?.imap?.host || '', [Validators.required]],
@@ -58,11 +74,17 @@ export class SettingsEmailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     if (this.form.invalid) return;
-    const formData = new FormData();
-    formData.append('data', JSON.stringify(this.form.value));
-    this.imapService.update(formData).subscribe();
+    this.emailAccountService.createorupdate(this.form.value).subscribe({
+      next: data => {
+        this.getAccountinfo();
+        // TODO websocket
+        setTimeout(() => this.getAccountinfo(), 5000)
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
   }
 
 }
