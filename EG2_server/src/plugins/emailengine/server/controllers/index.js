@@ -3,5 +3,6 @@
 
 
 module.exports = {
-    'account': require('./account')
+    'account': require('./account'),
+    'mailbox': require('./mailbox')
 };
