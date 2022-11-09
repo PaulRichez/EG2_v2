@@ -6,7 +6,7 @@
             <i class="text-sm">{{ selectedMailbox ? selectedMailbox.name : 'Aucune boite mail séléctionnée' }}</i>
         </div>
         <div>
-            <p-button label="Actualiser" styleClass="p-button-sm" [disabled]="!selectedMailbox"></p-button>
+            <p-button label="Actualiser" styleClass="p-button-sm" [disabled]="!selectedMailbox" (click)="refresh()"></p-button>
         </div>
     </div>
     <div class="col-12 h-full" *ngIf="selectedMailbox">

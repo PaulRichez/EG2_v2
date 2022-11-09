@@ -45,6 +45,9 @@ export class MailboxComponent extends AppHelperComponent implements OnInit, OnDe
       }
     });
   }
+  refresh() {
+    this.fetchMessages({} as any);
+  }
 
   fetchMessages(event: any) {
     if (this.subSearch) {
