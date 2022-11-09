@@ -25,6 +25,7 @@ interface IUserExtended {
 interface IUserSettings {
     theme: string;
     language: string;
+    applicationsPlace: string;
 }
 
 export interface IRole {

@@ -1,7 +1,8 @@
 {
   "collectionName": "components_user_extend_user_settings",
   "info": {
-    "displayName": "user-settings"
+    "displayName": "user-settings",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -21,6 +22,14 @@
         "EN"
       ],
       "default": "FR"
+    },
+    "applicationsPlace": {
+      "type": "enumeration",
+      "enum": [
+        "sidebar",
+        "header"
+      ],
+      "default": "sidebar"
     }
   }
 }
