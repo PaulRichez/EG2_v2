@@ -10,9 +10,34 @@
         </div>
     </div>
     <div class="col-12 h-full" *ngIf="selectedMailbox">
-        <p-table responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="fetchMessages($event)" [paginator]="true"
-            [rows]="25" [rowsPerPageOptions]="[25,50,75]" [loading]="loadingMessages" [scrollable]="true"
+        <p-table responsiveLayout="scroll" [value]="messages" [lazy]="true" (onLazyLoad)="fetchMessages($event)" [paginator]="true"
+            [rows]="25" [rowsPerPageOptions]="[25,50,75]" [rowHover]="true" [loading]="loadingMessages" [scrollable]="true"
             scrollHeight="flex">
+            <ng-template pTemplate="emptymessage">
+                <tr class="emptyRow">
+                    <td *ngIf="!errMessage">
+                        Aucun Mail dans cette boite !
+                    </td>
+                    <td *ngIf="errMessage">
+                        {{ errMessage.state }}
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-email>
+                <tr [pContextMenuRow]="email" class="border-solid border-none border-primary"
+                    [ngClass]="{'unseen' : email.unseen}">
+                    <td class="flex justify-content-between">
+                        <i *ngIf="email.attachments" class="pi pi-paperclip pr-3"></i>
+                        <i *ngIf="email.flagged" class="pi pi-flag-fill pr-3"></i>
+                        <span class="w-12rem text-overflow-ellipsis white-space-nowrap overflow-hidden">
+                            {{email.from?.name ? email.from?.name : email.from?.address}}
+                        </span>
+                        <span
+                            class="flex-grow-1 text-overflow-ellipsis white-space-nowrap overflow-hidden">{{email.subject}}</span>
+                        <span>{{email.date | amCalendar:{sameDay:'LT'} }}</span>
+                    </td>
+                </tr>
+            </ng-template>
         </p-table>
     </div>
 </div>

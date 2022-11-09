@@ -1,4 +1,4 @@
-<p-tree styleClass="white-space-nowrap" [value]="mailboxes" [filter]="true" selectionMode="single"
+<p-tree styleClass="white-space-nowrap" [value]="mailboxes" [filter]="false" selectionMode="single"
     [(selection)]="selectedBox" (onNodeSelect)="nodeSelect($event)">
     <ng-template let-node pTemplate="default">
         <a>{{node.data.name}}</a>
