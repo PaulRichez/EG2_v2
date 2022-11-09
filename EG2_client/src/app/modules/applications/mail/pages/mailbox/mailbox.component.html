@@ -1,0 +1,18 @@
+<div class="p-fluid grid" style="height: calc(100vh - 190px);min-height: 300px">
+    <div class="col-12 flex justify-content-between mb-3">
+        <div>
+            <b class="text-4xl">Boîte Mail</b>
+            <br />
+            <i class="text-sm">{{ selectedMailbox ? selectedMailbox.name : 'Aucune boite mail séléctionnée' }}</i>
+        </div>
+        <div>
+            <p-button label="Actualiser" styleClass="p-button-sm" [disabled]="!selectedMailbox"></p-button>
+        </div>
+    </div>
+    <div class="col-12 h-full" *ngIf="selectedMailbox">
+        <p-table responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="fetchMessages($event)" [paginator]="true"
+            [rows]="25" [rowsPerPageOptions]="[25,50,75]" [loading]="loadingMessages" [scrollable]="true"
+            scrollHeight="flex">
+        </p-table>
+    </div>
+</div>

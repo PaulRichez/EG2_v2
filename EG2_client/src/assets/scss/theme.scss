@@ -1,44 +1,16 @@
-.p-button:focus {
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
-.p-panel-toggler {
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
-.p-menuitem-link:focus {
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
-.p-tabview-nav-btn:focus {
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
-.p-tabview-nav-link:focus {
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
-.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus {
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-}
-
+.p-button:focus,
+.p-panel-toggler:focus,
+.p-tabview-nav-btn:focus,
+.p-tabview-nav-link:focus,
+.p-menuitem-link:focus,
+.p-treenode-selectable,
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus,
 .p-listbox .p-listbox-list .p-listbox-item:focus {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
 }
+
 
 .p-toolbar {
   padding-top: 0 !important;
@@ -95,4 +67,16 @@
 
 .p-inline-message {
   justify-content: start !important;
+}
+
+.p-tree,
+.p-menu {
+  background: var(--surface-f) !important;
+}
+
+.p-treenode {
+  .p-highlight {
+    color: var(--primary-color) !important;
+    background: transparent !important;
+  }
 }

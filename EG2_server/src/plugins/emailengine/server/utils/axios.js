@@ -3,8 +3,9 @@ module.exports = {
         return `http://localhost:3000/v1/${endpoint}`;
     },
     getEmailengineToken: function getEmailengineToken() {
-        return {
+        return {};
+       /* return {
             headers: { Authorization: `Bearer 2828` }
-        };
+        };*/
     }
 }

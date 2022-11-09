@@ -1,1 +1,6 @@
-<p>side-bar works!</p>
+<p-tree styleClass="white-space-nowrap" [value]="mailboxes" [filter]="true" selectionMode="single"
+    [(selection)]="selectedBox" (onNodeSelect)="nodeSelect($event)">
+    <ng-template let-node pTemplate="default">
+        <a>{{node.data.name}}</a>
+    </ng-template>
+</p-tree>
