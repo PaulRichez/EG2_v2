@@ -7,16 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "theme": {
-      "type": "enumeration",
-      "enum": [
-        "light",
-        "dark",
-        "blue"
-      ],
-      "required": false,
-      "default": "light"
-    },
     "avatar": {
       "type": "media",
       "multiple": false,

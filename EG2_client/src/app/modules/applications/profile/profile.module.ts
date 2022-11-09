@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { MySettingsComponent } from './pages/my-settings/my-settings.component';
 import { SettingsEmailComponent } from './components/settings-email/settings-email.component';
+import { SettingsUserComponent } from './components/settings-user/settings-user.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SettingsEmailComponent } from './components/settings-email/settings-ema
     ProfileComponent,
     MyProfileComponent,
     MySettingsComponent,
-    SettingsEmailComponent
+    SettingsEmailComponent,
+    SettingsUserComponent
   ],
   imports: [
     CommonModule,

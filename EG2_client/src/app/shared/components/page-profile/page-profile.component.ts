@@ -56,7 +56,7 @@ export class PageProfileComponent implements OnInit, OnChanges {
       lastName: [{ value: this.user?.userExtended?.lastName, disabled: false }, [Validators.required]],
       country: [{ value: country, disabled: false }],
       city: [{ value: city, disabled: false }],
-      theme: [{ value: this.user?.userExtended?.theme, disabled: false }],
+      theme: [{ value: this.user?.user_settings?.theme, disabled: false }],
     });
     this.formUser = this.formBuilder.group({
       userExtended: this.userExtendedGroup,

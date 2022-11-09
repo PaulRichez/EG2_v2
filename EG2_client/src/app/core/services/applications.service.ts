@@ -100,7 +100,7 @@ export class ApplicationsService {
         this.resetAllRouterOutlets();
       }
       else if (user !== undefined) {
-        this.openNewApplication('admin');
+        this.openNewApplication('profile');
       }
     })
   }

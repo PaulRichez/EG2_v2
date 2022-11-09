@@ -32,7 +32,7 @@ export class UsersService {
     return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`, formData).pipe(map(result => {
       if (result.id === this.authentificationService.connectedUser.id) {
         this.authentificationService.connectedUser = result;
-        this.themesService.current = this.authentificationService.connectedUser.userExtended.theme
+        this.themesService.current = this.authentificationService.connectedUser.user_settings.theme
       }
       return result;
     }));

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_user_extend_user_settings",
+  "info": {
+    "displayName": "user-settings"
+  },
+  "options": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark",
+        "blue"
+      ],
+      "default": "light"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "FR",
+        "EN"
+      ],
+      "default": "FR"
+    }
+  }
+}

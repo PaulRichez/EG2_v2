@@ -13,7 +13,7 @@
         <p-card header="Informations">
             <ng-template pTemplate="body">
                 <div class="p-fluid grid">
-                    <ng-container [formGroup]="userExtendedGroup">
+                    <ng-container [formGroup]="userExtended">
                         <div class="field col-12 md:col-6">
                             <span class="p-float-label">
                                 <input id="firstName" formControlName="firstName" type="text" pInputText class="w-full"
@@ -46,14 +46,14 @@
                                 <label for="city">Ville</label>
                             </span>
                         </div>
-                        <div class="field col-12 md:col-6">
+                        <!--<div class="field col-12 md:col-6">
                             <span class="p-float-label">
                                 <p-dropdown [options]="themesService.themeList" formControlName="theme"
                                     optionLabel="name" optionValue="value">
                                 </p-dropdown>
                                 <label for="theme">Theme</label>
                             </span>
-                        </div>
+                        </div>-->
                     </ng-container>
                 </div>
             </ng-template>

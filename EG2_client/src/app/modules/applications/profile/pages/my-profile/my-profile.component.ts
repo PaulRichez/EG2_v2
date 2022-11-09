@@ -18,7 +18,7 @@ export class MyProfileComponent implements OnInit {
   loadingDataGroup = true;
   groups: IUserGroup[] = [];
   public formUser!: FormGroup;
-  public userExtendedGroup!: FormGroup;
+  public userExtended!: FormGroup;
   public countries: ICountry[] = Country.getAllCountries();
   public cities: ICity[] = [];
   constructor(
@@ -41,15 +41,15 @@ export class MyProfileComponent implements OnInit {
     if (country) {
       delete (country as any).id;
     }
-    this.userExtendedGroup = this.formBuilder.group({
+    this.userExtended = this.formBuilder.group({
       firstName: [{ value: this.authentificationService.connectedUser?.userExtended?.firstName, disabled: false }, [Validators.required]],
       lastName: [{ value: this.authentificationService.connectedUser?.userExtended?.lastName, disabled: false }, [Validators.required]],
       country: [{ value: country, disabled: false }],
       city: [{ value: city, disabled: false }],
-      theme: [{ value: this.authentificationService.connectedUser?.userExtended?.theme, disabled: false }],
+      
     });
     this.formUser = this.formBuilder.group({
-      userExtended: this.userExtendedGroup,
+      userExtended: this.userExtended,
       userGroup: [{ value: this.authentificationService.connectedUser?.user_groups, disabled: false }],
     })
     if (this.authentificationService.connectedUser?.userExtended?.country) {
@@ -65,7 +65,7 @@ export class MyProfileComponent implements OnInit {
       this.cities = [];
     }
     if (!this.cities.length) {
-      this.userExtendedGroup.get('city')?.setValue(null);
+      this.userExtended.get('city')?.setValue(null);
     }
   }
 

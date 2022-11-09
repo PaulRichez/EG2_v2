@@ -12,15 +12,19 @@ export interface IUser {
     updatedAt: Date;
     userExtended: IUserExtended;
     user_groups: IUserGroup[];
+    user_settings: IUserSettings;
 }
 
 interface IUserExtended {
     firstName: string;
     lastName: string;
     avatar: any;
-    theme: string;
     country: ICountry;
     city: ICity;
+}
+interface IUserSettings {
+    theme: string;
+    language: string;
 }
 
 export interface IRole {

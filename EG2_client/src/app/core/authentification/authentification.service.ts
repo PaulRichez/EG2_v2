@@ -39,7 +39,7 @@ export class AuthentificationService {
         map(data => {
           this.connectedUser = data;
           this.observableconnectedUser.next(this.connectedUser);
-          this.themesService.current = this.connectedUser.userExtended.theme;
+          this.themesService.current = this.connectedUser?.user_settings?.theme;
           this.connectionStatus.next(false);
           return data;
         }),

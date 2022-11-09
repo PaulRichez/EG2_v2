@@ -73,6 +73,11 @@
       "relation": "manyToMany",
       "target": "plugin::user-extended.user-group",
       "mappedBy": "users"
+    },
+    "user_settings": {
+      "type": "component",
+      "repeatable": false,
+      "component": "user-extend.user-settings"
     }
   }
 }
