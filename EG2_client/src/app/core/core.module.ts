@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NamedOutletDirective } from './directives/named-outlet.directive';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FilesTransfertComponent } from './components/files-transfert/files-transfert.component';
+import { ApplicationsComponent } from './components/applications/applications.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FilesTransfertComponent } from './components/files-transfert/files-tran
     HeaderComponent,
     NamedOutletDirective,
     SidebarComponent,
-    FilesTransfertComponent
+    FilesTransfertComponent,
+    ApplicationsComponent
   ],
   imports: [
     CommonModule,

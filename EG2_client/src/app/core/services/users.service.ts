@@ -33,6 +33,7 @@ export class UsersService {
       if (result.id === this.authentificationService.connectedUser.id) {
         this.authentificationService.connectedUser = result;
         this.themesService.current = this.authentificationService.connectedUser.user_settings.theme
+        this.authentificationService.observableconnectedUser.next(result);
       }
       return result;
     }));

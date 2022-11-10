@@ -55,6 +55,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.authentificationService.observableconnectedUser.subscribe((user) => {
+      this.redrawTabsWidth();
+    });
     this.sub = this.applicationsService.applicaitonChangeSubject.subscribe((tab) => {
       setTimeout(() => {
         this.activeIndex = tab?.index || 0;

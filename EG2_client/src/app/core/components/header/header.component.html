@@ -23,17 +23,21 @@
         </div>
     </div>
 
-    <div #avatarDiv class="flex flex-row">
-        <button pButton type="button" class="p-button-secondary p-button-text"
+    <div #avatarDiv class="flex flex-row align-items-center">
+        <p-button *ngIf="authentificationService.connectedUser.user_settings.applicationsPlace == 'header'"
+            type="button" styleClass="p-button-secondary p-button-text p-button-sm" (click)="apps.toggle($event)">
+            <i class="fa-solid fa-plus fa-xl"></i>
+        </p-button>
+        <p-button type="button" styleClass="p-button-secondary p-button-text  p-button-sm"
             (click)="ft.toggle($event)">
             <i class="fa-solid fa-arrow-right-arrow-left fa-rotate-90"
                 [ngClass]="{'fa-fade': filesTransfert.isTransfertInProgress()}"></i>
-        </button>
-        <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-secondary p-button-text">
+        </p-button>
+        <p-button type="text" (click)="menu.toggle($event)" styleClass="p-button p-button-secondary p-button-text">
             <span class="mr-1 hidden lg:inline">{{ authentificationService.connectedUser.username}}</span>
             <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
             <i class="ml-1 pi pi-chevron-down"></i>
-        </button>
+        </p-button>
     </div>
 </div>
 
@@ -41,5 +45,10 @@
 <p-overlayPanel #ft [showCloseIcon]="false" [style]="{width: '300px'}">
     <ng-template pTemplate>
         <app-files-transfert></app-files-transfert>
+    </ng-template>
+</p-overlayPanel>
+<p-overlayPanel #apps [showCloseIcon]="false" [style]="{width: '300px'}">
+    <ng-template pTemplate *ngIf="authentificationService.connectedUser.user_settings.applicationsPlace == 'header'">
+        <app-applications (click)="apps.hide()"></app-applications>
     </ng-template>
 </p-overlayPanel>
