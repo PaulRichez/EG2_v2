@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       method: 'POST',
-      path: '/admin/user-group/:id',
+      path: '/admin/user-group',
       handler: 'user-group.create',
       config: {
         policies: [],

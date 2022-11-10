@@ -59,7 +59,7 @@ export class CEditUserComponent implements OnInit {
       username: [{ value: this.user?.username, disabled: this.type == 'edit' }, [Validators.required]],
       email: [{ value: this.user?.email, disabled: this.type == 'edit' }, [Validators.required]],
       userExtended: this.userExtendedGroup,
-      userGroup: [{ value: this.user?.user_groups, disabled: false }],
+      user_groups: [{ value: this.user?.user_groups, disabled: false }],
     })
     if (this.user?.userExtended?.country) {
       this.setCitiesAvailable(this.user.userExtended.country);
@@ -68,7 +68,6 @@ export class CEditUserComponent implements OnInit {
       this.formUser.disable();
     } else {
       setTimeout(() => this.formUser.enable(), 0);
-
     }
   }
 

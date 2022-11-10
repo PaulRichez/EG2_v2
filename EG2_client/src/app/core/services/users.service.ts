@@ -23,9 +23,10 @@ export class UsersService {
   public find(query: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user?${query}`);
   }
-  public findOne(id: string | number) {
+  public findOne(id: string | number, query?:string) {
+    if (!query) query = '';
     id = id.toString();
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/${id}?${query}`);
   }
   public updateMe(formData: FormData) {
     return this.http.put<any>(`${environment.apiUrl}/api/user-extended/me?populate=deep`, formData).pipe(map(result => {
