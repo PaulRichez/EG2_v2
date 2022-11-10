@@ -1,5 +1,5 @@
 <form [formGroup]="userSettings" (ngSubmit)="onSubmit()">
-    <p-card header="Paramètres du site" class="w-full">
+    <p-card class="w-full">
         <ng-template pTemplate="body">
             <div class="p-fluid grid">
                 <div class="field col-12 md:col-4">
@@ -28,7 +28,7 @@
         </ng-template>
         <ng-template pTemplate="header">
             <div class="flex flex-row align-content-between justify-content-between p-4 pb-0">
-                <div class="p-card-title">Configuration email</div>
+                <div class="p-card-title">Paramètres du site</div>
                 <p-button label="Enregistrer" styleClass="p-button-sm" type="submit" [disabled]="userSettings.invalid">
                 </p-button>
             </div>
