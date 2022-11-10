@@ -1,18 +1,18 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUser } from '../../models/user.model';
 import { Country, City } from 'country-state-city';
 import { ICountry, ICity } from 'country-state-city'
 import { UsersService } from 'src/app/core/services/users.service';
 import { ThemesService } from 'src/app/core/services/themes.service';
 import { GroupesService } from 'src/app/core/services/groupes.service';
-import { IUserGroup } from '../../models/user-group.model';
+import { IUser } from 'src/app/shared/models/user.model';
+import { IUserGroup } from 'src/app/shared/models/user-group.model';
 @Component({
-  selector: 'app-page-profile',
-  templateUrl: './page-profile.component.html',
-  styleUrls: ['./page-profile.component.scss']
+  selector: 'app-c-edit-user',
+  templateUrl: './c-edit-user.component.html',
+  styleUrls: ['./c-edit-user.component.scss']
 })
-export class PageProfileComponent implements OnInit, OnChanges {
+export class CEditUserComponent implements OnInit {
   @Input() user!: IUser;
   @Input() loadingData!: boolean;
   @Input() type!: string;
@@ -37,9 +37,7 @@ export class PageProfileComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.setForm()
-    if (this.type !== 'profile') {
-      this.fetchGroups();
-    }
+    this.fetchGroups();
   }
 
   public setForm() {
@@ -56,9 +54,10 @@ export class PageProfileComponent implements OnInit, OnChanges {
       lastName: [{ value: this.user?.userExtended?.lastName, disabled: false }, [Validators.required]],
       country: [{ value: country, disabled: false }],
       city: [{ value: city, disabled: false }],
-      theme: [{ value: this.user?.user_settings?.theme, disabled: false }],
     });
     this.formUser = this.formBuilder.group({
+      username: [{ value: this.user?.username, disabled: this.type == 'edit' }, [Validators.required]],
+      email: [{ value: this.user?.email, disabled: this.type == 'edit' }, [Validators.required]],
       userExtended: this.userExtendedGroup,
       userGroup: [{ value: this.user?.user_groups, disabled: false }],
     })

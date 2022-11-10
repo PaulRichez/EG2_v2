@@ -45,7 +45,6 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { InlineSVGModule } from 'ng-inline-svg-u';
 import { MomentModule } from 'ngx-moment';
 import 'moment/locale/fr';
-import { PageProfileComponent } from './components/page-profile/page-profile.component';
 import { AppHelperComponent } from './extends/app-helper/app-helper.component';
 import { SimpleAvatarComponent } from './components/simple-avatar/simple-avatar.component';
 import { NewFolderComponent } from './components/new-folder/new-folder.component';
@@ -95,7 +94,6 @@ const MODULES = [
     NotFoundComponent,
     FileUploadComponent,
     AvatarComponent,
-    PageProfileComponent,
     AppHelperComponent,
     SimpleAvatarComponent,
     NewFolderComponent,
@@ -113,7 +111,6 @@ const MODULES = [
     MODULES,
     FileUploadComponent,
     AvatarComponent,
-    PageProfileComponent,
     AppHelperComponent,
     SimpleAvatarComponent,
     NewFolderComponent,

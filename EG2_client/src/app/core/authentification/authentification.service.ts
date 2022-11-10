@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/shared/models/user.model';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, Subject, throwError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from '../services/token-storage.service';
 import { ThemesService } from '../services/themes.service';
@@ -13,7 +13,7 @@ import { InstallationService } from '../services/installation.service';
 export class AuthentificationService {
   public connectedUser!: IUser;
   public connectionStatus = new BehaviorSubject<boolean>(false);
-  observableconnectedUser = new BehaviorSubject<IUser | null>(this.connectedUser);
+  observableconnectedUser = new Subject<IUser | null>();
   constructor(
     private http: HttpClient,
     private router: Router,

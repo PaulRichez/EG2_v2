@@ -14,6 +14,7 @@ import { WebsiteSettingsComponent } from './pages/website-settings/website-setti
 import { ListingNewComponent } from './pages/listing-new/listing-new.component';
 import { EditNewComponent } from './pages/edit-new/edit-new.component';
 import { ConfigImapComponent } from './components/config-imap/config-imap.component';
+import { CEditUserComponent } from './components/c-edit-user/c-edit-user.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ConfigImapComponent } from './components/config-imap/config-imap.compon
     WebsiteSettingsComponent,
     ListingNewComponent,
     EditNewComponent,
-    ConfigImapComponent
+    ConfigImapComponent,
+    CEditUserComponent
   ],
   imports: [
     CommonModule,
