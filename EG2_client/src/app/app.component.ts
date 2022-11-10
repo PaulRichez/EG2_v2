@@ -34,8 +34,10 @@ export class AppComponent {
     if (this.tokenStorageService.getToken()) {
       this.authService.loginWithToken().subscribe({
         next: data => {
-          this.defaultConfigService.get().subscribe();
-          this.loading = false;
+          this.defaultConfigService.get().subscribe(() => {
+            this.applicationsService.init();
+            this.loading = false;
+          });
         },
         error: err => {
           this.loading = false;

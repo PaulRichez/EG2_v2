@@ -11,7 +11,7 @@ export class GroupesService {
     private http: HttpClient,
   ) { }
   public count() {
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user-group/count`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/admin/user-group/count`);
   }
   public find(query: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user-group?${query}`);
@@ -22,10 +22,10 @@ export class GroupesService {
   }
   public update(id: string | number, formData: FormData) {
     id = id.toString();
-    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user-group/${id}?populate=deep`, formData);
+    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/admin/user-group/${id}?populate=deep`, formData);
   }
 
   public create(formData: FormData) {
-    return this.http.post<any>(`${environment.apiUrl}/api/user-extended/user-group/?populate=deep`, formData);
+    return this.http.post<any>(`${environment.apiUrl}/api/user-extended/admin/user-group/?populate=deep`, formData);
   }
 }

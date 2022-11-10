@@ -95,14 +95,19 @@ export class ApplicationsService {
   ) {
     this.authentificationService.observableconnectedUser.subscribe((user) => {
       if (!user && user !== undefined) {
-        this.applicationsTab = [];
-        this.currentApp = null;
-        this.resetAllRouterOutlets();
-      }
-      else if (user !== undefined) {
-        this.openNewApplication('profile');
+        this.destroy();
       }
     })
+  }
+
+  init() {
+    this.openNewApplication('admin');
+  }
+
+  destroy() {
+    this.applicationsTab = [];
+    this.currentApp = null;
+    this.resetAllRouterOutlets();
   }
 
   openNewApplication(appId: string, selectIfExists?: boolean) {

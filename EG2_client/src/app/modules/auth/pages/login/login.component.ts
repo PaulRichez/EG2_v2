@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/core/authentification/authentification.service';
+import { ApplicationsService } from 'src/app/core/services/applications.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthentificationService,
     private tokenStorageService: TokenStorageService,
+    private applicationsService: ApplicationsService,
     private router: Router) {
     this.formLogin = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formLogin.get('username')?.value, this.formLogin.get('password')?.value).subscribe({
       next: data => {
         this.tokenStorageService.setToken(data.jwt, this.formLogin.get('remenberMe')?.value);
-        this.authService.loginWithToken().subscribe();
+        this.authService.loginWithToken().subscribe(() => this.applicationsService.init());
       },
       error: err => {
         this.error = err;

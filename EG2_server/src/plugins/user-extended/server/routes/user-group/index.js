@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       method: 'GET',
-      path: '/user-group/count',
+      path: '/admin/user-group/count',
       handler: 'user-group.count',
       config: {
         policies: [],
@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       method: 'POST',
-      path: '/user-group/:id',
+      path: '/admin/user-group/:id',
       handler: 'user-group.create',
       config: {
         policies: [],
@@ -39,7 +39,7 @@ module.exports = {
     },
     {
       method: 'PUT',
-      path: '/user-group/:id',
+      path: '/admin/user-group/:id',
       handler: 'user-group.update',
       config: {
         policies: [],
@@ -48,7 +48,7 @@ module.exports = {
     },
     {
       method: 'DELETE',
-      path: '/user-group',
+      path: '/admin/user-group',
       handler: 'user-group.delete',
       config: {
         policies: [],

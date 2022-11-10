@@ -39,7 +39,7 @@ export class SettingsUserComponent implements OnInit {
     this.userSettings.disable();
     const formData = new FormData();
     formData.append('data', JSON.stringify({ user_settings: this.userSettings.value }));
-    this.usersService.update(this.authentificationService.connectedUser.id, formData).subscribe(
+    this.usersService.updateMe(formData).subscribe(
       {
         next: data => {
           this.loadingSave = false;

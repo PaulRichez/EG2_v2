@@ -23,6 +23,23 @@ module.exports = ({ strapi }) => ({
 
     ctx.body = data;
   },
+  async updateMe(ctx) {
+    const data = JSON.parse(ctx.request.body.data)
+    const newData = _.pick(data, ['userExtended', 'user_settings']);
+    // Update the user and return the sanitized data
+    let newuser = await strapi.entityService.update(
+      'plugin::users-permissions.user',
+      ctx.state.user.id,
+      { data: newData, ...ctx.query },
+      ctx.query
+    );
+
+    if (newuser) {
+      newuser = await sanitizeOutput(newuser, ctx);
+    }
+
+    ctx.body = newuser;
+  },
   async update(ctx) {
     const data = JSON.parse(ctx.request.body.data)
     const newData = _.pick(data, ['userExtended', 'user_settings']);

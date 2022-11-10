@@ -46,7 +46,7 @@ export class MyProfileComponent implements OnInit {
       lastName: [{ value: this.authentificationService.connectedUser?.userExtended?.lastName, disabled: false }, [Validators.required]],
       country: [{ value: country, disabled: false }],
       city: [{ value: city, disabled: false }],
-      
+
     });
     this.formUser = this.formBuilder.group({
       userExtended: this.userExtended,
@@ -80,7 +80,7 @@ export class MyProfileComponent implements OnInit {
     this.formUser.disable();
     const formData = new FormData();
     formData.append('data', JSON.stringify({ userExtended: this.userExtended.value }));
-    this.usersService.update(this.authentificationService.connectedUser.id, formData).subscribe(
+    this.usersService.updateMe(formData).subscribe(
       {
         next: data => {
           this.loadingSave = false;

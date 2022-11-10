@@ -18,7 +18,7 @@ export class UsersService {
   ) { }
 
   public count() {
-    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/count`);
+    return this.http.get<any>(`${environment.apiUrl}/api/user-extended/admin/user/count`);
   }
   public find(query: string) {
     return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user?${query}`);
@@ -27,9 +27,19 @@ export class UsersService {
     id = id.toString();
     return this.http.get<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`);
   }
+  public updateMe(formData: FormData) {
+    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/me?populate=deep`, formData).pipe(map(result => {
+      if (result.id === this.authentificationService.connectedUser.id) {
+        this.authentificationService.connectedUser = result;
+        this.themesService.current = this.authentificationService.connectedUser.user_settings.theme
+        this.authentificationService.observableconnectedUser.next(result);
+      }
+      return result;
+    }));
+  }
   public update(id: string | number, formData: FormData) {
     id = id.toString();
-    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/user/${id}?populate=deep`, formData).pipe(map(result => {
+    return this.http.put<any>(`${environment.apiUrl}/api/user-extended/admin/user/${id}?populate=deep`, formData).pipe(map(result => {
       if (result.id === this.authentificationService.connectedUser.id) {
         this.authentificationService.connectedUser = result;
         this.themesService.current = this.authentificationService.connectedUser.user_settings.theme

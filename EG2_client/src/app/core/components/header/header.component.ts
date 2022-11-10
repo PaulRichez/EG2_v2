@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       label: 'Se déconnecter',
       icon: 'pi pi-sign-out',
-      command: () => { this.authentificationService.logout() }
+      command: () => { this.authentificationService.logout()}
     }
   ];
   private sub!: any;

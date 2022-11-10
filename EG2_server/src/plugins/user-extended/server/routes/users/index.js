@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       method: 'GET',
-      path: '/user/count',
+      path: '/admin/user/count',
       handler: 'user-extended.count',
       config: {
         policies: [],
@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       method: 'PUT',
-      path: '/user/:id',
+      path: '/admin/user/:id',
       handler: 'user-extended.update',
       config: {
         policies: [],
