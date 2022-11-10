@@ -105,7 +105,7 @@ export class ContactListComponent extends AppHelperComponent implements OnInit {
     this.contactService.find(query).subscribe({
       next: result => {
         this.contacts = result.data;
-        this.totalRecords = result.meta.count;
+        this.totalRecords = result.meta.pagination.total;
         this.loadingData = false;
       },
       error: err => {

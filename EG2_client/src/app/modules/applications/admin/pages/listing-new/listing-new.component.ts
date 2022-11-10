@@ -44,7 +44,7 @@ export class ListingNewComponent extends AppHelperComponent implements OnInit {
     this.newsService.find(query).subscribe({
       next: result => {
         this.news = result.data;
-        this.totalRecords = result.meta.count;
+        this.totalRecords = result.meta.pagination.total;
         this.loadingData = false;
       },
       error: err => {

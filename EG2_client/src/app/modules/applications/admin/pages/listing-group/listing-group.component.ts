@@ -44,7 +44,7 @@ export class ListingGroupComponent extends AppHelperComponent implements OnInit 
     this.groupesService.find(query).subscribe({
       next: result => {
         this.groups = result.data;
-        this.totalRecords = result.meta.count;
+        this.totalRecords = result.meta.pagination.total;
         this.loadingData = false;
       },
       error: err => {

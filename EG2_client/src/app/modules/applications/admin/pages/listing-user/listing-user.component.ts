@@ -41,7 +41,7 @@ export class ListingUserComponent extends AppHelperComponent implements OnInit {
     this.usersService.find(query).subscribe({
       next: result => {
         this.users = result.data;
-        this.totalRecords = result.meta.count;
+        this.totalRecords = result.meta.pagination.total;
         this.loadingData = false;
       },
       error: err => {

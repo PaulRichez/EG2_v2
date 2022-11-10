@@ -64,7 +64,7 @@ module.exports = ({ strapi }) => ({
     if (data[0]) {
       data[0] = await Promise.all(data[0].map((user) => sanitizeOutput(user, ctx)));
     }
-    ctx.body = { data: data[0], meta: { count: data[1] } }
+    ctx.body = { data: data[0], meta: { pagination: { total: data[1] } } }
   },
   async findOne(ctx) {
     await strapi.plugin('users-permissions').controller('user').findOne(ctx)
