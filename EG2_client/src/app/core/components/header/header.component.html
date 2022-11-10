@@ -29,7 +29,7 @@
             <i class="fa-solid fa-arrow-right-arrow-left fa-rotate-90"
                 [ngClass]="{'fa-fade': filesTransfert.isTransfertInProgress()}"></i>
         </button>
-        <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-text">
+        <button type="text" pButton (click)="menu.toggle($event)" class="p-button p-button-secondary p-button-text">
             <span class="mr-1 hidden lg:inline">{{ authentificationService.connectedUser.username}}</span>
             <app-avatar [user]="authentificationService.connectedUser" [size]="'large'"></app-avatar>
             <i class="ml-1 pi pi-chevron-down"></i>
