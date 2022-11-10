@@ -183,10 +183,11 @@ export class ApplicationsService {
       return;
     }
     const appIndex = this.applicationsTab.findIndex(a => a.uid == app.uid);
-    let newIndex = appIndex;
-    if (app.uid === this.currentApp?.uid) {
-      if (appIndex == this.applicationsTab.length - 1) {
-        newIndex = appIndex - 1;
+    const currentIndex = this.applicationsTab.findIndex(a => a.uid == this.currentApp?.uid);
+    let newIndex = currentIndex;
+    if (currentIndex == appIndex) {
+      if (currentIndex > 0) {
+        newIndex--;
       }
     }
     let outletNavNull: any = [{ outlets: { [app.route.outlet as string]: null } }]
