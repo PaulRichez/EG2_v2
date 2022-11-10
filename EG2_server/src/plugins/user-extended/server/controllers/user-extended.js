@@ -25,7 +25,7 @@ module.exports = ({ strapi }) => ({
   },
   async update(ctx) {
     const data = JSON.parse(ctx.request.body.data)
-    const newData = _.pick(data, ['userExtended']);
+    const newData = _.pick(data, ['userExtended', 'user_settings']);
     // Update the user and return the sanitized data
     let newuser = await strapi.entityService.update(
       'plugin::users-permissions.user',

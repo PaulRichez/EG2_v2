@@ -79,7 +79,7 @@ export class MyProfileComponent implements OnInit {
     }
     this.formUser.disable();
     const formData = new FormData();
-    formData.append('data', JSON.stringify(this.formUser.value));
+    formData.append('data', JSON.stringify({ userExtended: this.userExtended.value }));
     this.usersService.update(this.authentificationService.connectedUser.id, formData).subscribe(
       {
         next: data => {
