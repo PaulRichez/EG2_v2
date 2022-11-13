@@ -40,7 +40,6 @@ export class SideBarComponent extends AppHelperComponent implements OnInit, OnDe
           result.data.forEach(s => this.putRouterLinkOnSource(s))
         }
         this.eventSources = result.data;
-        console.log(this.eventSources)
         this.loadingData = false;
       },
       error: err => {

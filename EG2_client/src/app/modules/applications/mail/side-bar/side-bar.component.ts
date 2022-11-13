@@ -29,13 +29,21 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
     this.loadingData = true;
     this.emailMailboxesService.find().subscribe({
       next: result => {
+        if (result.mailboxes.length > 0) {
+          result.mailboxes.forEach(m => this.putRouterLinkOnMailbox(m))
+        }
         this.mailboxes = this.createDataTree(result.mailboxes);
+        console.log(this.mailboxes)
         this.loadingData = false;
       },
       error: err => {
         this.loadingData = false;
       }
     })
+  }
+
+  private putRouterLinkOnMailbox(mailbox: any) {
+    mailbox.routerLink = ['', { outlets: { [this.appOutlet as string]: ['tab', 'mail', 'mailbox', mailbox.path] } }]
   }
 
 

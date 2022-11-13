@@ -3,7 +3,8 @@
     <p-tree styleClass="white-space-nowrap" [value]="mailboxes" [filter]="false" selectionMode="single"
         [(selection)]="selectedBox" (onNodeSelect)="nodeSelect($event)">
         <ng-template let-node pTemplate="default">
-            <a>{{node.data.name}}</a>
+            <span [routerLink]="node.data.routerLink"
+                [routerLinkActive]="'p-menuitem-link-active'">{{node.data.name}}</span>
         </ng-template>
     </p-tree>
 </div>
