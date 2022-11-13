@@ -26,7 +26,7 @@
             <ng-template pTemplate="body" let-email>
                 <tr [pContextMenuRow]="email" class="border-solid border-none border-primary"
                     [ngClass]="{'unseen' : email.unseen}">
-                    <td class="flex justify-content-between">
+                    <td class="flex justify-content-between" (click)="showEmail(email)">
                         <i *ngIf="email.attachments" class="pi pi-paperclip pr-3"></i>
                         <i *ngIf="email.flagged" class="pi pi-flag-fill pr-3"></i>
                         <span class="w-12rem text-overflow-ellipsis white-space-nowrap overflow-hidden">

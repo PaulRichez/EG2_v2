@@ -101,7 +101,7 @@ export class ApplicationsService {
   }
 
   init() {
-    this.openNewApplication('admin');
+    this.openNewApplication('mail');
   }
 
   destroy() {

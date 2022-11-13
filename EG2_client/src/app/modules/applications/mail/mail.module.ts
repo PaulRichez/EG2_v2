@@ -5,12 +5,14 @@ import { MailRoutingModule } from './mail-routing.module';
 import { MailComponent } from './mail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MailboxComponent } from './pages/mailbox/mailbox.component';
+import { MailShowComponent } from './pages/mail-show/mail-show.component';
 
 
 @NgModule({
   declarations: [
     MailComponent,
-    MailboxComponent
+    MailboxComponent,
+    MailShowComponent
   ],
   imports: [
     CommonModule,
