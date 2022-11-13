@@ -33,7 +33,6 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
           result.mailboxes.forEach(m => this.putRouterLinkOnMailbox(m))
         }
         this.mailboxes = this.createDataTree(result.mailboxes);
-        console.log(this.mailboxes)
         this.loadingData = false;
       },
       error: err => {
