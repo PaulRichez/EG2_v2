@@ -15,6 +15,7 @@ export class MailboxComponent extends AppHelperComponent implements OnInit, OnDe
   public errMessage: any;
   public messages: any[] = [];
   private subSearch: any;
+  private submailbox: any;
   constructor(
     private emailMailboxesService: EmailMailboxesService,
     private emailMessagesService: EmailMessagesService,
@@ -27,16 +28,25 @@ export class MailboxComponent extends AppHelperComponent implements OnInit, OnDe
     if (this.subSearch) {
       this.subSearch.unsubscribe();
     }
+    if (this.submailbox) {
+      this.submailbox.unsubscribe();
+    }
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => this.changedMailbox(params['path']))
   }
 
   changedMailbox(path: string) {
+    if (this.subSearch) {
+      this.subSearch.unsubscribe();
+    }
+    if (this.submailbox) {
+      this.submailbox.unsubscribe();
+    }
     this.loadingMessages = true;
     this.errMessage = null;
     this.messages = [];
-    this.emailMailboxesService.find().subscribe({
+    this.submailbox = this.emailMailboxesService.find().subscribe({
       next: result => {
         const prevMailbox = this.selectedMailbox;
         this.selectedMailbox = result.mailboxes.find(m => m.path == path)
@@ -66,7 +76,7 @@ export class MailboxComponent extends AppHelperComponent implements OnInit, OnDe
       path: this.selectedMailbox.path,
     });
     let search = {};
-    this.emailMessagesService.search({ search }, query).subscribe({
+    this.subSearch = this.emailMessagesService.search({ search }, query).subscribe({
       next: data => {
         this.loadingMessages = false
         this.messages = data.messages
