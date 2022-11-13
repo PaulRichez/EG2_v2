@@ -33,6 +33,9 @@ export class MailboxComponent extends AppHelperComponent implements OnInit, OnDe
   }
 
   changedMailbox(path: string) {
+    this.loadingMessages = true;
+    this.errMessage = null;
+    this.messages = [];
     this.emailMailboxesService.find().subscribe({
       next: result => {
         const prevMailbox = this.selectedMailbox;
