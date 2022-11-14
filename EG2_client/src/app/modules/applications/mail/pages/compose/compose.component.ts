@@ -5,6 +5,10 @@ import { AuthentificationService } from 'src/app/core/authentification/authentif
 import { EmailMessagesService } from 'src/app/core/services/email-message.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 import * as qs from 'qs'
+import * as QuillNamespace from 'quill';
+let Quill: any = QuillNamespace;
+import ImageResize from 'quill-image-resize-module';
+Quill.register('modules/imageResize', ImageResize);
 @Component({
   selector: 'app-compose',
   templateUrl: './compose.component.html',
