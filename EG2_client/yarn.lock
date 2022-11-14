@@ -156,7 +156,7 @@
     "uuid" "8.3.2"
     "yargs" "17.5.1"
 
-"@angular/common@^14", "@angular/common@^14.0.0", "@angular/common@^14.0.2", "@angular/common@^14.2.0", "@angular/common@14.2.5", "@angular/common@9 - 13":
+"@angular/common@^13.0.0", "@angular/common@^14", "@angular/common@^14.0.0", "@angular/common@^14.0.2", "@angular/common@^14.2.0", "@angular/common@14.2.5", "@angular/common@9 - 13":
   "integrity" "sha512-v2fIK6imfMkUvYNjZQO+drE39QO3eSS95Yy7UN+6inb47DkAfzx6hipA9zKrMENjsS3kDv1d7cgDHE7WuOCzIw=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-14.2.5.tgz"
   "version" "14.2.5"
@@ -186,7 +186,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^14", "@angular/core@^14.0.0", "@angular/core@^14.0.2", "@angular/core@^14.2.0", "@angular/core@14.2.5", "@angular/core@9 - 13":
+"@angular/core@^13.0.0", "@angular/core@^14", "@angular/core@^14.0.0", "@angular/core@^14.0.2", "@angular/core@^14.2.0", "@angular/core@14.2.5", "@angular/core@9 - 13":
   "integrity" "sha512-Ok78Abq0puMGlolvNVzKFvsX7ePDkyxpZzztDzXDdRA4x4o6bAuuDG9Y7Wab2+wsdY6NktO+dFQjq1UBWClgSg=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-14.2.5.tgz"
   "version" "14.2.5"
@@ -207,7 +207,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/platform-browser@^14.2.0", "@angular/platform-browser@14.2.5":
+"@angular/platform-browser@^13.0.0", "@angular/platform-browser@^14.2.0", "@angular/platform-browser@14.2.5":
   "integrity" "sha512-FDZm23N9veSEouQX1YuZUjv7Nillroi+v0VbN1x5iPpFZEudaoZYT3A7bpJwdlxUx/4rGS0caaXNhN3CowtIeQ=="
   "resolved" "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-14.2.5.tgz"
   "version" "14.2.5"
@@ -5562,6 +5562,13 @@
   "integrity" "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g=="
   "resolved" "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz"
   "version" "5.1.2"
+
+"safe-pipe@^2.0.4":
+  "integrity" "sha512-IjKZEmfgCYo3uitas3PDxai0vK8A/dC8ULhWSLJF8k1RYmo05ywxTbueuUfYQ3nHx4xNVcOi8vuWEbB70xbpig=="
+  "resolved" "https://registry.npmjs.org/safe-pipe/-/safe-pipe-2.0.4.tgz"
+  "version" "2.0.4"
+  dependencies:
+    "tslib" "^2.0.0"
 
 "safer-buffer@>= 2.1.2 < 3", "safer-buffer@>= 2.1.2 < 3.0.0":
   "integrity" "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="

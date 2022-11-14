@@ -13,7 +13,7 @@ module.exports = {
         },
         {
             method: 'GET',
-            path: 'message/:id',
+            path: '/message/:id',
             handler: 'message.get',
             config: {
                 roles: ['authenticated']

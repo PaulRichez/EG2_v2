@@ -85,10 +85,15 @@
   background-color: var(--surface-e);
 }
 
-.p-tabview-nav-btn{
+.p-tabview-nav-btn {
   color: var(--text-color-secondary) !important
 }
 
 .p-treenode-content {
   padding: 0 !important;
+}
+
+.p-megamenu {
+  background-color: transparent !important;
+  border: 0 !important;
 }

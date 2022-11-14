@@ -34,8 +34,10 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { CalendarModule } from 'primeng/calendar';
 import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 
+import { SafePipeModule } from 'safe-pipe';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
@@ -85,7 +87,9 @@ const MODULES = [
   ColorPickerModule,
   CalendarModule,
   PanelModule,
-  TagModule
+  TagModule,
+  MegaMenuModule,
+  SafePipeModule
 ]
 
 @NgModule({
