@@ -101,7 +101,9 @@ export class ApplicationsService {
   }
 
   init() {
-    this.openNewApplication('mail');
+    this.resetAllRouterOutlets();
+    setTimeout(() => this.openNewApplication('mail'), 100)
+    
   }
 
   destroy() {
