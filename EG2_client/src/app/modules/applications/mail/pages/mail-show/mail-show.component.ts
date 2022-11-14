@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmailMessagesService } from 'src/app/core/services/email-message.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 import * as qs from 'qs'
@@ -17,6 +17,7 @@ export class MailShowComponent extends AppHelperComponent implements OnInit, OnD
   public error = null;
   constructor(
     private emailMessagesService: EmailMessagesService,
+    private router: Router,
     public override route: ActivatedRoute,
   ) {
     super(route)
@@ -70,6 +71,11 @@ export class MailShowComponent extends AppHelperComponent implements OnInit, OnD
         console.log(err);
       }
     });
+  }
+
+  public goBack() {
+    const path = this.route.snapshot.params['path'];
+    this.router.navigate([{ outlets: { [this.outlet as string]: ['tab', 'mail', 'mailbox', path] } }])
   }
 
 }

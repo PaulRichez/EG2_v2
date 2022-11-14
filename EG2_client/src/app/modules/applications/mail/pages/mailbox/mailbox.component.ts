@@ -96,4 +96,7 @@ export class MailboxComponent extends AppHelperComponent implements OnInit, OnDe
     this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'mail', 'mailbox', this.selectedMailbox.path, email.id] } }])
   }
 
+  newMail() {
+    this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'mail', 'compose'] } }])
+  }
 }

@@ -24,5 +24,41 @@ export class EmailMessagesService {
   public downloadAttachment(id: string) {
     return this.http.get(`${environment.apiUrl}/api/emailengine/attachment/${id}`, { responseType: 'blob' })
   }
+  // no API
+  public updateMail(mail: any, action: string) {
+    let payload: any = null;
+    if (action === 'seen') {
+      if (mail.unseen) {
+        payload = {
+          flags: {
+            add: ["\\Seen"]
+          },
+        };
+      } else {
+        payload = {
+          flags: {
+            delete: ["\\Seen"]
+          },
+        };
+      }
+    }
+    if (action === 'flag') {
+      if (!mail.flagged) {
+        payload = {
+          flags: {
+            add: ["\\Flagged"]
+          },
+        };
+      } else {
+        payload = {
+          flags: {
+            delete: ["\\Flagged"]
+          },
+        };
+      }
+    }
+    return this.update(mail.id, payload);
+  }
+
 
 }

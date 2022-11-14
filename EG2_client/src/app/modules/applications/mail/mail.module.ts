@@ -9,6 +9,7 @@ import { MailShowComponent } from './pages/mail-show/mail-show.component';
 import { MessageAttachmentsComponent } from './component/message-attachments/message-attachments.component';
 import { MessageHeaderComponent } from './component/message-header/message-header.component';
 import { MessageContentComponent } from './component/message-content/message-content.component';
+import { ComposeComponent } from './pages/compose/compose.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MessageContentComponent } from './component/message-content/message-con
     MailShowComponent,
     MessageAttachmentsComponent,
     MessageHeaderComponent,
-    MessageContentComponent
+    MessageContentComponent,
+    ComposeComponent
   ],
   imports: [
     CommonModule,

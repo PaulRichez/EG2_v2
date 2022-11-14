@@ -5,14 +5,17 @@
             <br />
             <i class="text-sm">{{ selectedMailbox ? selectedMailbox.name : 'Aucune boite mail séléctionnée' }}</i>
         </div>
-        <div>
-            <p-button label="Actualiser" styleClass="p-button-sm" [disabled]="!selectedMailbox" (click)="refresh()"></p-button>
+        <div class="flex flex-row gap-2">
+            <p-button icon="fa fa-arrows-rotate" styleClass="p-button-sm" [disabled]="!selectedMailbox"
+                (click)="refresh()"></p-button>
+            <p-button label="Nouvel email" styleClass="p-button-sm" [disabled]="!selectedMailbox" (click)="newMail()">
+            </p-button>
         </div>
     </div>
     <div class="col-12 h-full" *ngIf="selectedMailbox">
-        <p-table responsiveLayout="scroll" [value]="messages" [lazy]="true" (onLazyLoad)="fetchMessages($event)" [paginator]="true"
-            [rows]="25" [rowsPerPageOptions]="[25,50,75]" [rowHover]="true" [loading]="loadingMessages" [scrollable]="true"
-            scrollHeight="flex">
+        <p-table responsiveLayout="scroll" [value]="messages" [lazy]="true" (onLazyLoad)="fetchMessages($event)"
+            [paginator]="true" [rows]="25" [rowsPerPageOptions]="[25,50,75]" [rowHover]="true"
+            [loading]="loadingMessages" [scrollable]="true" scrollHeight="flex">
             <ng-template pTemplate="emptymessage">
                 <tr class="emptyRow">
                     <td *ngIf="!errMessage">

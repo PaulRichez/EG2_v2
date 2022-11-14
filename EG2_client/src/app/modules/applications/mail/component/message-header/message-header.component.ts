@@ -51,21 +51,21 @@ export class MessageHeaderComponent extends AppHelperComponent implements OnInit
         label: 'Répondre',
         icon: 'fa-solid fa-reply',
         command: () => {
-          //   this.router.navigate(['email/account/' + this.currentAccount?.id + '/compose/' + mail.id], { queryParams: { action: 'reply' } });
+          this.router.navigate([{ outlets: { [this.outlet as string]: ['tab', 'mail', 'compose', this.mail.id, 'reply'] } }])
         }
       },
       {
         label: 'Répondre à tous',
         icon: 'fa-solid fa-reply-all',
         command: () => {
-          // this.router.navigate(['email/account/' + this.currentAccount?.id + '/compose/' + mail.id], { queryParams: { action: 'reply-all' } });
+          this.router.navigate([{ outlets: { [this.outlet as string]: ['tab', 'mail', 'compose', this.mail.id, 'reply-all'] } }])
         }
       },
       {
         label: 'Transférer',
         icon: 'fa-solid fa-arrow-right',
         command: () => {
-          //  this.router.navigate(['email/account/' + this.currentAccount?.id + '/compose/' + mail.id], { queryParams: { action: 'forward' } });
+          this.router.navigate([{ outlets: { [this.outlet as string]: ['tab', 'mail', 'compose', this.mail.id, 'forward'] } }])
         }
       },
       {
