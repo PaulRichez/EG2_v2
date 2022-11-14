@@ -54,7 +54,9 @@ export class MailShowComponent extends AppHelperComponent implements OnInit, OnD
     this.subMessage = this.emailMessagesService.get(id, query).subscribe({
       next: value => {
         this.mail = value;
-        this.subSeen = setTimeout(() => { this.markAsRead() }, 5000)
+        if (this.mail.unseen) {
+          this.subSeen = setTimeout(() => { this.markAsRead() }, 3000)
+        }
         this.loading = false;
       },
       error: err => {

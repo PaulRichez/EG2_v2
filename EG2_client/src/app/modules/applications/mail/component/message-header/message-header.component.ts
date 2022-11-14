@@ -73,12 +73,28 @@ export class MessageHeaderComponent extends AppHelperComponent implements OnInit
       {
         label: !this.mail.flagged ? 'Ajouter un indicateur' : 'Retirer l\'indicateur',
         icon: !this.mail.flagged ? 'fa-solid fa-flag' : 'fa-regular fa-flag',
-        command: () => this.emailMessagesService.updateMail(this.mail, 'flag').subscribe()
+        command: () => this.emailMessagesService.updateMail(this.mail, 'flag').subscribe(() => {
+          if (this.mail.flagged) {
+            this.mail.flagged = false
+            this.getItemsExtend();
+          } else {
+            this.mail.flagged = true;
+            this.getItemsExtend();
+          }
+        })  
       },
       {
         label: this.mail.unseen ? 'Marquer comme lu' : 'Marquer comme non lu',
         icon: this.mail.unseen ? 'fa-regular fa-envelope' : 'fa-regular fa-envelope-open',
-        command: () => this.emailMessagesService.updateMail(this.mail, 'seen').subscribe()
+        command: () => this.emailMessagesService.updateMail(this.mail, 'seen').subscribe(() => {
+          if (this.mail.unseen) {
+            delete this.mail.unseen
+            this.getItemsExtend();
+          } else {
+            this.mail.unseen = true;
+            this.getItemsExtend();
+          }
+        })
       },
       {
         label: 'Enregistrer sous',
