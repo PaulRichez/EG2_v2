@@ -10,6 +10,7 @@ import { MessageAttachmentsComponent } from './component/message-attachments/mes
 import { MessageHeaderComponent } from './component/message-header/message-header.component';
 import { MessageContentComponent } from './component/message-content/message-content.component';
 import { ComposeComponent } from './pages/compose/compose.component';
+import { ComposeAttachmentsComponent } from './component/compose-attachments/compose-attachments.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ComposeComponent } from './pages/compose/compose.component';
     MessageAttachmentsComponent,
     MessageHeaderComponent,
     MessageContentComponent,
-    ComposeComponent
+    ComposeComponent,
+    ComposeAttachmentsComponent
   ],
   imports: [
     CommonModule,

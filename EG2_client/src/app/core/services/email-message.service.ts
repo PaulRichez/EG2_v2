@@ -24,6 +24,11 @@ export class EmailMessagesService {
   public downloadAttachment(id: string) {
     return this.http.get(`${environment.apiUrl}/api/emailengine/attachment/${id}`, { responseType: 'blob' })
   }
+
+  public submit(data: any) {
+    return this.http.post(`${environment.apiUrl}/api/emailengine/submit`, { data })
+  }
+
   // no API
   public updateMail(mail: any, action: string) {
     let payload: any = null;
