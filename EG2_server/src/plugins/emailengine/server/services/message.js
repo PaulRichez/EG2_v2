@@ -39,7 +39,7 @@ module.exports = ({ strapi }) => ({
             return err?.response?.data
         }
     },
-    async updateMessage(idUser, idMessage, ctxBody) {
+    async update(idUser, idMessage, ctxBody) {
         try {
             const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}`);
             const config = await getEmailengineToken();

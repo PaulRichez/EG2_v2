@@ -3,7 +3,6 @@ import { ActivatedRoute, NavigationExtras, Route, Router, Routes } from '@angula
 import { MenuItem } from 'primeng/api';
 import { AuthentificationService } from '../authentification/authentification.service';
 import { uid } from 'uid';
-import { IsLoggedGuard } from '../guard/login/is-logged.guard';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -102,8 +101,7 @@ export class ApplicationsService {
 
   init() {
     this.resetAllRouterOutlets();
-    setTimeout(() => this.openNewApplication('dashboard'), 200)
-
+    setTimeout(() => this.openNewApplication('mail'), 200)
   }
 
   destroy() {

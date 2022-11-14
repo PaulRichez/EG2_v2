@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { EmailMessagesService } from 'src/app/core/services/email-message.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 
 @Component({
@@ -21,6 +22,7 @@ export class MessageHeaderComponent extends AppHelperComponent implements OnInit
   menuExtend: MenuItem[] = [];
   constructor(
     private router: Router,
+    private emailMessagesService: EmailMessagesService,
     public override route: ActivatedRoute,
   ) {
     super(route)
@@ -71,12 +73,12 @@ export class MessageHeaderComponent extends AppHelperComponent implements OnInit
       {
         label: !this.mail.flagged ? 'Ajouter un indicateur' : 'Retirer l\'indicateur',
         icon: !this.mail.flagged ? 'fa-solid fa-flag' : 'fa-regular fa-flag',
-        // command: () => this.updateMail(mail, 'flag')
+        command: () => this.emailMessagesService.updateMail(this.mail, 'flag').subscribe()
       },
       {
         label: this.mail.unseen ? 'Marquer comme lu' : 'Marquer comme non lu',
         icon: this.mail.unseen ? 'fa-regular fa-envelope' : 'fa-regular fa-envelope-open',
-        // command: () => this.updateMail(mail, 'seen')
+        command: () => this.emailMessagesService.updateMail(this.mail, 'seen').subscribe()
       },
       {
         label: 'Enregistrer sous',
