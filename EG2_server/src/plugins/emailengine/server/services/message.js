@@ -60,4 +60,14 @@ module.exports = ({ strapi }) => ({
             return err?.response?.data
         }
     },
+    async submit(idUser, ctxBody) {
+        try {
+            const url = getEmailengineUrl(`account/${idUser}/submit`);
+            const config = await getEmailengineToken();
+            const response = await axios.post(url, ctxBody.data, config);
+            return response.data;
+        } catch (err) {
+            return err?.response?.data
+        }
+    },
 });

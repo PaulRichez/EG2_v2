@@ -34,6 +34,14 @@ module.exports = {
             config: {
                 roles: ['authenticated']
             }
+        },
+        {
+            method: 'POST',
+            path: '/submit',
+            handler: 'message.submit',
+            config: {
+                roles: ['authenticated'],
+            }
         }
     ]
 }

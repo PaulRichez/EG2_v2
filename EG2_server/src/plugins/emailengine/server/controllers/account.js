@@ -3,7 +3,7 @@
 module.exports = {
     async findMe(ctx, next) {
         const result = await strapi.service('plugin::emailengine.accounts').findOne(ctx.state.user.id);
-        ctx.status = result.status || result.statusCode || 200;
+        ctx.status = result?.status || result?.statusCode || 200;
         ctx.body = result
     },
     async createOrUpdate(ctx, next) {
@@ -16,12 +16,12 @@ module.exports = {
         if (accountExist.statusCode == 404) {
             //create account
             const result = await strapi.service('plugin::emailengine.accounts').create(ctx.state.user.id, connectedUser.email, password);
-            ctx.status = result.status || result.statusCode || 200;
+            ctx.status = result?.status || result?.statusCode || 200;
             ctx.body = result
         } else {
             //update account
             const result = await strapi.service('plugin::emailengine.accounts').update(ctx.state.user.id, connectedUser.email, password);
-            ctx.status = result.status || result.statusCode || 200;
+            ctx.status = result?.status || result?.statusCode || 200;
             ctx.body = result
         }
     }
