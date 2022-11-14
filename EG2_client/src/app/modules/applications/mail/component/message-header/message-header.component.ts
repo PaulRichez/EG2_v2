@@ -83,7 +83,7 @@ export class MessageHeaderComponent extends AppHelperComponent implements OnInit
       {
         label: 'Enregistrer sous',
         icon: 'fa-solid fa-save',
-        //command: () => { this.saveasMail(mail) }
+        command: () => { this.emailMessagesService.saveAsMail(this.mail) }
       },
       {
         label: 'Imprimer',

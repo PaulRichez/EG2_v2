@@ -66,11 +66,7 @@ export class MailShowComponent extends AppHelperComponent implements OnInit, OnD
   }
   public markAsRead() {
     if (!this.mail.unseen) return;
-    this.emailMessagesService.update(this.mail.id, { flags: { add: ["\\Seen"] } }).subscribe({
-      error: err => {
-        console.log(err);
-      }
-    });
+    this.emailMessagesService.updateMail(this.mail, 'seen').subscribe()
   }
 
   public goBack() {

@@ -20,6 +20,14 @@ module.exports = {
             }
         },
         {
+            method: 'GET',
+            path: '/message/:id/source',
+            handler: 'message.getMessageSource',
+            config: {
+                roles: ['authenticated']
+            }
+        },
+        {
             method: 'PUT',
             path: '/message/:id',
             handler: 'message.update',

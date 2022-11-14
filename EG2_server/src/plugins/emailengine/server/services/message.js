@@ -70,4 +70,15 @@ module.exports = ({ strapi }) => ({
             return err?.response?.data
         }
     },
+    async getMessageSource(idUser, idMessage) {
+        try {
+            const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}/source`);
+            const config = await getEmailengineToken();
+            config.responseType = 'stream';
+            const response = await axios.get(url, config);
+            return response.data;
+        } catch (err) {
+            return err?.response?.data
+        }
+    },
 });

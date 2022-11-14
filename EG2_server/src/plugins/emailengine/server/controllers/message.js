@@ -26,5 +26,10 @@ module.exports = {
         const result = await strapi.service('plugin::emailengine.message').submit(ctx.state.user.id, ctx.request.body);
         ctx.status = result?.status || result?.statusCode || 200;
         ctx.body = result
+    },
+    async getMessageSource(ctx, next) {
+        const result = await strapi.service('plugin::emailengine.message').getMessageSource(ctx.state.user.id, ctx.request.params.id);
+        ctx.status = result?.status || result?.statusCode || 200;
+        ctx.body = result
     }
 };
