@@ -28,7 +28,7 @@ module.exports = ({ strapi }) => ({
         const IMAPSMTP = await getFormatedIMAPSMTP(strapi);
         try {
             const url = getEmailengineUrl('account');
-            const config = getEmailengineToken();
+            const config = await getEmailengineToken();
             const payload = {
                 account: idUser.toString(),
                 name: emailUser,
@@ -46,7 +46,7 @@ module.exports = ({ strapi }) => ({
         const IMAPSMTP = await getFormatedIMAPSMTP(strapi);
         try {
             const url = getEmailengineUrl(`account/${idUser}`);
-            const config = getEmailengineToken();
+            const config = await getEmailengineToken();
             const payload = {
                 name: emailUser,
                 email: emailUser,
@@ -62,7 +62,7 @@ module.exports = ({ strapi }) => ({
     async findOne(idAccount) {
         try {
             const url = getEmailengineUrl(`account/${idAccount}`);
-            const config = getEmailengineToken();
+            const config = await getEmailengineToken();
             const response = await axios.get(url, config);
             return response.data;
         } catch (err) {
