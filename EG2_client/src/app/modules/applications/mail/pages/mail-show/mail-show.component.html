@@ -1,5 +1,9 @@
 <div *ngIf="!loading">
     <app-message-header [mail]="mail"></app-message-header>
     <app-message-attachments *ngIf="mail.attachments" [attachments]="mail.attachments"></app-message-attachments>
-    <app-message-content [mail]="mail"></app-message-content>
+    <p-card>
+        <ng-template pTemplate="body">
+            <app-message-content [mail]="mail"></app-message-content>
+        </ng-template>
+    </p-card>
 </div>
