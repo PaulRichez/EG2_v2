@@ -22,7 +22,7 @@ export class EmailMessagesService {
   }
 
   public downloadAttachment(id: string) {
-    return this.http.get(`${environment.apiUrl}/api/email-engine/attachment/${id}`, { responseType: 'blob' })
+    return this.http.get(`${environment.apiUrl}/api/emailengine/attachment/${id}`, { responseType: 'blob' })
   }
 
 }

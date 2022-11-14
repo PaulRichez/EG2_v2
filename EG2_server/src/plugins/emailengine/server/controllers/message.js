@@ -10,5 +10,15 @@ module.exports = {
         const result = await strapi.service('plugin::emailengine.message').get(ctx.state.user.id, ctx.request.params.id, ctx.request.query);
         ctx.status = result.status || result.statusCode || 200;
         ctx.body = result
+    },
+    async update(ctx, next) {
+        const result = await strapi.service('plugin::emailengine.message').update(ctx.state.user.id, ctx.request.params.id, ctx.request.body);
+        ctx.status = result.status || result.statusCode || 200;
+        ctx.body = result
+    },
+    async downloadAttachment(ctx, next) {
+        const result = await strapi.service('plugin::emailengine.message').downloadAttachment(ctx.state.user.id, ctx.request.params.id);
+        ctx.status = result.status || result.statusCode || 200;
+        ctx.body = result
     }
 };

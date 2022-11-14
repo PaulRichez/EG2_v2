@@ -36,7 +36,26 @@ module.exports = ({ strapi }) => ({
             const response = await axios.get(url, config);
             return response.data;
         } catch (err) {
-            ctx.status = err.response?.data?.statusCode || err.response?.status || 500;
+            return err?.response?.data
+        }
+    },
+    async updateMessage(idUser, idMessage, ctxBody) {
+        try {
+            const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}`);
+            const config = getEmailengineToken();
+            const response = await axios.put(url, ctxBody.data, config);
+            return response.data;
+        } catch (err) {
+            return err?.response?.data
+        }
+    },
+    async downloadAttachment(idUser, idAttachment) {
+        try {
+            const url = getEmailengineUrl(`account/${idUser}/attachment/${idAttachment}`);
+            const config = getEmailengineToken();
+            const response = await axios.get(url, config);
+            return response.data;
+        } catch (err) {
             return err?.response?.data
         }
     },

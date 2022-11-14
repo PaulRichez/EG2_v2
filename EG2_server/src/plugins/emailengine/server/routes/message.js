@@ -18,6 +18,22 @@ module.exports = {
             config: {
                 roles: ['authenticated']
             }
+        },
+        {
+            method: 'PUT',
+            path: '/message/:id',
+            handler: 'message.update',
+            config: {
+                roles: ['authenticated']
+            }
+        },
+        {
+            method: 'GET',
+            path: '/attachment/:id',
+            handler: 'message.downloadAttachment',
+            config: {
+                roles: ['authenticated']
+            }
         }
     ]
 }
