@@ -36,7 +36,7 @@
                             {{email.from?.name ? email.from?.name : email.from?.address}}
                         </span>
                         <span
-                            class="flex-grow-1 text-overflow-ellipsis white-space-nowrap overflow-hidden">{{email.subject}}</span>
+                            class="flex-grow-1 text-overflow-ellipsis white-space-nowrap overflow-hidden">{{email.subject || '( Aucun objet )'}}</span>
                         <span>{{email.date | amCalendar:{sameDay:'LT'} }}</span>
                     </td>
                 </tr>
