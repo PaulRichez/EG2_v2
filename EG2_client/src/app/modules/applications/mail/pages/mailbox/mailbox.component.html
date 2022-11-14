@@ -33,10 +33,17 @@
                         <i *ngIf="email.attachments" class="pi pi-paperclip pr-3"></i>
                         <i *ngIf="email.flagged" class="pi pi-flag-fill pr-3"></i>
                         <span class="w-12rem text-overflow-ellipsis white-space-nowrap overflow-hidden">
-                            {{email.from?.name ? email.from?.name : email.from?.address}}
+                            <ng-container *ngIf="selectedMailbox?.specialUse != '\\Sent'; else sentTemplate">
+                                {{email.from?.name ? email.from?.name : email.from?.address}}
+                            </ng-container>
+                            <ng-template #sentTemplate>
+                                <span>{{email.to[0].name ? email.to[0]?.name : email.to[0]?.address}}</span>
+                            </ng-template>
+
                         </span>
                         <span
-                            class="flex-grow-1 text-overflow-ellipsis white-space-nowrap overflow-hidden">{{email.subject || '( Aucun objet )'}}</span>
+                            class="flex-grow-1 text-overflow-ellipsis white-space-nowrap overflow-hidden">{{email.subject
+                            || '( Aucun objet )'}}</span>
                         <span>{{email.date | amCalendar:{sameDay:'LT'} }}</span>
                     </td>
                 </tr>
