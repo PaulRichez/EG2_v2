@@ -8,6 +8,7 @@ import { MailboxComponent } from './pages/mailbox/mailbox.component';
 const routes: Routes = [
   {
     path: '', component: MailComponent, children: [
+      { path: '', redirectTo: 'mailbox/INBOX', pathMatch: 'full' },
       {
         path: 'mailbox/:path', component: MailboxComponent
       },
