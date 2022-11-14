@@ -23,5 +23,21 @@ module.exports = ({ strapi }) => ({
         } catch (err) {
             return err?.response?.data
         }
-    }
+    },
+    async get(idUser, idMessage, ctxQuery) {
+        try {
+            const query = qs.stringify({
+                textType: ctxQuery.textType || '--',
+                embedAttachedImages: ctxQuery.embedAttachedImages || false,
+                documentStore: ctxQuery.documentStore || false
+            });
+            const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}?${query}`);
+            const config = getEmailengineToken();
+            const response = await axios.get(url, config);
+            return response.data;
+        } catch (err) {
+            ctx.status = err.response?.data?.statusCode || err.response?.status || 500;
+            return err?.response?.data
+        }
+    },
 });
