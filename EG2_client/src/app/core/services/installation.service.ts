@@ -35,10 +35,6 @@ export class InstallationService {
     } else {
       return this.http.get<any>(`${environment.apiUrl}/api/first-install/check`).pipe(map(result => {
         this.isFirstInstall = result.status;
-        if (!this.isFirstInstall) {
-          this.defaultConfig = result.defaultConfig;
-          this.themesService.current = result.defaultConfig.theme;
-        }
         return result;
       }));
     }

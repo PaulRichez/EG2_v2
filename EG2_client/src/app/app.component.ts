@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthentificationService } from './core/authentification/authentification.service';
 import { ApplicationsService } from './core/services/applications.service';
 import { DefaultConfigService } from './core/services/default-config.service';
+import { InstallationService } from './core/services/installation.service';
 import { ThemesService } from './core/services/themes.service';
 import { TokenStorageService } from './core/services/token-storage.service';
 
@@ -29,23 +30,31 @@ export class AppComponent {
     private router: Router,
     public applicationsService: ApplicationsService,
     public defaultConfigService: DefaultConfigService,
+    private installationService: InstallationService
   ) {
     this.themesService.current = 'light';
-    if (this.tokenStorageService.getToken()) {
-      this.authService.loginWithToken().subscribe({
-        next: data => {
-          this.defaultConfigService.get().subscribe(() => {
-            this.applicationsService.init();
-            this.loading = false;
-          });
-        },
-        error: err => {
-          this.loading = false;
-        }
+    this.installationService.checkFirstInstall().subscribe((result) => {
+      if (!result.status) {
+        this.installationService.defaultConfig = result.defaultConfig;
+        this.themesService.current = result.defaultConfig.theme;
       }
-      );
-    } else {
-      this.loading = false;
-    }
+      if (this.tokenStorageService.getToken()) {
+        this.authService.loginWithToken().subscribe({
+          next: data => {
+            this.defaultConfigService.get().subscribe(() => {
+              this.applicationsService.init();
+              this.loading = false;
+            });
+          },
+          error: err => {
+            this.loading = false;
+          }
+        }
+        );
+      } else {
+        this.loading = false;
+      }
+    })
+
   }
 }
