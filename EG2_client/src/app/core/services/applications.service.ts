@@ -18,7 +18,9 @@ export class ApplicationsService {
       route: {
         path: 'dashboard',
       },
-
+      routeSidebar: {
+        path: 'dashboard',
+      }
     },
     {
       appId: 'contact',
@@ -101,7 +103,7 @@ export class ApplicationsService {
 
   init() {
     this.resetAllRouterOutlets();
-    setTimeout(() => this.openNewApplication('mail'), 200)
+    setTimeout(() => this.openNewApplication('dashboard'), 200)
   }
 
   destroy() {

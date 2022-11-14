@@ -80,11 +80,6 @@ const routes: Routes = [{
       canActivate: [IsLoggedGuard]
     },
     {
-      path: 'admin-sidebar',
-      loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
-      canActivate: [IsLoggedGuard]
-    },
-    {
       path: 'profile',
       loadChildren: () => import('../../modules/applications/profile/profile.module').then(m => m.ProfileModule),
       canActivate: [IsLoggedGuard]

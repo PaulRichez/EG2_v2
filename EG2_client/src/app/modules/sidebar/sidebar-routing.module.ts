@@ -6,6 +6,10 @@ const routes: Routes = [{
   path: '', component: SidebarComponent,
   children: [
     {
+      path: 'dashboard',
+      loadChildren: () => import('../../modules/applications/dashboard/sidebar/sidebar.module').then(m => m.SidebarModule),
+    },
+    {
       path: 'admin',
       loadChildren: () => import('../../modules/applications/admin/side-bar/side-bar.module').then(m => m.SideBarModule),
     },
