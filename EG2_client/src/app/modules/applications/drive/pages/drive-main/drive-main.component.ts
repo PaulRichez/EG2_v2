@@ -145,19 +145,30 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
       if (result) {
         let sub = this.driveService.createFolder(result, this.idFolder)
         if (entry) {
-          sub = this.driveService.renameFolder(result, entry.id)
+          if (!entry.url) {
+            sub = this.driveService.renameFolder(result, entry.id)
+          } else {
+            sub = this.driveService.renameFile(result, entry.id)
+          }
         }
         sub.subscribe({
           next: value => {
-            if (!this.folder.children) {
-              this.folder.children = [];
-            }
-            if (!entry) {
-              (this.folder.children as IFolder[]).push(value)
+            if (!entry || !entry.url) {
+              if (!this.folder.children) {
+                this.folder.children = [];
+              }
+              if (!entry) {
+                (this.folder.children as IFolder[]).push(value)
+              } else {
+                (this.folder.children as IFolder[]).filter(f => f.id == value.id).map(f => f.name = value.name)
+              }
+              this.folder = Object.assign({}, this.folder);
             } else {
-              (this.folder.children as IFolder[]).filter(f => f.id == value.id).map(f => f.name = value.name)
+              const file = this.folder.files.find(c => c.id == value.id);
+              if (file) {
+                file.name = value.name;
+              }
             }
-            this.folder = Object.assign({}, this.folder);
           },
         })
       }
@@ -194,5 +205,30 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
       entry,
       this.driveService.downloadFile(entry)
     );
+  }
+
+  deleteEntry(entry: any) {
+    this.confirmationService.confirm({
+      message: `Supprimer le ${!entry.url ? 'dossier' : 'fichier'}`,
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        let sub = this.driveService.deleteFolder(entry.id)
+        if (entry.url) {
+          sub = this.driveService.deleteFile(entry.id);
+        }
+        sub.subscribe(value => {
+          if (!entry.url) {
+            const index = (this.folder.children as IFolder[]).findIndex(f => f.id == entry.id);
+            (this.folder.children as IFolder[]).splice(index, 1);
+            this.folder = Object.assign({}, this.folder);
+          } else {
+            const index = this.folder.files.findIndex(f => f.id == entry.id);
+            this.folder.files.splice(index, 1);
+            this.folder = Object.assign({}, this.folder);
+          }
+        });
+      }
+    });
   }
 }

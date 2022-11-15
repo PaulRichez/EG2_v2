@@ -73,6 +73,31 @@ module.exports = {
         );
         ctx.body = data;
     },
+    async renameFile(ctx) {
+        let file = await strapi.entityService.findOne(
+            'plugin::upload.file',
+            ctx.params.id,
+            {
+                populate: {
+                    'owner': true
+                }
+            }
+        );
+        if (!file?.owner || file?.owner.id !== ctx.state.user.id) {
+            return ctx.unauthorized('renameFile')
+        }
+        const data = await strapi.entityService.update(
+            'plugin::upload.file',
+            ctx.params.id,
+            {
+                data: { name: ctx.request.body.data.name },
+                populate: {
+                    'owner': true
+                }
+            }
+        );
+        ctx.body = data;
+    },
     async uploadFiles(ctx) {
         if (!ctx.request.files['files.file']) {
             return ctx.forbidden('uploadFiles')
@@ -112,5 +137,38 @@ module.exports = {
             data: { folder: ctx.params.id, owner: ctx.state.user.id },
         });
         ctx.body = fileUpdated;
+    },
+    async deleteFile(ctx, next) {
+        let file = await strapi.entityService.findOne(
+            'plugin::upload.file',
+            ctx.params.id,
+            {
+                populate: {
+                    'owner': true
+                }
+            }
+        );
+        if (!file?.owner || file?.owner.id !== ctx.state.user.id) {
+            return ctx.unauthorized('renameFile')
+        }
+        const data = await strapi.plugins.upload.services.file.deleteByIds([ctx.params.id])
+        ctx.body = data;
+    },
+    async deleteFolder(ctx, next) {
+        let folder = await strapi.entityService.findOne(
+            'plugin::upload.folder',
+            ctx.params.id,
+            {
+                populate: {
+                    'owner': true
+                }
+            }
+        );
+        console.log(folder)
+        if (!folder?.owner || folder?.owner.id !== ctx.state.user.id) {
+            return ctx.unauthorized('deleteFolder')
+        }
+        const data = await strapi.plugins.upload.services.folder.deleteByIds([ctx.params.id])
+        ctx.body = data;
     }
 };

@@ -12,6 +12,22 @@ module.exports = {
       }
     },
     {
+      method: 'DELETE',
+      path: '/drive/file/:id',
+      handler: 'folder.deleteFile',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
+    {
+      method: 'DELETE',
+      path: '/drive/folder/:id',
+      handler: 'folder.deleteFolder',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
+    {
       method: 'GET',
       path: '/drive/my-drive',
       handler: 'drive.getMyDriveFolderRoot',
@@ -39,6 +55,14 @@ module.exports = {
       method: 'PUT',
       path: '/drive/rename-folder/:id',
       handler: 'folder.renameFolder',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
+    {
+      method: 'PUT',
+      path: '/drive/rename-file/:id',
+      handler: 'folder.renameFile',
       config: {
         roles: ['authenticated'],
       }

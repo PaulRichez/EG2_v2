@@ -27,6 +27,9 @@ export class DriveService {
   public renameFolder(name, idParent) {
     return this.http.put<any>(`${environment.apiUrl}/api/folder/drive/rename-folder/${idParent}`, { data: { name } });
   }
+  public renameFile(name, idFile) {
+    return this.http.put<any>(`${environment.apiUrl}/api/folder/drive/rename-file/${idFile}`, { data: { name } });
+  }
 
 
   public createFiles(formData: any, idParent) {
@@ -41,5 +44,12 @@ export class DriveService {
       reportProgress: true,
       observe: 'events'
     });
+  }
+
+  public deleteFile(idFile: string) {
+    return this.http.delete<any>(`${environment.apiUrl}/api/folder/drive/file/${idFile}`);
+  }
+  public deleteFolder(idFolder: string) {
+    return this.http.delete<any>(`${environment.apiUrl}/api/folder/drive/folder/${idFolder}`);
   }
 }
