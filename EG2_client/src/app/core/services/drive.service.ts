@@ -17,6 +17,10 @@ export class DriveService {
     return this.http.get<any>(`${environment.apiUrl}/api/folder/drive/my-drive?${query}`);
   }
 
+  public getmyDriveSize() {
+    return this.http.get<any>(`${environment.apiUrl}/api/folder/drive/my-drive/size`);
+  }
+
   public createFolder(name, idParent) {
     return this.http.post<any>(`${environment.apiUrl}/api/folder/drive/new-folder/${idParent}`, { data: { name } });
   }

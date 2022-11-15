@@ -1,3 +1,4 @@
+const { getSizeFolder } = require('../utils/drive-size');
 module.exports = ({ strapi }) => ({
     async getMyDriveFolderRoot(ctx) {
         let folderDrives = await strapi.db.query('plugin::upload.folder').findOne({
@@ -15,6 +16,10 @@ module.exports = ({ strapi }) => ({
         }
 
         return myDriveFolder;
+    },
+    async getMyDriveSize(ctx) {
+        const myDriveFolder = await this.getMyDriveFolderRoot(ctx)
+        return await getSizeFolder(strapi, myDriveFolder.id)
     },
     async createNewFolder(ctx, name, parentId) {
         const parent = await strapi.db.query('plugin::upload.folder').findOne({

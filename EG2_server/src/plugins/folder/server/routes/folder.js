@@ -20,6 +20,14 @@ module.exports = {
       }
     },
     {
+      method: 'GET',
+      path: '/drive/my-drive/size',
+      handler: 'drive.getMyDriveSize',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
+    {
       method: 'POST',
       path: '/drive/new-folder/:id',
       handler: 'folder.createFolder',
