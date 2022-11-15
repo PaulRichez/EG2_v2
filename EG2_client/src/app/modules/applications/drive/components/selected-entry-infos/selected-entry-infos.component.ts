@@ -21,7 +21,6 @@ export class SelectedEntryInfosComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.preview = false;
-    console.log(this.selectedEntry)
     if (this.selectedEntry?.url) {
       this.preview = true;
     }
