@@ -35,6 +35,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 import { SafePipeModule } from 'safe-pipe';
@@ -89,7 +90,8 @@ const MODULES = [
   PanelModule,
   TagModule,
   MegaMenuModule,
-  SafePipeModule
+  SafePipeModule,
+  InputNumberModule
 ]
 
 @NgModule({

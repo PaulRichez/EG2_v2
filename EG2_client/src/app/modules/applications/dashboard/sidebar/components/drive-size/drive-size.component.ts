@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DriveService } from 'src/app/core/services/drive.service';
 import { InstallationService } from 'src/app/core/services/installation.service';
 import byteSize from 'byte-size'
+import { DefaultConfigService } from 'src/app/core/services/default-config.service';
 
 @Component({
   selector: 'app-drive-size',
@@ -11,10 +12,9 @@ import byteSize from 'byte-size'
 export class DriveSizeComponent implements OnInit, OnDestroy {
   private subUsed: any;
   public usedSize = '--';
-  public totalSize = byteSize(this.installationService.defaultConfig?.totalSize * 1000, { units: 'metric_octet' })
   constructor(
     public driveService: DriveService,
-    public installationService: InstallationService
+    public defaultConfigService: DefaultConfigService
   ) { }
   ngOnDestroy() {
     if (this.subUsed) this.subUsed.unsubscribe();

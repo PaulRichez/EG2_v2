@@ -17,7 +17,11 @@ export class DefaultConfigService {
       this.defaultConfig = result.data;
     }));
   }
-  public update(config: any) {
-    return this.http.post<any>(`${environment.apiUrl}/api/first-install/default-config?populate=deep`, { data: config });
+  public update(data: FormData) {
+    return this.http.put<any>(`${environment.apiUrl}/api/first-install/default-config?populate=deep`, data).pipe(
+      map(data => {
+        this.defaultConfig = data.data
+      })
+    );
   }
 }

@@ -31,6 +31,12 @@
     },
     "society": {
       "type": "string"
+    },
+    "driveLimitSize": {
+      "type": "float",
+      "default": 50,
+      "min": 50,
+      "required": true
     }
   }
 }

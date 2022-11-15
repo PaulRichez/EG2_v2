@@ -15,6 +15,7 @@ import { ListingNewComponent } from './pages/listing-new/listing-new.component';
 import { EditNewComponent } from './pages/edit-new/edit-new.component';
 import { ConfigImapComponent } from './components/config-imap/config-imap.component';
 import { CEditUserComponent } from './components/c-edit-user/c-edit-user.component';
+import { ConfigDriveComponent } from './components/config-drive/config-drive.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CEditUserComponent } from './components/c-edit-user/c-edit-user.compone
     ListingNewComponent,
     EditNewComponent,
     ConfigImapComponent,
-    CEditUserComponent
+    CEditUserComponent,
+    ConfigDriveComponent
   ],
   imports: [
     CommonModule,

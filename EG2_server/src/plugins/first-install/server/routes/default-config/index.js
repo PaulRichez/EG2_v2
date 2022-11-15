@@ -12,7 +12,7 @@ module.exports = {
             }
         },
         {
-            method: 'POST',
+            method: 'PUT',
             path: '/default-config',
             handler: 'default-config.update',
             config: {
