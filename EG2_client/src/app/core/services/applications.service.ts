@@ -102,8 +102,14 @@ export class ApplicationsService {
   }
 
   init() {
-    this.resetAllRouterOutlets();
-    setTimeout(() => this.openNewApplication('drive'), 200)
+    const childrens = (this.route.snapshot as any)._routerState._root.children;
+    console.log(childrens)
+    const prevSession = childrens.filter(c => c.value.outlet.includes('tab_')).map(c => c.children[0]?.children[0]?.value?.routeConfig?.path);
+    if (prevSession.length) {
+      prevSession.forEach(c => this.openNewApplication(c));
+    } else {
+      this.openNewApplication('dashboard')
+    }
   }
 
   destroy() {
