@@ -91,7 +91,7 @@ module.exports = {
             ctx.params.id,
             {
                 data: { name: ctx.request.body.data.name },
-                populate: ['folder','owner']
+                populate: ['folder', 'owner']
             }
         );
         ctx.body = data;
@@ -133,7 +133,7 @@ module.exports = {
         const fileUpdated = await strapi.db.query('plugin::upload.file').update({
             where: { id: file[0].id },
             data: { folder: ctx.params.id, owner: ctx.state.user.id },
-            populate: ['folder','owner']
+            populate: ['folder', 'owner']
         });
         ctx.body = fileUpdated;
     },
@@ -163,11 +163,13 @@ module.exports = {
                 }
             }
         );
-        console.log(folder)
         if (!folder?.owner || folder?.owner.id !== ctx.state.user.id) {
             return ctx.unauthorized('deleteFolder')
         }
-        const data = await strapi.plugins.upload.services.folder.deleteByIds([ctx.params.id])
+        const data = await strapi
+            .plugin('folder')
+            .service('drive')
+            .deleteFolderDeep(ctx.params.id)
         ctx.body = data;
     }
 };

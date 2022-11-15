@@ -1,4 +1,5 @@
 const { getSizeFolder } = require('../utils/drive-size');
+const { getFilesInFolderDeep } = require('../utils/folder-files');
 module.exports = ({ strapi }) => ({
     async getMyDriveFolderRoot(ctx) {
         let folderDrives = await strapi.db.query('plugin::upload.folder').findOne({
@@ -29,5 +30,11 @@ module.exports = ({ strapi }) => ({
             return ctx.unauthorized(`Permission denied`);
         }
         return await strapi.plugins.upload.services.folder.create({ name, owner: ctx.state.user, parent: parentId })
+    },
+    async deleteFolderDeep(idFolder) {
+        const files = await getFilesInFolderDeep(strapi, idFolder);
+        await strapi.plugins.upload.services.file.deleteByIds(files.map(f => f.id))
+        const data = await strapi.plugins.upload.services.folder.deleteByIds([idFolder])
+        return data;
     }
 })
