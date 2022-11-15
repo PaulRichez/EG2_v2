@@ -9,9 +9,12 @@ axios.defaults.maxBodyLength = Infinity;
  */
 
 module.exports = ({ strapi }) => ({
-    async find(idUser) {
+    async find(idUser, ctxQuery) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/mailboxes`);
+            const query = qs.stringify({
+                counters: ctxQuery.counters || false
+            });
+            const url = getEmailengineUrl(`account/${idUser}/mailboxes?${query}`);
             const config = await getEmailengineToken();
             const response = await axios.get(url, config);
             return response.data;

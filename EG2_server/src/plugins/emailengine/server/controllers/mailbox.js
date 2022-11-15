@@ -2,7 +2,7 @@
 
 module.exports = {
     async find(ctx, next) {
-        const result = await strapi.service('plugin::emailengine.mailbox').find(ctx.state.user.id);
+        const result = await strapi.service('plugin::emailengine.mailbox').find(ctx.state.user.id, ctx.request.query);
         ctx.status = result?.status || result?.statusCode || 200;
         ctx.body = result
     },

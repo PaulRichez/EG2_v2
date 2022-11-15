@@ -10,8 +10,9 @@ export class EmailMailboxesService {
     private http: HttpClient,
   ) { }
 
-  public find() {
-    return this.http.get<any>(`${environment.apiUrl}/api/emailengine/mailboxes`);
+  public find(query?: string) {
+    if (!query) query = '';
+    return this.http.get<any>(`${environment.apiUrl}/api/emailengine/mailboxes?${query}`);
   }
   public delete(path: string) {
     return this.http.delete<any>(`${environment.apiUrl}/api/emailengine/mailbox?path=${path}`);
