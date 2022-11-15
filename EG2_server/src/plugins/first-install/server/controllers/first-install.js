@@ -63,7 +63,9 @@ module.exports = {
     data.firstUser.user_groups = [group];
     data.firstUser.confirmed = true;
     data.firstUser.blocked = false;
-    data.firstUser.user_settings.theme = data.site.theme;
+    data.firstUser.user_settings = {
+      theme: data.site.theme
+    };
     firstUserCtx.request.body = data.firstUser;
     await strapi.plugin('users-permissions').controller('user').create(firstUserCtx)
 
@@ -72,13 +74,13 @@ module.exports = {
     await strapi.entityService.create('plugin::users-permissions.permission', {
       data: {
         action: 'plugin::users-permissions.user.find',
-        role: 'authenticated',
+        role: 1,
       },
     });
-    await strapi.entityService.create('plugin::users-permissions.user.findOne', {
+    await strapi.entityService.create('plugin::users-permissions.permission', {
       data: {
-        action: route.perm_action,
-        role: 'authenticated',
+        action: 'plugin::users-permissions.user.findOne',
+        role: 1,
       },
     });
 
