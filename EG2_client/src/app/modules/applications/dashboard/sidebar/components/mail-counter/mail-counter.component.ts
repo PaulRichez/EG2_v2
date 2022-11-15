@@ -25,7 +25,7 @@ export class MailCounterComponent implements OnInit, OnDestroy {
       next: value => {
         const mailboxes = value.mailboxes
         const count = { messages: 0, unseen: 0 }
-        mailboxes.forEach(mailbox => {
+        mailboxes.filter(m => !['\\Drafts', '\\Junk', '\\Trash', '\\Sent'].includes(m?.specialUse)).forEach(mailbox => {
           if (mailbox.status) {
             count.messages += mailbox.status.messages
             count.unseen += mailbox.status.unseen
