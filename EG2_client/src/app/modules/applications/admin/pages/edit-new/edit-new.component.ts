@@ -83,7 +83,11 @@ export class EditNewComponent extends AppHelperComponent implements OnInit {
       {
         next: data => {
           this.loadingSave = false;
-          this.formNews.enable();
+          if (this.idNews) {
+            this.formNews.enable();
+          } else {
+            this.router.navigate([{ outlets: { ['primary']: '', [this.outlet as string]: ['tab', 'admin', 'new', 'edit', data.data.id] } }])
+          }
         },
         error: err => {
           this.loadingSave = false;
