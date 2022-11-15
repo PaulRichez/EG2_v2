@@ -47,16 +47,23 @@ module.exports = {
         ctx.body = data;
     },
     async renameFolder(ctx) {
+        let folder = await strapi.entityService.findOne(
+            'plugin::upload.folder',
+            ctx.params.id,
+            {
+                populate: {
+                    'owner': true
+                }
+            }
+        );
+        if (!folder?.owner || folder?.owner.id !== ctx.state.user.id) {
+            return ctx.unauthorized('renameFolder')
+        }
         const data = await strapi.entityService.update(
             'plugin::upload.folder',
             ctx.params.id,
             {
                 data: { name: ctx.request.body.data.name },
-                filters: {
-                    owner: {
-                        id: ctx.state.user.id
-                    }
-                },
                 populate: {
                     'files': true,
                     'children': { count: true }, files: { count: true },
