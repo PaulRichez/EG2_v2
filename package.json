@@ -1,0 +1,30 @@
+{
+  "name": "eg2_v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "post-install": "npm pull & npm i & npm run emailengine-install & npm run client-install & npm run server-install & echo \"Post-install executed\"",
+    "emailengine-install": "(cd emailengine && npm install)",
+    "client-install": "(cd ./EG2_client && npm install --force)",
+    "server-install": "(cd ./EG2_server && npm install)",
+    "docker": "docker-compose up -d --build",
+    "dev": "concurrently --kill-others \"npm run dev-client\" \"npm run dev-server\" \"npm run dev-emailengine\"",
+    "dev-client": "(cd client && npm start)",
+    "dev-server": "(cd Eg2_server && npm run develop)",
+    "dev-redis": "(cd emailengine/only-redis && docker-compose up -d )",
+    "dev-emailengine": "(cd emailengine && npm run dev )",
+    "stop-all-container": "docker kill $(docker ps -q)",
+    "pull": "git pull & git submodule update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulRichez/EG2_v2.git"
+  },
+  "author": "Richez paul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PaulRichez/EG2_v2/issues"
+  },
+  "homepage": "https://github.com/PaulRichez/EG2_v2#readme"
+}
