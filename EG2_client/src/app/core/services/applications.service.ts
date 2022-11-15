@@ -103,7 +103,7 @@ export class ApplicationsService {
 
   init() {
     this.resetAllRouterOutlets();
-    setTimeout(() => this.openNewApplication('admin'), 200)
+    setTimeout(() => this.openNewApplication('drive'), 200)
   }
 
   destroy() {

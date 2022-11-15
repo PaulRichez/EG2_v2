@@ -8,7 +8,7 @@ module.exports = {
             ctx.params.id,
             {
                 populate: {
-                    'files':  { populate: ['owner'] },
+                    'files': { populate: ['owner'] },
                     'parent': { populate: ['parent', 'parent.parent', 'parent.parent.parent'] },
                     'children': {
                         populate: { owner: true, children: { count: true }, files: { count: true } },
@@ -68,7 +68,7 @@ module.exports = {
     },
     async uploadFiles(ctx) {
         if (!ctx.request.files['files.file']) {
-            ctx.forbidden('uploadFiles')
+            return ctx.forbidden('uploadFiles')
         }
         let folder = await strapi.entityService.findOne(
             'plugin::upload.folder',
@@ -80,8 +80,21 @@ module.exports = {
             }
         );
         if (!folder.owner || folder.owner.id !== ctx.state.user.id) {
-            ctx.unauthorized('uploadFiles')
+            return ctx.unauthorized('uploadFiles')
         }
+        // verify space
+        const myDriveSize = await strapi
+            .plugin('folder')
+            .service('drive')
+            .getMyDriveSize(ctx);
+
+        const websiteSettings = await strapi.entityService.findOne('plugin::first-install.default-config', 1)
+        const driveLimitSize = websiteSettings.driveLimitSize * 1000 * 1000;
+
+        if (myDriveSize * 1000 + ctx.request.files['files.file'].size > driveLimitSize) {
+            return ctx.unauthorized('driveSizeLimit')
+        }
+
         const file = await strapi.plugins.upload.services.upload.upload({
             data: {
             },
