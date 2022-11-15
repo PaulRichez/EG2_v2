@@ -51,6 +51,6 @@ export class UsersService {
   }
 
   public create(formData: FormData) {
-    return this.http.post<any>(`${environment.apiUrl}/api/user-extended/user/?populate=deep`, formData);
+    return this.http.post<any>(`${environment.apiUrl}/api/user-extended/admin/user/?populate=deep`, formData);
   }
 }

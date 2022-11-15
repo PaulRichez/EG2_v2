@@ -36,6 +36,15 @@ module.exports = {
         policies: [],
         roles: ['authenticated']
       },
+    },
+    {
+      method: 'POST',
+      path: '/admin/user',
+      handler: 'user-extended.create',
+      config: {
+        policies: [],
+        roles: ['authenticated']
+      },
     }
   ]
 };

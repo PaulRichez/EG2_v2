@@ -63,6 +63,13 @@
                             </span>
                         </div>
                     </ng-container>
+                    <div class="field col-12 md:col-6" *ngIf="!user">
+                        <span class="p-float-label">
+                            <input id="password" formControlName="password" type="password" pInputText class="w-full"
+                                dFormValidation>
+                            <label for="password">Mot de passe</label>
+                        </span>
+                    </div>
                 </div>
             </ng-template>
         </p-card>

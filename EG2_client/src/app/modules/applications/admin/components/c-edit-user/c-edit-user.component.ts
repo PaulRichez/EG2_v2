@@ -50,17 +50,23 @@ export class CEditUserComponent implements OnInit {
       delete (country as any).id;
     }
     this.userExtendedGroup = this.formBuilder.group({
-      firstName: [{ value: this.user?.userExtended?.firstName, disabled: false }, [Validators.required]],
-      lastName: [{ value: this.user?.userExtended?.lastName, disabled: false }, [Validators.required]],
+      firstName: [{ value: this.user?.userExtended?.firstName, disabled: false }, []],
+      lastName: [{ value: this.user?.userExtended?.lastName, disabled: false }, []],
       country: [{ value: country, disabled: false }],
       city: [{ value: city, disabled: false }],
     });
     this.formUser = this.formBuilder.group({
-      username: [{ value: this.user?.username, disabled: this.type == 'edit' }, [Validators.required]],
-      email: [{ value: this.user?.email, disabled: this.type == 'edit' }, [Validators.required]],
+      username: [{ value: this.user?.username, disabled: this.type == 'edit' }, [Validators.required, Validators.minLength(3)]],
+      email: [{ value: this.user?.email, disabled: this.type == 'edit' }, [Validators.required, Validators.minLength(6)]],
       userExtended: this.userExtendedGroup,
       user_groups: [{ value: this.user?.user_groups, disabled: false }],
+      password: [{ value: '', disabled: false }]
     })
+    if (this.user) {
+      this.formUser.controls['password'].setValidators([Validators.required, Validators.minLength(6)]);
+    } else {
+      this.formUser.controls['password'].clearValidators();
+    }
     if (this.user?.userExtended?.country) {
       this.setCitiesAvailable(this.user.userExtended.country);
     }

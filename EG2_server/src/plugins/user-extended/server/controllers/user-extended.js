@@ -71,5 +71,16 @@ module.exports = ({ strapi }) => ({
   },
   async count(ctx) {
     await strapi.plugin('users-permissions').controller('user').count(ctx)
+  },
+  async create(ctx) {
+    const websiteSettings = await strapi.entityService.findOne('plugin::first-install.default-config', 1)
+    const data = JSON.parse(ctx.request.body.data);
+    data.confirmed = true;
+    data.blocked = false;
+    data.user_settings = {
+      theme: websiteSettings.theme
+    };
+    ctx.request.body = data;
+    return await strapi.plugin('users-permissions').controller('user').create(ctx)
   }
 });

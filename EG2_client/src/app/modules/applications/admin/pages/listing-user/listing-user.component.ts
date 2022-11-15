@@ -32,7 +32,7 @@ export class ListingUserComponent extends AppHelperComponent implements OnInit {
     const query = qs.stringify({
       offset: event.first,
       limit: event.rows,
-      populate: ['deep'],
+      populate: ['userExtended'],
       sort
     }, {
       encodeValuesOnly: true,
