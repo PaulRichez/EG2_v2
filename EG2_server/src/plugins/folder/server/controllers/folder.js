@@ -91,9 +91,7 @@ module.exports = {
             ctx.params.id,
             {
                 data: { name: ctx.request.body.data.name },
-                populate: {
-                    'owner': true
-                }
+                populate: ['folder','owner']
             }
         );
         ctx.body = data;
@@ -135,6 +133,7 @@ module.exports = {
         const fileUpdated = await strapi.db.query('plugin::upload.file').update({
             where: { id: file[0].id },
             data: { folder: ctx.params.id, owner: ctx.state.user.id },
+            populate: ['folder','owner']
         });
         ctx.body = fileUpdated;
     },

@@ -1,13 +1,13 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IFileQueue } from 'src/app/shared/models/files-queue.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilesTransfertService {
-  public uploadDriveSubject = new BehaviorSubject<any>(undefined);
+  public uploadDriveSubject = new Subject<any>();
   queue: IFileQueue[] = [];
 
   constructor() { }

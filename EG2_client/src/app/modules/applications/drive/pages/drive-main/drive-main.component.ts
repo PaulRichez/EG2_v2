@@ -29,6 +29,7 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
   public idFolder!: string
   folder!: IFolder;
   refNewFolder!: DynamicDialogRef;
+  queuesub: any;
   constructor(
     public override route: ActivatedRoute,
     private router: Router,
@@ -44,6 +45,7 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
     if (this.subscribeData) {
       this.subscribeData.unsubscribe();
     }
+    if (this.queuesub) this.queuesub.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -52,6 +54,15 @@ export class DriveMainComponent extends AppHelperComponent implements OnInit, On
     if (this.idFolder) {
       this.goToFolder(this.idFolder)
     }
+    this.queuesub = this.filesTransfertService.uploadDriveSubject.subscribe(value => {
+      if (value.folder.id == this.idFolder) {
+        const file = this.folder.files.find(c => c.id == value.id);
+        if (!file) {
+          this.folder.files.push(value);
+          this.folder = Object.assign({}, this.folder);
+        }
+      }
+    })
   }
 
   getRoot() {
