@@ -97,3 +97,30 @@
   background-color: transparent !important;
   border: 0 !important;
 }
+
+.p-paginator-bottom {
+  button {
+    height: 2rem !important;
+    width: 2rem !important;
+    min-width: 2rem !important;
+  }
+
+  @media (max-width: 768px) {
+    button {
+      height: 1.5rem !important;
+      width: 1.5rem !important;
+      min-width: 1.5rem !important;
+    }
+
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    .p-paginator-current {
+      display: none !important;
+    }
+
+    .p-paginator-rpp-options {
+      display: none !important;
+    }
+  }
+}
