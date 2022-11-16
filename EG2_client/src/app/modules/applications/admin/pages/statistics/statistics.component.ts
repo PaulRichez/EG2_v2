@@ -6,6 +6,7 @@ import { GroupesService } from 'src/app/core/services/groupes.service';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 import byteSize from 'byte-size'
+import { EmailStatsService } from 'src/app/core/services/email-stats.service';
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -37,11 +38,17 @@ export class StatisticsComponent extends AppHelperComponent implements OnInit {
         text: 'Drive total',
         obs: this.driveService.getTotalDriveSize().pipe(map(value => byteSize(value * 1000, { units: 'metric_octet' })))
       },
+      {
+        icon: 'fa-solid fa-users-viewfinder',
+        text: 'Compte emails',
+        obs: this.emailStatsService.countAccounts()
+      },
     ];
   constructor(
     private usersService: UsersService,
     private groupesService: GroupesService,
     private driveService: DriveService,
+    private emailStatsService: EmailStatsService,
     public override route: ActivatedRoute,
   ) {
     super(route);

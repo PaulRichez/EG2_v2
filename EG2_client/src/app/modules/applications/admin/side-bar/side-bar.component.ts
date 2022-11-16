@@ -17,7 +17,7 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Stats',
+        label: 'Monitoring',
         icon: 'fa-solid fa-chart-bar fa-fw',
         routerLink: ['', { outlets: { [this.appOutlet as string]: ['tab', 'admin', 'stats'] } }]
         // visible: this.apiAuthService.checkpermission('admin-monitoring'),

@@ -19,5 +19,13 @@ module.exports = {
                 roles: ['authenticated']
             }
         },
+        {
+            method: 'GET',
+            path: '/countAccounts',
+            handler: 'account.countAccounts',
+            config: {
+                roles: ['authenticated']
+            }
+        },
     ]
 }

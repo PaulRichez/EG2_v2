@@ -2,6 +2,7 @@
 const { getEmailengineToken, getEmailengineUrl } = require('../utils/axios');
 const { getIMAPSMTP } = require('../utils/IMAPSMTP');
 const axios = require('axios').default;
+const qs = require('qs');
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.maxBodyLength = Infinity;
 
