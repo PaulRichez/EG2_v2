@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/core/authentification/authentification.service';
 import { ApplicationsService } from 'src/app/core/services/applications.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
     private applicationsService: ApplicationsService,
     private router: Router) {
     this.formLogin = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      username: [environment.demo ? 'demo.admin' : '', [Validators.required]],
+      password: [environment.demo ? 'password' : '',, [Validators.required]],
       remenberMe: [true],
     });
   }
