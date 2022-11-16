@@ -61,6 +61,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
               "src/assets/scss/theme.scss",
               "src/assets/scss/scrollbar.scss",
               "node_modules/@fullcalendar/common/main.css",
