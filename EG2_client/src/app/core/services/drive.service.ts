@@ -52,4 +52,11 @@ export class DriveService {
   public deleteFolder(idFolder: string) {
     return this.http.delete<any>(`${environment.apiUrl}/api/folder/drive/folder/${idFolder}`);
   }
+
+  public getAveragedDriveSize() {
+    return this.http.get<any>(`${environment.apiUrl}/api/folder/admin/drive/averaged-size`);
+  }
+  public getTotalDriveSize() {
+    return this.http.get<any>(`${environment.apiUrl}/api/folder/admin/drive/total-size`);
+  }
 }

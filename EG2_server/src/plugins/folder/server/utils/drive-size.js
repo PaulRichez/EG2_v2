@@ -2,7 +2,7 @@ module.exports = {
     getSizeFolder: async function getSizeFolder(strapi, idFolder) {
         let size = 0;
         const folder = await strapi.entityService.findOne('plugin::upload.folder', idFolder, { populate: ['children', 'files'] });
-
+        console.log(folder)
         for (const file of folder.files) {
             size += file.size
         }

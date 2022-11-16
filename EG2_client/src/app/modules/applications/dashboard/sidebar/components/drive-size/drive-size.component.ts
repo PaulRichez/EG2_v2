@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DriveService } from 'src/app/core/services/drive.service';
-import { InstallationService } from 'src/app/core/services/installation.service';
 import byteSize from 'byte-size'
 import { DefaultConfigService } from 'src/app/core/services/default-config.service';
 

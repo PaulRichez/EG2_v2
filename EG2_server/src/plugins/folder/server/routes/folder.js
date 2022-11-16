@@ -44,6 +44,22 @@ module.exports = {
       }
     },
     {
+      method: 'GET',
+      path: '/admin/drive/averaged-size',
+      handler: 'drive.getAveragedDriveSize',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
+    {
+      method: 'GET',
+      path: '/admin/drive/total-size',
+      handler: 'drive.getTotalDriveSize',
+      config: {
+        roles: ['authenticated'],
+      }
+    },
+    {
       method: 'POST',
       path: '/drive/new-folder/:id',
       handler: 'folder.createFolder',

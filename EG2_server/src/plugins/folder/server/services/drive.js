@@ -36,5 +36,19 @@ module.exports = ({ strapi }) => ({
         await strapi.plugins.upload.services.file.deleteByIds(files.map(f => f.id))
         const data = await strapi.plugins.upload.services.folder.deleteByIds([idFolder])
         return data;
+    },
+    async getAveragedDriveSize() {
+        const countUser = await strapi.db.query('plugin::users-permissions.user').count();
+        return await this.getTotalDriveSize() / countUser || 0;
+    },
+    async getTotalDriveSize() {
+        let folderDrives = await strapi.db.query('plugin::upload.folder').findOne({
+            where: { name: 'drives', parent: null }
+        });
+        if (!folderDrives) {
+            folderDrives = await strapi.plugins.upload.services.folder.create({ name: 'drives' })
+        }
+        console.log(folderDrives.id)
+        return await getSizeFolder(strapi, folderDrives.id)
     }
 })
