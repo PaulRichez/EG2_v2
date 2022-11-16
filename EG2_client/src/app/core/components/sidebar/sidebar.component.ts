@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { AuthentificationService } from '../../authentification/authentification.service';
 import { ApplicationsService } from '../../services/applications.service';
 import { DefaultConfigService } from '../../services/default-config.service';
+import { MainSidebarService } from '../../services/main-sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,6 +16,7 @@ export class SidebarComponent implements OnInit {
     public applicationsService: ApplicationsService,
     public defaultConfigService: DefaultConfigService,
     public authentificationService: AuthentificationService,
+    public mainSidebarService: MainSidebarService,
   ) { }
 
   ngOnInit(): void {

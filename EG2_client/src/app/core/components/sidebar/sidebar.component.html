@@ -20,5 +20,5 @@
         </div>
     </div>
     <app-applications *ngIf="authentificationService.connectedUser.user_settings.applicationsPlace == 'sidebar'"
-        class="w-full"></app-applications>
+        class="w-full" (click)="mainSidebarService.closeSidebarIfMobile()"></app-applications>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TreeNode } from 'primeng/api';
 import { EmailMailboxesService } from 'src/app/core/services/email-mailboxes.service';
+import { MainSidebarService } from 'src/app/core/services/main-sidebar.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 
 @Component({
@@ -16,6 +17,7 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
   constructor(
     private emailMailboxesService: EmailMailboxesService,
     private router: Router,
+    private mainSidebarService: MainSidebarService,
     public override route: ActivatedRoute
   ) {
     super(route)
@@ -73,5 +75,6 @@ export class SideBarComponent extends AppHelperComponent implements OnInit {
     const path = event.node.data.path;
     this.selectedBox = event.node;
     this.router.navigate(['', { outlets: { [this.appOutlet as string]: ['tab', 'mail', 'mailbox', path] } }]);
+    this.mainSidebarService.closeSidebarIfMobile();
   }
 }

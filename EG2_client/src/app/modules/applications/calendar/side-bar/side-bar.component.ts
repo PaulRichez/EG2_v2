@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EventSourceService } from 'src/app/core/services/event-source.service';
+import { MainSidebarService } from 'src/app/core/services/main-sidebar.service';
 import { AppHelperComponent } from 'src/app/shared/extends/app-helper/app-helper.component';
 import { NewSourceComponent } from '../components/new-source/new-source.component';
 
@@ -18,7 +19,8 @@ export class SideBarComponent extends AppHelperComponent implements OnInit, OnDe
   constructor(
     public dialogService: DialogService,
     private eventSourceService: EventSourceService,
-    public override route: ActivatedRoute
+    public override route: ActivatedRoute,
+    public mainSidebarService: MainSidebarService,
   ) {
     super(route)
   }

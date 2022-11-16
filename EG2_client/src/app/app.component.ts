@@ -4,6 +4,7 @@ import { AuthentificationService } from './core/authentification/authentificatio
 import { ApplicationsService } from './core/services/applications.service';
 import { DefaultConfigService } from './core/services/default-config.service';
 import { InstallationService } from './core/services/installation.service';
+import { MainSidebarService } from './core/services/main-sidebar.service';
 import { ThemesService } from './core/services/themes.service';
 import { TokenStorageService } from './core/services/token-storage.service';
 
@@ -17,11 +18,10 @@ export class AppComponent {
   onResize(event: any) {
     this.isMobile = window.innerWidth < 768
     if (this.isMobile) {
-      this.displaySidebar = false;
+      this.mainSidebarService.displaySidebar = false;
     }
   }
   public isMobile = window.innerWidth < 768;
-  displaySidebar = !this.isMobile;
   loading = true;
   constructor(
     private themesService: ThemesService,
@@ -30,8 +30,10 @@ export class AppComponent {
     private router: Router,
     public applicationsService: ApplicationsService,
     public defaultConfigService: DefaultConfigService,
-    private installationService: InstallationService
+    private installationService: InstallationService,
+    public mainSidebarService: MainSidebarService,
   ) {
+    this.mainSidebarService.displaySidebar = !this.isMobile;
     this.themesService.current = 'light';
     this.installationService.checkFirstInstall().subscribe((result) => {
       if (!result.status) {
