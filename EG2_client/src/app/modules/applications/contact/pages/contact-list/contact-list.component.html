@@ -44,7 +44,7 @@
                     <ng-container *ngFor="let col of getColumn()">
                         <th>{{ col.label }}</th>
                     </ng-container>
-                    <th></th>
+                    <th style="width: 5rem; max-width: 5rem"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-contact>
@@ -52,7 +52,8 @@
                     <ng-container *ngFor="let col of getColumn()">
                         <td>{{ getContactBypath(contact, col) }}</td>
                     </ng-container>
-                    <td> <button pButton type="button" class="p-button-secondary p-button-text" icon="fa-solid fa-pen"
+                    <td style="width: 5rem; max-width: 5rem"> <button pButton type="button"
+                            class="p-button-secondary p-button-text" icon="fa-solid fa-pen"
                             (click)="edit(contact)"></button></td>
                 </tr>
             </ng-template>
