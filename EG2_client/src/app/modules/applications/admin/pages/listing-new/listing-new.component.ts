@@ -31,7 +31,7 @@ export class ListingNewComponent extends AppHelperComponent implements OnInit {
   fetchNews(event: LazyLoadEvent) {
     const sort = event.sortField ? [`${event.sortField}:${event.sortOrder === 1 ? 'asc' : 'desc'}`] : {};
     const query = qs.stringify({
-      fields: ['id', 'title'],
+      fields: ['id', 'title', 'createdAt'],
       pagination: {
         page: (event.first || 0) / (event.rows || 5) + 1,
         pageSize: event.rows,
