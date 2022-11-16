@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://eg2-server.onrender.com',
-  demo: true,
+  apiUrl: 'http://localhost:1339',
+  demo: false,
 };
