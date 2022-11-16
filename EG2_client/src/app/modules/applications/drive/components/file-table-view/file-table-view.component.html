@@ -25,13 +25,13 @@
                     <span class="text-overflow-ellipsis white-space-nowrap overflow-hidden">{{ entry.name }}</span>
 
                 </td>
-                <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td class="hidden md:flex" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{ entry.owner?.username }}
                 </td>
-                <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td class="hidden md:flex" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{entry.createdAt | date:'dd/MM/yyyy HH:mm'}}
                 </td>
-                <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
+                <td class="hidden md:flex" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{ filesHelper.getByteSizeEntry(entry) }}
                 </td>
                 <td style="width: 5rem; max-width: 5rem">
