@@ -28,7 +28,7 @@
                         Date de création
                         <p-sortIcon field="createdAt"></p-sortIcon>
                     </th>
-                    <th></th>
+                    <th style="width: 5rem; max-width: 5rem"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-news>
@@ -42,7 +42,7 @@
                     <td>
                         {{news.createdAt | amTimeAgo}}
                     </td>
-                    <td>
+                    <td style="width: 5rem; max-width: 5rem">
                         <button pButton type="button" class="p-button-secondary p-button-text" icon="fa-solid fa-pen"
                             (click)="edit(news)"></button>
                     </td>

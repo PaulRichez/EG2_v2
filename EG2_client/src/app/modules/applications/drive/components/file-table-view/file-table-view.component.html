@@ -12,7 +12,7 @@
                     </p-sortIcon>
                 </th>
                 <th class="hidden md:block">Taille</th>
-                <th style="max-width:80px"></th>
+                <th style="width: 5rem; max-width: 5rem"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-entry>
@@ -34,9 +34,9 @@
                 <td class="hidden md:block" (dblclick)="dbClick.emit(entry)" (click)="clickRow(entry)">
                     {{ filesHelper.getByteSizeEntry(entry) }}
                 </td>
-                <td style="max-width:80px">
+                <td style="width: 5rem; max-width: 5rem">
                     <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
-                        class="p-button-rounded p-button-secondary p-button-text"
+                        class="p-button-secondary p-button-text"
                         (click)="createMenuItems(entry);menu.toggle($event)"></button>
                     <p-menu #menu [popup]="true" [model]="itemsEntry" [appendTo]="'body'"></p-menu>
                 </td>
