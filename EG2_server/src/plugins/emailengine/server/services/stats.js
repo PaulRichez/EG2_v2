@@ -11,8 +11,8 @@ axios.defaults.maxBodyLength = Infinity;
 module.exports = ({ strapi }) => ({
     async getStats() {
         try {
-            const url = getEmailengineUrl(`stats`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`stats`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.get(url, config);
             return response.data;
         } catch (err) {

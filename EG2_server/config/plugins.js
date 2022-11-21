@@ -57,6 +57,10 @@ module.exports = ({ env }) => ({
     },
     'emailengine': {
         enabled: true,
-        resolve: './src/plugins/emailengine'
+        resolve: './src/plugins/emailengine',
+        config: {
+            domain: env('EMAILENGINE_DOMAIN', 'http://localhost:3000'),
+            token: env('EMAILENGINE_TOKEN', null),
+        }
     },
 });

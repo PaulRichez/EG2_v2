@@ -14,8 +14,8 @@ module.exports = ({ strapi }) => ({
             const query = qs.stringify({
                 counters: ctxQuery.counters || false
             });
-            const url = getEmailengineUrl(`account/${idUser}/mailboxes?${query}`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/mailboxes?${query}`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.get(url, config);
             return response.data;
         } catch (err) {
@@ -24,8 +24,8 @@ module.exports = ({ strapi }) => ({
     },
     async create(idUser, paths) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/mailbox`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/mailbox`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.post(url, { path: paths }, config);
             return response.data;
         } catch (err) {
@@ -34,8 +34,8 @@ module.exports = ({ strapi }) => ({
     },
     async delete(idUser, path) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/mailbox?path=${path}`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/mailbox?path=${path}`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.delete(url, config);
             return response.data;
         } catch (err) {

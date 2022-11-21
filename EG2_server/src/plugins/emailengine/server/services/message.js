@@ -16,8 +16,8 @@ module.exports = ({ strapi }) => ({
                 page: ctxQuery.page,
                 pageSize: ctxQuery.pageSize
             });
-            const url = getEmailengineUrl(`account/${idUser}/search?${query}`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/search?${query}`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.post(url, body, config);
             return response.data;
         } catch (err) {
@@ -31,8 +31,8 @@ module.exports = ({ strapi }) => ({
                 embedAttachedImages: ctxQuery.embedAttachedImages || false,
                 documentStore: ctxQuery.documentStore || false
             });
-            const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}?${query}`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/message/${idMessage}?${query}`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.get(url, config);
             return response.data;
         } catch (err) {
@@ -41,8 +41,8 @@ module.exports = ({ strapi }) => ({
     },
     async update(idUser, idMessage, ctxBody) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/message/${idMessage}`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.put(url, ctxBody.data, config);
             return response.data;
         } catch (err) {
@@ -51,8 +51,8 @@ module.exports = ({ strapi }) => ({
     },
     async downloadAttachment(idUser, idAttachment) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/attachment/${idAttachment}`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/attachment/${idAttachment}`);
+            const config = await getEmailengineToken(strapi);
             config.responseType = 'stream';
             const response = await axios.get(url, config);
             return response.data;
@@ -62,8 +62,8 @@ module.exports = ({ strapi }) => ({
     },
     async submit(idUser, ctxBody) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/submit`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/submit`);
+            const config = await getEmailengineToken(strapi);
             const response = await axios.post(url, ctxBody.data, config);
             return response.data;
         } catch (err) {
@@ -72,8 +72,8 @@ module.exports = ({ strapi }) => ({
     },
     async getMessageSource(idUser, idMessage) {
         try {
-            const url = getEmailengineUrl(`account/${idUser}/message/${idMessage}/source`);
-            const config = await getEmailengineToken();
+            const url =  getEmailengineUrl(strapi,`account/${idUser}/message/${idMessage}/source`);
+            const config = await getEmailengineToken(strapi);
             config.responseType = 'stream';
             const response = await axios.get(url, config);
             return response.data;

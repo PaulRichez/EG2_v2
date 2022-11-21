@@ -1,11 +1,20 @@
 module.exports = {
-    getEmailengineUrl: function getEmailengineUrl(endpoint) {
-        return `http://localhost:3000/v1/${endpoint}`;
+    getEmailengineUrl: function getEmailengineUrl(strapi, endpoint) {
+        const config = strapi.config.get('plugin.emailengine')
+        const domain = config.domain || "http://localhost:3000"
+        console.log(domain)
+        return `${domain}/v1/${endpoint}`;
     },
-    getEmailengineToken: async function getEmailengineToken() {
-        return {};
-        /* return {
-             headers: { Authorization: `Bearer 2828` }
-         };*/
+    getEmailengineToken: async function getEmailengineToken(strapi) {
+        const config = strapi.config.get('plugin.emailengine')
+        const token = config.token
+        if (token) {
+            return {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+        } else {
+
+            return {};
+        }
     }
 }
