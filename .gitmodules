@@ -1,3 +1,6 @@
 [submodule "emailengine"]
 	path = emailengine
 	url = git@github.com:PaulRichez/emailengine.git
+[submodule "easygroupware"]
+	path = easygroupware
+	url = git@github.com:PaulRichez/easygroupware.git
