@@ -21,10 +21,10 @@ module.exports = createCoreRouter('api::calendar.event-source', {
             ]
         },
         find: {
-            roles: ["authenticated, demo"],
+            roles: ["authenticated", "demo"],
         },
         findOne: {
-            roles: ["authenticated, demo"]
+            roles: ["authenticated", "demo"]
         },
         update: {
             roles: ["authenticated"]
