@@ -8,7 +8,7 @@ module.exports = {
             path: '/mailboxes',
             handler: 'mailbox.find',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
         {

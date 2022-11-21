@@ -7,7 +7,7 @@ module.exports = {
       handler: 'user-extended.find',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {
@@ -16,7 +16,7 @@ module.exports = {
       handler: 'user-extended.count',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {
@@ -25,7 +25,7 @@ module.exports = {
       handler: 'user-extended.findOne',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {

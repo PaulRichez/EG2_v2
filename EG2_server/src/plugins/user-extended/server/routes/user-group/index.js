@@ -7,7 +7,7 @@ module.exports = {
       handler: 'user-group.find',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {
@@ -16,7 +16,7 @@ module.exports = {
       handler: 'user-group.count',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {
@@ -25,7 +25,7 @@ module.exports = {
       handler: 'user-group.findOne',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {

@@ -8,7 +8,7 @@ module.exports = {
             path: '/messages',
             handler: 'message.search',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
         {
@@ -16,7 +16,7 @@ module.exports = {
             path: '/message/:id',
             handler: 'message.get',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
         {
@@ -24,7 +24,7 @@ module.exports = {
             path: '/message/:id/source',
             handler: 'message.getMessageSource',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
         {
@@ -40,7 +40,7 @@ module.exports = {
             path: '/attachment/:id',
             handler: 'message.downloadAttachment',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
         {

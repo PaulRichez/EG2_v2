@@ -8,7 +8,7 @@ module.exports = {
             path: '/account',
             handler: 'account.findMe',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
         {

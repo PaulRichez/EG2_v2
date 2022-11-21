@@ -21,10 +21,10 @@ module.exports = createCoreRouter('api::contact.contact', {
             ]
         },
         find: {
-            roles: ["authenticated"],
+            roles: ["authenticated", "demo"],
         },
         findOne: {
-            roles: ["authenticated"]
+            roles: ["authenticated", "demo"]
         },
         update: {
             roles: ["authenticated"]

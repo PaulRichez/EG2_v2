@@ -8,7 +8,7 @@ module.exports = {
             path: '/stats',
             handler: 'stats.get',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
     ]

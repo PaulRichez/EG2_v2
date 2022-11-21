@@ -9,7 +9,7 @@ const { createCoreRouter } = require('@strapi/strapi').factories;
 module.exports = createCoreRouter('api::imap-smtp.imap-smtp', {
     config: {
         find: {
-            roles: ["authenticated"],
+            roles: ["authenticated", "demo"],
         },
         update: {
             roles: ["authenticated"]

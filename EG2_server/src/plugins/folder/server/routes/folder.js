@@ -8,7 +8,7 @@ module.exports = {
       path: '/:id',
       handler: 'folder.findOne',
       config: {
-        roles: ['authenticated'],
+        roles: ['authenticated', "demo"],
       }
     },
     {
@@ -32,7 +32,7 @@ module.exports = {
       path: '/drive/my-drive',
       handler: 'drive.getMyDriveFolderRoot',
       config: {
-        roles: ['authenticated'],
+        roles: ['authenticated', "demo"],
       }
     },
     {
@@ -40,7 +40,7 @@ module.exports = {
       path: '/drive/my-drive/size',
       handler: 'drive.getMyDriveSize',
       config: {
-        roles: ['authenticated'],
+        roles: ['authenticated', "demo"],
       }
     },
     {
@@ -48,7 +48,7 @@ module.exports = {
       path: '/admin/drive/averaged-size',
       handler: 'drive.getAveragedDriveSize',
       config: {
-        roles: ['authenticated'],
+        roles: ['authenticated', "demo"],
       }
     },
     {
@@ -56,7 +56,7 @@ module.exports = {
       path: '/admin/drive/total-size',
       handler: 'drive.getTotalDriveSize',
       config: {
-        roles: ['authenticated'],
+        roles: ['authenticated', "demo"],
       }
     },
     {

@@ -7,7 +7,7 @@ module.exports = {
       handler: 'user-extended.me',
       config: {
         policies: [],
-        roles: ['authenticated']
+        roles: ['authenticated', "demo"]
       },
     },
     {
