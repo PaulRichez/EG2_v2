@@ -2,7 +2,6 @@ module.exports = {
     getEmailengineUrl: function getEmailengineUrl(strapi, endpoint) {
         const config = strapi.config.get('plugin.emailengine')
         const domain = config.domain || "http://localhost:3000"
-        console.log(domain)
         return `${domain}/v1/${endpoint}`;
     },
     getEmailengineToken: async function getEmailengineToken(strapi) {
