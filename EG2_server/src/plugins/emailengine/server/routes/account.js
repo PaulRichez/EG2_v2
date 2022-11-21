@@ -24,7 +24,7 @@ module.exports = {
             path: '/countAccounts',
             handler: 'account.countAccounts',
             config: {
-                roles: ['authenticated']
+                roles: ['authenticated', "demo"]
             }
         },
     ]
