@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router) {
     this.formLogin = this.formBuilder.group({
       username: [environment.demo ? 'demo.admin' : '', [Validators.required]],
-      password: [environment.demo ? 'password' : '',, [Validators.required]],
+      password: [environment.demo ? 'password' : '', [Validators.required]],
       remenberMe: [true],
     });
   }
