@@ -27,7 +27,7 @@ module.exports = {
     },
     async countAccounts(ctx) {
         const result = await strapi.service('plugin::emailengine.stats').getStats();
-        if (result.accounts) {
+        if (result?.accounts) {
             return ctx.body = result.accounts;
         } else {
             return ctx.body = 0;
